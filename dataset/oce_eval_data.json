@@ -1,0 +1,30 @@
+[
+    {
+        "task_id": "123e4567-e89b-12d3-a456-426614174000",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'1. swap 1 eth to weth 2. swap 1 weth to usdc by Uniswap V3.'. Don't give the hex directly, use code to actually generate the hex.",
+        "level": 1,
+        "chain": "evm",
+        "category": "test", 
+        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance",
+        "anvil_config": {
+            "fork_url": "https://rpc.ankr.com/eth/e1529327d27a49660f1b8b9e747aec94256fcd84c82bd3ae28ce178915e00017",
+            "fork_block_number": "22636495",
+            "balance": "1000ETH",
+            "port": 8545
+        }
+    },
+    {
+        "task_id": "b7e6c2f4-8a2d-4e3a-9c1a-2f5e7d8c9b0a",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'swap 10 SOL to TRUMP",
+        "level": 1,
+        "chain": "evm",
+        "category": "test", 
+        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance",
+        "anvil_config": {
+            "fork_url": "https://rpc.ankr.com/eth/e1529327d27a49660f1b8b9e747aec94256fcd84c82bd3ae28ce178915e00017",
+            "fork_block_number": "22636495",
+            "balance": "1000ETH",
+            "port": 8545
+        }
+    }
+]

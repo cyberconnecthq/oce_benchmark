@@ -1,0 +1,8 @@
+web3
+openai
+langchain-experimental
+solders
+solana
+pyyaml
+zstandard
+requests

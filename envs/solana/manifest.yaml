@@ -1,0 +1,8 @@
+chain_id: "solana"
+ledger_hash: "v1_195"          # 版本号(增加即强制更新)
+mnemonic: "test test test ... junk"
+clone:
+  - So11111111111111111111111111111111111111112      # wSOL mint
+  - 6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN      # TRUMP mint
+
+ledger_tar: "./ledger_v1_195.tar.zst"                 # 预打包
