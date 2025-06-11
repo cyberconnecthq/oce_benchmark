@@ -137,10 +137,11 @@ class EvaluateAgent(Agent):
         return await super().run(question, session_id)
     
     async def reset_anvil(self):
-        self.w3.provider.make_request(
-            "anvil_reset",
-            []
-        )
+        ...
+        # self.w3.provider.make_request(
+        #     "anvil_reset",
+        #     []
+        # )
 
 
 

@@ -9,10 +9,53 @@
         "anvil_config": {
             "fork_url": "https://rpc.ankr.com/eth/e1529327d27a49660f1b8b9e747aec94256fcd84c82bd3ae28ce178915e00017",
             "fork_block_number": "22636495",
-            "balance": "1000ETH",
+            "balance": "1000",
             "port": 8545
         }
     },
+    {
+        "task_id": "b8f9a1c2-4d3e-11ee-be56-0242ac120002",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 1 weth to PEPE by Uniswap V2 on mainnet.'. Don't give the hex directly, use code to actually generate the hex.",
+        "level": 1,
+        "chain": "evm",
+        "category": "test", 
+        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance",
+        "anvil_config": {
+            "fork_url": "https://rpc.ankr.com/eth/e1529327d27a49660f1b8b9e747aec94256fcd84c82bd3ae28ce178915e00017",
+            "fork_block_number": "22636495",
+            "balance": "1000",
+            "port": 8545
+        }
+    },
+    {
+        "task_id": "b9a1c3d4-5e6f-11ee-be56-0242ac120002",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Send 1 ETH to address: 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216'. Don't give the hex directly, use code to actually generate the hex.",
+        "level": 1,
+        "chain": "evm",
+        "category": "test", 
+        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance",
+        "anvil_config": {
+            "fork_url": "https://rpc.ankr.com/eth/e1529327d27a49660f1b8b9e747aec94256fcd84c82bd3ae28ce178915e00017",
+            "fork_block_number": "22636495",
+            "balance": "1000",
+            "port": 8545
+        }
+    },
+    {
+        "task_id": "60d4b5fb-0a04-49fb-bd16-7ad56cfc0b1d",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Stake 0.5 eth to Lido'. Don't give the hex directly, use code to actually generate the hex.",
+        "level": 1,
+        "chain": "evm",
+        "category": "test", 
+        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, the balance of stETH should increase 0.5. The balance of Lido should increase 0.5 ETH",
+        "anvil_config": {
+            "fork_url": "https://rpc.ankr.com/eth/e1529327d27a49660f1b8b9e747aec94256fcd84c82bd3ae28ce178915e00017",
+            "fork_block_number": "22636495",
+            "balance": "1000",
+            "port": 8545
+        }
+    },
+   
     {
         "task_id": "b7e6c2f4-8a2d-4e3a-9c1a-2f5e7d8c9b0a",
         "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'swap 10 SOL to TRUMP",

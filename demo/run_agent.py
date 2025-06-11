@@ -88,7 +88,7 @@ if __name__ == "__main__":
     #     save_results=True,
     # ))
 
-    question = "Wallet address: 0xFAafe5FcaC0E87D40017E44CD462398026a12230. Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'1. swap 1 eth to weth 2. swap 1 weth to usdc by Uniswap V3.'. Don't give the hex directly, use code to actually generate the hex."
+    question = "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Stake 0.5 eth to Lido'. Don't give the hex directly, use code to actually generate the hex."
     # result = asyncio.run(run_tests_parallel(
     #     output_dir="results",
     #     questions=[QuestionData(task_id="123", question=question, level = 1, category='test')],
@@ -99,7 +99,7 @@ if __name__ == "__main__":
     result = asyncio.run(run_tests_parallel(
         output_dir="results",
         questions=[QuestionData(task_id="123", question=question, level = 1, category='test')],
-        model_name="openai/o3-2025-04-16",
+        model_name="openai/gpt-4.1",
         max_concurrent=5,
         save_results=True,
     ))

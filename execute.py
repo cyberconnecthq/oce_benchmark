@@ -9,10 +9,17 @@ def sign_and_send_transaction(tx: TxParams, account:LocalAccount, w3:Web3) -> tu
     tx.update({
         "nonce": w3.eth.get_transaction_count(account.address),
         "chainId": w3.eth.chain_id,
+        "from": w3.to_checksum_address(account.address),
+        "to": w3.to_checksum_address(tx.get("to", "")),
     })
-    # 检查tx中是否有gasPrice
+
+    if tx.get('to', "") == "":
+        print("Transaction failed! No 'to' address specified.")
+        return False, 0
+
+    # Check if gasPrice is in tx
     if "gasPrice" not in tx:
-        # 如果没有gasPrice，则使用maxFeePerGas和maxPriorityFeePerGas
+        # If not, use maxFeePerGas and maxPriorityFeePerGas if available, otherwise set a default gasPrice
         if "maxFeePerGas" not in tx and "maxPriorityFeePerGas" not in tx:
             tx['gasPrice'] = w3.to_wei(30, 'gwei')
     if 'gas' not in tx:
@@ -22,12 +29,12 @@ def sign_and_send_transaction(tx: TxParams, account:LocalAccount, w3:Web3) -> tu
     tx_hash = w3.eth.send_raw_transaction(sign_tx.raw_transaction)
     tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
     if tx_receipt["status"] == 1:
-        print("交易执行成功!")
-        print(f"使用的 gas: {tx_receipt['gasUsed']}")
-        print(f"区块号: {tx_receipt['blockNumber']}")
+        print("Transaction succeeded!")
+        print(f"Gas used: {tx_receipt['gasUsed']}")
+        print(f"Block number: {tx_receipt['blockNumber']}")
         return True, tx_receipt["gasUsed"]
     else:
-        print("交易执行失败!")
+        print("Transaction failed!")
         print(tx)
-        print(f"交易哈希: {tx_receipt['transactionHash'].hex()}")
+        print(f"Transaction hash: {tx_receipt['transactionHash'].hex()}")
         return False, 0
