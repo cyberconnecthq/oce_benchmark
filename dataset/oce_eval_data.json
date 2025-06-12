@@ -50,15 +50,23 @@
     },
     {
         "task_id": "9024c6df-d393-4770-8719-cad56a802154",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Provide liquidity to USDC-ETH 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3'. Don't give the hex directly, use code to actually generate the hex.",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Provide 1 WETH and corresponding number of USDC liquidity to USDC-ETH 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3'. Don't give the hex directly, use code to actually generate the hex.",
         "level": 1,
         "chain": "ethereum",
         "category": "LP", 
-        "criteria": ""
+        "criteria": "Before and after the transaction, the balance of the pool should increase about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should decrease about 1 WETH and corresponding number(about 2600) of USDC."
     },
     {
         "task_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
         "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 0.5 eth to USDC through Uniswap v4.'",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "swap",
+        "criteria": "Check the balance changes of USDC, ETH and WETH in the wallet, ensure the contract interaction address includes Uniswap v4 contract address: 0x66a9893cc07d91d95644aedd05d03f95e1dba8af"
+    },
+    {
+        "task_id": "5d1fed5d-1dbd-4791-91da-16186af000c9",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 100 USDC to ETH through Uniswap v4.'",
         "level": 1,
         "chain": "ethereum",
         "category": "swap",
@@ -92,16 +100,40 @@
         "task_id": "3b9274f0-b0fb-4cfe-abba-6439f9b10d15",
         "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Borrow 120 USDT from Aave'",
         "level": 1,
-        "chain": "ethereum",
+        "chain": "ethereum", 
         "category": "lending",
-        "criteria": "从Aave V3借出USDT"
+        "criteria": "Borrow USDT from Aave V3, wallet USDT increases by 120, Aave debt increases by 120 USD"
     },
     {
         "task_id": "52315328-c76a-4a6c-891f-786fdfbc1431",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Supply 100 USDC to Aave'",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Supply 1 ETH to Aave'",
         "level": 1,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "向Aave V3存入USDC"
+        "criteria": "Supply ETH to Aave V3, wallet ETH decreases by 1, Aave Total Collateral increases by 1 ETH"
     },
+    {
+        "task_id": "b643cab6-98a2-42e4-9e40-20213a88b86a",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Repay 150 USDT to Aave",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "lending", 
+        "criteria": "Repay USDT to Aave V3, wallet USDT decreases by 150, Aave debt decreases by 150 USD"
+    },
+    {
+        "task_id": "02dacdba-9618-49b3-a113-bd7e9ecbb8c8",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Withdraw 500 USDT from Aave",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "Withdraw USDT from Aave V3, wallet USDT increases by 500, Aave Total Collateral decreases by 500 USD"
+    },
+    {
+        "task_id": "4649fbaf-f0b6-4851-b666-7f09a02041b6",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Bridge 1 WETH from ETH network to Base by Across Protocol'",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "bridge",
+        "criteria": "Check the balance changes of ETH in the wallet, ensure the contract interaction address includes Across Protocol contract address: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913. ETH balance should decrease by 1 ETH, Across Protocol locked balance should increase by 1 ETH"
+    }
 ]

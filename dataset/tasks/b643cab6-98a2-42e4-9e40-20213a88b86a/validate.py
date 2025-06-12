@@ -30,14 +30,12 @@ weth_contract = w3.eth.contract(address=Web3.to_checksum_address(WETH_CONTRACT_A
 async def get_balances():
     # 获取USDT余额
     usdt_balance = usdt_contract.functions.balanceOf(addr).call()
-    weth_balance = weth_contract.functions.balanceOf(addr).call()
     
     aave_info = await get_aave_info(addr)
     
     return (
         f"Current wallet balance:\n"
         f"{usdt_balance / 10**6} USDT\n\n"
-        f"{weth_balance / 10**18} WETH\n\n"
         f"{aave_info}"
     )
 
