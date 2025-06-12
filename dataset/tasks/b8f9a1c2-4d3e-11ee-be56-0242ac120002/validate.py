@@ -1,6 +1,6 @@
 from web3 import Web3, HTTPProvider
 from eth_account.signers.local import LocalAccount
-
+from dataset.constants import PEPE_CONTRACT_ADDRESS_ETH, WETH_CONTRACT_ADDRESS_ETH
 
 
 RPC_URL = "http://127.0.0.1:8545"
@@ -9,8 +9,8 @@ w3 = Web3(HTTPProvider(RPC_URL))
 account: LocalAccount = w3.eth.account.from_key(PRIVATE_KEY)
 addr = account.address
 
-WETH  = Web3.to_checksum_address("0xC02aaA39b223FE8D0A0E5C4F27eAD9083C756Cc2")
-PEPE  = Web3.to_checksum_address("0x6982508145454Ce325dDbE47a25d4ec3d2311933")
+WETH  = Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH)
+PEPE  = Web3.to_checksum_address(PEPE_CONTRACT_ADDRESS_ETH)
 
 # ERC20 ABI
 ERC20_ABI = [

@@ -11,8 +11,6 @@ addr = account.address
 
 WETH  = Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH)
 USDC  = Web3.to_checksum_address(USDC_CONTRACT_ADDRESS_ETH)
-ROUTER= Web3.to_checksum_address("0xE592427A0AEce92De3Edee1F18E0157C05861564")
-QUOTER= Web3.to_checksum_address("0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6")
 
 # ERC20 ABI
 ERC20_ABI = [

@@ -91,14 +91,20 @@ class QuestionData(BaseModel):
         return prompt
 
 
+class AnvilConfig(BaseModel):
+    fork_url: str = Field(description="The fork url")
+    fork_block_number: str = Field(description="The fork block number")
+    balance: str = Field(description="The balance of the account")
+    port: int = Field(description="The port of the anvil")
 
 class BenchmarkItem(BaseModel):
     task_id: str
+    question: str = Field(description="The question to be answered")
     level:Optional[int] = 1
     category:str
-    question: str = Field(description="The question to be answered")
     # answer: Answer = Field(description="The agent system output")
-    evaluate: EvaluateData = Field(description="The evaluation result")
+    criteria: str = Field(description="The criteria to be evaluated")
+    anvil_config: Optional[AnvilConfig] = Field(description="The anvil config", default=None)
 
     
 

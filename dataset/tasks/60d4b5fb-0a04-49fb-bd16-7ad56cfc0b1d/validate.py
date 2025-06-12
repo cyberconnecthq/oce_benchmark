@@ -1,6 +1,6 @@
 from web3 import Web3, HTTPProvider
 from eth_account.signers.local import LocalAccount
-
+from dataset.constants import LIDO_CONTRACT_ADDRESS_ETH
 
 
 RPC_URL = "http://127.0.0.1:8545"
@@ -9,8 +9,8 @@ w3 = Web3(HTTPProvider(RPC_URL))
 account: LocalAccount = w3.eth.account.from_key(PRIVATE_KEY)
 addr = account.address
 
-LIDO  = Web3.to_checksum_address("0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84")
-STETH = Web3.to_checksum_address("0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84")
+LIDO  = Web3.to_checksum_address(LIDO_CONTRACT_ADDRESS_ETH)
+STETH = Web3.to_checksum_address(LIDO_CONTRACT_ADDRESS_ETH)
 
 # ERC20 ABI
 ERC20_ABI = [

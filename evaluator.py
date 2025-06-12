@@ -80,39 +80,11 @@ def load_task_dependencies(task_id: str):
         return None, None, None
 
 if __name__ == "__main__":
+    evaluate_dataset = asyncio.run(load_evaluate_data("dataset/oce_eval_data.json"))
+    print(evaluate_dataset)
     task_id = "60d4b5fb-0a04-49fb-bd16-7ad56cfc0b1d"
     account, w3, get_balances = load_task_dependencies(task_id)
     print(account, w3, get_balances)
-    import asyncio
-    ans = [
-        {
-            "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-            "value": 100000000000000000,
-            "gas": 60000,
-            "maxFeePerGas": 50000000000,
-            "maxPriorityFeePerGas": 2000000000,
-            "data": "0xd0e30db0",
-            "chainId": 1
-        },
-        {
-            "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-            "value": 0,
-            "gas": 60000,
-            "maxFeePerGas": 50000000000,
-            "maxPriorityFeePerGas": 2000000000,
-            "data": "0x095ea7b3000000000000000000000000E592427A0AEce92De3Edee1F18E0157C0586156400000000000000000000000000000000000000000000000DE0B6B3A7640000",
-            "chainId": 1
-        },
-        {
-            "to": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
-            "value": 0,
-            "gas": 300000,
-            "maxFeePerGas": 50000000000,
-            "maxPriorityFeePerGas": 2000000000,
-            "data": "0x414bf389000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb4800000000000000000000000000000000000000000000000000000000000001f4000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266000000000000000000000000000000000000000000000000000000006843b57e000000000000000000000000000000000000000000000000016345785d8a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-            "chainId": 1
-        }
-    ]
 
     agent_output_item = AgentOutputItem(
         task_id=task_id,
