@@ -7,7 +7,7 @@ PRIVATE_KEY = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff8
 w3 = Web3(HTTPProvider(RPC_URL))
 account: LocalAccount = w3.eth.account.from_key(PRIVATE_KEY)
 addr = account.address
-
+SPENDER_A = Web3.to_checksum_address("0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 USDC = Web3.to_checksum_address(USDC_CONTRACT_ADDRESS_ETH)
 
 # ERC20 ABI with allowance function
@@ -30,7 +30,7 @@ weth_contract = w3.eth.contract(address=Web3.to_checksum_address(WETH_CONTRACT_A
 
 async def get_balances():
     # 检查 addr 对 USDC 合约的授权额度
-    allowance = usdc_contract.functions.allowance(addr, USDC).call()
+    allowance = usdc_contract.functions.allowance(addr, SPENDER_A).call()
     return (
         f"USDC Allowance for address {addr}:\n"
         f"{allowance / 10**6} USDC\n"

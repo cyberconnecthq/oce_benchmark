@@ -5,16 +5,31 @@
         "level": 1,
         "chain": "ethereum",
         "category": "swap", 
-        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance"
+        "criteria": "1. Must interact with Uniswap V3 contract address: 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640 2. After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance"
     },
-    
+    {
+        "task_id": "f29345cf-9d69-41ed-91b1-44aa238b359d",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'1. swap 1 ETH to USDC by Uniswap V2.'. Don't give the hex directly, use code to actually generate the hex.",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "swap", 
+        "criteria": "1. Must interact with Uniswap V2 contract address: 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D 2. After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance."
+    },
     {
         "task_id": "b8f9a1c2-4d3e-11ee-be56-0242ac120002",
         "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 1 weth to PEPE by Uniswap V2 on mainnet.'. Don't give the hex directly, use code to actually generate the hex.",
         "level": 1,
         "chain": "ethereum",
         "category": "swap", 
-        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance"
+        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the PEPE balance should increase about 220,227,559 with 5% fault tolerance"
+    },
+    {
+        "task_id": "7c0be74e-2f8d-4fae-b900-4f790fa5cf12",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 1 weth to SHIB by Uniswap V2 on mainnet.'. Don't give the hex directly, use code to actually generate the hex.",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "swap", 
+        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the SHIB balance should increase reasonable number"
     },
     {
         "task_id": "b9a1c3d4-5e6f-11ee-be56-0242ac120002",
@@ -81,6 +96,14 @@
         "criteria": "Check USDT balances of both addresses before and after executing the transaction, verify that the USDT balance changes match the expected amounts"
     },
     {
+        "task_id": "437f29db-3939-41e2-9ea0-07d1862509f6",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Send 10000 PEPE from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216'",
+        "level": 1,
+        "chain": "ethereum", 
+        "category": "transfer",
+        "criteria": "Check PEPE balances of both addresses before and after executing the transaction, verify that the PEPE balance changes match the expected amounts"
+    },
+    {
         "task_id": "6ba7b811-9dad-11d1-80b4-00c04fd430c8",
         "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Send 10 USDC from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216'. Don't give the hex directly, use code to actually generate the hex.",
         "level": 1,
@@ -90,11 +113,11 @@
     },
     {
         "task_id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Approve 10 USDC from Address A'",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Approve 10 USDC from Address 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
         "level": 1,
         "chain": "ethereum",
         "category": "approve",
-        "criteria": "1. 验证交易哈希 2. 与USDC合约(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48)交互 3. from地址为A"
+        "criteria": "1. Verify transaction hash 2. Interact with USDC contract (0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) 3. The allowance increase to 10 USDC"
     },
     {
         "task_id": "3b9274f0-b0fb-4cfe-abba-6439f9b10d15",
@@ -135,5 +158,14 @@
         "chain": "ethereum",
         "category": "bridge",
         "criteria": "Check the balance changes of ETH in the wallet, ensure the contract interaction address includes Across Protocol contract address: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913. ETH balance should decrease by 1 ETH, Across Protocol locked balance should increase by 1 ETH"
-    }
+    },
+    {
+        "task_id": "73caf323-7b49-40e4-b42e-147cb235eb8d",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Bridge 10 USDC from ETH network to Base by Across Protocol'",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "bridge",
+        "criteria": "Check the balance changes of USDC in the wallet, ensure the contract interaction address includes Across Protocol contract address: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913. USDC balance should decrease by 10 USDC, Across Protocol locked balance should increase by 1 USDC"
+    },
+
 ]
