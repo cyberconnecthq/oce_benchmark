@@ -20,14 +20,14 @@ USDC  = Web3.to_checksum_address("0xA0b86991C6218b36c1d19D4a2e9Eb0cE3606EB48")
 POOL  = Web3.to_checksum_address("0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640") # WETH/USDC 0.05 %
 NPM   = Web3.to_checksum_address("0xC36442b4a4522E871399CD717aBDD847Ab11FE88") # NonfungiblePositionManager
 
-AMOUNT_WETH = Web3.to_wei(1, "ether")           # 想投入的 WETH 数量
+AMOUNT_WETH = Web3.to_wei(2, "ether")           # 想投入的 WETH 数量
 PRICE_BAND  = 0.01                              # tick ±1 % 宽度
 
 ###############################################################################
 # 加载 ABI（只用到的函数片段，减小脚本体积）
 ###############################################################################
 script_dir = Path(__file__).parent
-abi_dir = script_dir.parent / "abi"
+abi_dir = script_dir.parent.parent.parent / "abi"
 with open(abi_dir / "uniswap_v3_pool_abi.json") as f:
     POOL_ABI = json.load(f)
 with open(abi_dir / "uniswap_v3_npm_abi.json") as f:
@@ -56,19 +56,6 @@ usdc = w3.eth.contract(address=USDC, abi=ERC20_ABI)
 ###############################################################################
 # 1) 若手里是原生 ETH 而非 WETH – 先 wrap
 ###############################################################################
-def wrap_eth(amount_wei):
-    tx = {
-        "to": WETH,
-        "data": "0xd0e30db0",   # WETH deposit() 函数签名
-        "value": amount_wei,
-        "gas": 100_000,
-        "nonce": w3.eth.get_transaction_count(ACCOUNT.address),
-        "chainId": CHAIN_ID,
-    }
-    signed = ACCOUNT.sign_transaction(tx)
-    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
-    print("wrap ETH tx:", tx_hash.hex())
-    w3.eth.wait_for_transaction_receipt(tx_hash)
 
 ###############################################################################
 # 2) 读取池价格，估算需要配对的 USDC
@@ -128,7 +115,11 @@ def approve(token, amount):
 ###############################################################################
 def main():
     # 若需要，先 wrap
-    wrap_eth(AMOUNT_WETH)
+    from evaluate_utils.common_util import wrap_eth_to_weth
+    from evaluate_utils.uniswap_v3_util import swap_weth_to_usdc
+    import asyncio
+    asyncio.run(wrap_eth_to_weth(10))
+    asyncio.run(swap_weth_to_usdc(2))
 
     approve(weth, AMOUNT_WETH)
     approve(usdc, usdc_needed)
@@ -142,8 +133,8 @@ def main():
         "tickUpper": upper_tick,
         "amount0Desired": usdc_needed,        # USDC (6 dec)
         "amount1Desired": AMOUNT_WETH,        # WETH (18 dec)
-        "amount0Min": int(usdc_needed * 0.90),  # 放宽滑点到10%
-        "amount1Min": int(AMOUNT_WETH * 0.90),  # 放宽滑点到10%
+        "amount0Min": int(usdc_needed * 0.80),  # 放宽滑点到10%
+        "amount1Min": int(AMOUNT_WETH * 0.80),  # 放宽滑点到10%
         "recipient": ACCOUNT.address,
         "deadline": w3.eth.get_block("latest")["timestamp"] + 3600
     }

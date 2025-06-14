@@ -1,3 +1,4 @@
+import json, os
 RPC_URL = "http://127.0.0.1:8545"
 PRIVATE_KEY = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80" 
 USDT_CONTRACT_ADDRESS_ETH  = "0xdAC17F958D2ee523a2206206994597C13D831ec7"
@@ -35,15 +36,20 @@ PENDLE_EUSDE_PT_ADDRESS="0x917459337caac939d41d7493b3999f571d20d667"
 PENDLE_EUSDE_YT_ADDRESS="0x733ee9ba88f16023146ebc965b7a1da18a322464"
 
 # ERC20 ABI
-ERC20_ABI = [
-    {
-        "constant": True,
-        "inputs": [{"name": "_owner", "type": "address"}],
-        "name": "balanceOf",
-        "outputs": [{"name": "balance", "type": "uint256"}],
-        "type": "function"
-    }
-]
+with open('./abi/erc20_abi.json', 'r') as f:
+    ERC20_ABI = json.load(f)
+# ERC20_ABI = [
+#     {
+#         "constant": True,
+#         "inputs": [{"name": "_owner", "type": "address"}],
+#         "name": "balanceOf",
+#         "outputs": [{"name": "balance", "type": "uint256"}],
+#         "type": "function"
+#     }
+# ]
 
 
 WETH_CONTRACT_ADDRESS_BASE='0x4200000000000000000000000000000000000006'
+
+
+MORPHO_CONTRACT_ADDRESS_ETH='0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb'

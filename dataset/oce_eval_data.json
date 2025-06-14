@@ -1,5 +1,21 @@
 [
     {
+        "task_id": "36d5f310-d1b8-4eed-8b3c-eac086438659",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Wrap 1 ETH to WETH'. Don't give the hex directly, use code to actually generate the hex.",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "wrap", 
+        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and theW ETH balance should increase by 1 WETH with no fault tolerance."
+    },
+    {
+        "task_id": "98b6648e-b0d0-4f68-9f0c-0902b6886cbd",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Unwrap 1 WETh to ETH'. Don't give the hex directly, use code to actually generate the hex.",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "wrap", 
+        "criteria": "After TX executed, the ETH balance should increase about 1 with 1% fault tolerance, and the WETH balance of target address should decrease by 1 WETH with no fault tolerance."
+    },
+    {
         "task_id": "123e4567-e89b-12d3-a456-426614174000",
         "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'1. swap 1 eth to weth 2. swap 1 weth to usdc by Uniswap V3.'. Don't give the hex directly, use code to actually generate the hex.",
         "level": 1,
@@ -14,6 +30,14 @@
         "chain": "ethereum",
         "category": "swap", 
         "criteria": "1. Must interact with Uniswap V2 contract address: 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D 2. After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance."
+    },
+    {
+        "task_id": "dddd9ef5-b067-4421-8bef-1a9fa746e2b4",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 2600 USDT to WETH by Uniswap V2.'. Don't give the hex directly, use code to actually generate the hex.",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "swap", 
+        "criteria": "1. Must interact with Uniswap V2 contract address: 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D 2. After TX executed, the WETH balance should increase about 1 with 1% fault tolerance, and the USDT balance should decrease about 2600 with 5% fault tolerance."
     },
     {
         "task_id": "b8f9a1c2-4d3e-11ee-be56-0242ac120002",
@@ -48,28 +72,20 @@
         "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, the balance of stETH should increase 0.5. The balance of Lido should increase 0.5 ETH"
     },
     {
-        "task_id": "4e8268ec-b01c-44bf-b671-204e9a8efcba",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Purchase a .eth handle through ENS. '. Don't give the hex directly, use code to actually generate the hex.",
-        "level": 1,
-        "chain": "ethereum",
-        "category": "Mint NFT", 
-        "criteria": ""
-    },
-    {
-        "task_id": "b7e6c2f4-8a2d-4e3a-9c1a-2f5e7d8c9b0a",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Bridge 1 eth from Ethereum chain to Cyber chain'. Don't give the hex directly, use code to actually generate the hex.",
-        "level": 1,
-        "chain": "ethereum",
-        "category": "bridge", 
-        "criteria": ""
-    },
-    {
         "task_id": "9024c6df-d393-4770-8719-cad56a802154",
         "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Provide 1 WETH and corresponding number of USDC liquidity to USDC-ETH 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3'. Don't give the hex directly, use code to actually generate the hex.",
         "level": 1,
         "chain": "ethereum",
         "category": "LP", 
-        "criteria": "Before and after the transaction, the balance of the pool should increase about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should decrease about 1 WETH and corresponding number(about 2600) of USDC."
+        "criteria": "Before and after the transaction, the balance of the pool should increase about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should decrease about 1 WETH and corresponding number(about 2600) of USDC. The NFT liquidity positions will increase."
+    },
+    {
+        "task_id": "1131eee3-ca61-468b-b004-b48757d8a10f",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'withdrawl 1 WETH and corresponding number of USDC liquidity from USDC-ETH 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3'. Don't give the hex directly, use code to actually generate the hex.",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "LP", 
+        "criteria": "Before and after the transaction, the balance of the pool should decrease about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should increase about 1 WETH and corresponding number(about 2600) of USDC. The NFS liquidty position should decrease."
     },
     {
         "task_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
@@ -113,15 +129,23 @@
     },
     {
         "task_id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Approve 10 USDC from Address 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Approve 10 USDC for Address 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
         "level": 1,
         "chain": "ethereum",
         "category": "approve",
         "criteria": "1. Verify transaction hash 2. Interact with USDC contract (0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) 3. The allowance increase to 10 USDC"
     },
     {
+        "task_id": "69983eaa-4257-4bfe-8904-511497b912e0",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Dis-Approve all USDC right for Address 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "approve",
+        "criteria": "1. Verify transaction hash 2. Interact with USDC contract (0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) 3. The allowance change to 0 USDC"
+    },
+    {
         "task_id": "3b9274f0-b0fb-4cfe-abba-6439f9b10d15",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Borrow 120 USDT from Aave'",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Borrow 120 USDT from Aave V3'",
         "level": 1,
         "chain": "ethereum", 
         "category": "lending",
@@ -129,7 +153,7 @@
     },
     {
         "task_id": "52315328-c76a-4a6c-891f-786fdfbc1431",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Supply 1 ETH to Aave'",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Supply 1 ETH to Aave V3'",
         "level": 1,
         "chain": "ethereum",
         "category": "lending",
@@ -145,11 +169,27 @@
     },
     {
         "task_id": "02dacdba-9618-49b3-a113-bd7e9ecbb8c8",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Withdraw 500 USDT from Aave",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Withdraw 500 USDT from Aave V3'",
         "level": 1,
         "chain": "ethereum",
         "category": "lending",
         "criteria": "Withdraw USDT from Aave V3, wallet USDT increases by 500, Aave Total Collateral decreases by 500 USD"
+    },
+    {
+        "task_id": "470e7450-6281-49da-a8da-bc7f093af089",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Supply 1 ETH toto Morpho'",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "Supply ETH from Morpho, wallet ETH decreases by 1, Morpho WETH balance increases by 1 WETH"
+    },
+    {
+        "task_id": "800ab787-13f5-4dec-b7e4-5f59c947817f",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Withdrawl 1 WETH from Morpho'",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "Withdrawl WETH from Morpho, wallet WETH increases by 1, Morpho WETH balance decreases by 1 WETH"
     },
     {
         "task_id": "4649fbaf-f0b6-4851-b666-7f09a02041b6",
@@ -158,6 +198,14 @@
         "chain": "ethereum",
         "category": "bridge",
         "criteria": "Check the balance changes of ETH in the wallet, ensure the contract interaction address includes Across Protocol contract address: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913. ETH balance should decrease by 1 ETH, Across Protocol locked balance should increase by 1 ETH"
+    },
+    {
+        "task_id": "9a55fbc9-a9a4-4566-9717-f2d12cd401bc",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Bridge 1 WETH from ETH network to Optimism by Across Protocol'",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "bridge",
+        "criteria": "Check the balance changes of ETH in the wallet, ensure the contract interaction address includes Across Protocol contract address: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913. ETH balance should decrease by 1 ETH, Across Protocol locked balance should increase by 1 ETH. Optimism chain id :10. so the tx should specify destination chainid to be 10."
     },
     {
         "task_id": "73caf323-7b49-40e4-b42e-147cb235eb8d",
@@ -169,26 +217,26 @@
     },
     {
         "task_id": "e1a1b2c3-d4e5-4f6a-8b9c-1234567890ab",
-        "question": "请给出可以直接签名并发送的TX json列表（如需多步请全部列出），以完成任务：'在Pendle上买入1个WETH的PT sUSDe。 market address:0x4339ffe2b7592dc783ed13cce310531ab366deac, PT address: 0x3b3fb9c57858ef816833dc91565efcd85d96f634'",
+        "question": "Please provide the directly signable and sendable TX json list (list all steps if multiple are needed) to complete the task: 'Buy 1 WETH worth of PT sUSDe on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, PT address: 0x3b3fb9c57858ef816833dc91565efcd85d96f634'",
         "level": 2,
         "chain": "ethereum",
         "category": "yield",
-        "criteria": "1. 交互地址包含Pendle USDC池合约地址（如：0x818ec0A7Fe18Ff94269904fCED6AE3DaE6d6dC0b，具体以主网为准） 2. 先approve 10 USDC给池子，再deposit 10 USDC 3. 钱包USDC减少10，池子份额增加"
+        "criteria": "Check wallet balance before and after execution. The wallet balance should decrease by about 1 WETH, and you should receive some PT sUSDe."
     },
     {
         "task_id": "f2b3c4d5-e6f7-4a8b-9c0d-abcdef123456",
-        "question": "请给出可以直接签名并发送的TX json列表（如需多步请全部列出），以完成任务：'在Pendle上买入1个WETH的YT sUSDe. market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac  YT address: 0xb7e51d15161c49c823f3951d579ded61cd27272b'",
+        "question": "Please provide the directly signable and sendable TX json list (list all steps if multiple are needed) to complete the task: 'Buy 1 WETH worth of YT sUSDe on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, YT address: 0xb7e51d15161c49c823f3951d579ded61cd27272b'",
         "level": 2,
         "chain": "ethereum",
         "category": "yield",
-        "criteria": "1. 交互地址包含Pendle USDC池合约地址 2. 赎回5 USDC，钱包USDC增加5，池子份额减少"
+        "criteria": "Check wallet balance before and after execution. The wallet balance should decrease by about 1 WETH, and you should receive some YT sUSDe."
     },
     {
         "task_id": "a3b4c5d6-e7f8-4b9c-0d1e-654321fedcba",
-        "question": "请给出可以直接签名并发送的TX json列表（如需多步请全部列出），以完成任务：'在Pendle上zap in 1 WETH to the USDe pool: Market address: 0x9df192d13d61609d1852461c4850595e1f56e714, PT address: 0x917459337caac939d41d7493b3999f571d20d667, YT address: 0x733ee9ba88f16023146ebc965b7a1da18a322464'",
+        "question": "Please provide the directly signable and sendable TX json list (list all steps if multiple are needed) to complete the task: 'Zap in 1 WETH to the USDe pool on Pendle: Market address: 0x9df192d13d61609d1852461c4850595e1f56e714, PT address: 0x917459337caac939d41d7493b3999f571d20d667, YT address: 0x733ee9ba88f16023146ebc965b7a1da18a322464'",
         "level": 2,
         "chain": "ethereum",
         "category": "yield",
-        "criteria": "1. 交互地址包含Pendle相关合约地址 2. 先approve 10 USDC给Pendle合约，再mint 10 PT 3. 钱包USDC减少10，PT增加"
+        "criteria": "Check wallet balance before and after execution. The wallet balance should decrease by about 1 WETH, and you should receive some PT sUSDe and YT sUSDe."
     }
 ]

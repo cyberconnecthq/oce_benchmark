@@ -1,6 +1,8 @@
 
 import os, time, json
 from decimal import Decimal
+from typing import Optional
+from eth_typing import ChecksumAddress
 from web3 import Web3, HTTPProvider
 from web3.types import TxParams
 from eth_account.signers.local import LocalAccount
@@ -60,6 +62,57 @@ def send_transaction(tx: TxParams):
     tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
     receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
     return receipt
+
+
+async def swap(
+    token_0_address: ChecksumAddress,
+    token_1_address: ChecksumAddress,
+    amount_token_0: int,
+    amount_token_1: Optional[int] = None
+):
+    """
+    通用的Uniswap V3 swap方法，支持任意ERC20代币之间的兑换
+
+    Args:
+        token_0_address: 输入代币的合约地址（from token）
+        token_1_address: 输出代币的合约地址（to token）
+        amount_token_0: 输入代币的数量（整数，单位为最小单位，如wei）
+        amount_token_1: 最小期望输出代币数量（可选，默认为0，表示不限制滑点）
+    """
+    # 1. 授权Router合约花费token_0
+    token_0 = w3.eth.contract(address=token_0_address, abi=ERC20_ABI)
+    print(f"\n1. 授权Uniswap V3 Router花费 {amount_token_0} token_0 ...")
+    receipt = send_transaction(
+        token_0.functions.approve(ROUTER, amount_token_0).build_transaction({
+            "from": addr,
+            "gas": 80_000
+        })
+    )
+    print("   授权完成")
+
+    # 2. 执行swap
+    router = w3.eth.contract(address=ROUTER, abi=ROUTER_ABI)
+    deadline = int(time.time()) + 600
+    params = (
+        token_0_address,
+        token_1_address,
+        500,  # 0.05% fee tier，主流池一般用500
+        addr,
+        deadline,
+        amount_token_0,
+        amount_token_1 if amount_token_1 is not None else 0,
+        0   # sqrtPriceLimitX96
+    )
+
+    print(f"\n2. 执行swap: {token_0_address} -> {token_1_address} ...")
+    receipt = send_transaction(
+        router.functions.exactInputSingle(params).build_transaction({
+            "from": addr,
+            "value": 0,
+            "gas": 300_000
+        })
+    )
+    print("Swap完成, gas消耗:", receipt.gasUsed)
 
 async def swap_weth_to_usdc(amount_weth: float):
     """
