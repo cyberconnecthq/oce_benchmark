@@ -40,6 +40,14 @@
         "criteria": "1. Must interact with Uniswap V2 contract address: 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D 2. After TX executed, the WETH balance should increase about 1 with 1% fault tolerance, and the USDT balance should decrease about 2600 with 5% fault tolerance."
     },
     {
+        "task_id": "a2d42815-a8c4-4132-8851-f266f6cc8056",
+        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 10 USDT to USDC by Uniswap V3.'. Don't give the hex directly, use code to actually generate the hex.",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "swap", 
+        "criteria": "1. Must interact with Uniswap V2 contract address: 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640 2. After TX executed, the USDT balance should decrease about 10, and the USDC balance should increase 10"
+    },
+    {
         "task_id": "b8f9a1c2-4d3e-11ee-be56-0242ac120002",
         "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 1 weth to PEPE by Uniswap V2 on mainnet.'. Don't give the hex directly, use code to actually generate the hex.",
         "level": 1,
@@ -77,7 +85,7 @@
         "level": 1,
         "chain": "ethereum",
         "category": "LP", 
-        "criteria": "Before and after the transaction, the balance of the pool should increase about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should decrease about 1 WETH and corresponding number(about 2600) of USDC. The NFT liquidity positions will increase."
+        "criteria": "Before and after the transaction, the balance of the pool should increase about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should decrease about 1 WETH and corresponding number(about 2600) of USDC. The NFT liquidity positions will increase/appear."
     },
     {
         "task_id": "1131eee3-ca61-468b-b004-b48757d8a10f",
@@ -85,7 +93,7 @@
         "level": 1,
         "chain": "ethereum",
         "category": "LP", 
-        "criteria": "Before and after the transaction, the balance of the pool should decrease about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should increase about 1 WETH and corresponding number(about 2600) of USDC. The NFS liquidty position should decrease."
+        "criteria": "Before and after the transaction, the balance of the pool should decrease about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should increase about 1 WETH and corresponding number(about 2600) of USDC. The NFT liquidty position should decrease/disappear."
     },
     {
         "task_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
