@@ -137,7 +137,7 @@
     },
     {
         "task_id": "b643cab6-98a2-42e4-9e40-20213a88b86a",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Repay 150 USDT to Aave",
+        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Repay 150 USDT to Aave V3'",
         "level": 1,
         "chain": "ethereum",
         "category": "lending", 
@@ -167,5 +167,28 @@
         "category": "bridge",
         "criteria": "Check the balance changes of USDC in the wallet, ensure the contract interaction address includes Across Protocol contract address: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913. USDC balance should decrease by 10 USDC, Across Protocol locked balance should increase by 1 USDC"
     },
-
+    {
+        "task_id": "e1a1b2c3-d4e5-4f6a-8b9c-1234567890ab",
+        "question": "请给出可以直接签名并发送的TX json列表（如需多步请全部列出），以完成任务：'在Pendle上买入1个WETH的PT sUSDe。 market address:0x4339ffe2b7592dc783ed13cce310531ab366deac, PT address: 0x3b3fb9c57858ef816833dc91565efcd85d96f634'",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "yield",
+        "criteria": "1. 交互地址包含Pendle USDC池合约地址（如：0x818ec0A7Fe18Ff94269904fCED6AE3DaE6d6dC0b，具体以主网为准） 2. 先approve 10 USDC给池子，再deposit 10 USDC 3. 钱包USDC减少10，池子份额增加"
+    },
+    {
+        "task_id": "f2b3c4d5-e6f7-4a8b-9c0d-abcdef123456",
+        "question": "请给出可以直接签名并发送的TX json列表（如需多步请全部列出），以完成任务：'在Pendle上买入1个WETH的YT sUSDe. market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac  YT address: 0xb7e51d15161c49c823f3951d579ded61cd27272b'",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "yield",
+        "criteria": "1. 交互地址包含Pendle USDC池合约地址 2. 赎回5 USDC，钱包USDC增加5，池子份额减少"
+    },
+    {
+        "task_id": "a3b4c5d6-e7f8-4b9c-0d1e-654321fedcba",
+        "question": "请给出可以直接签名并发送的TX json列表（如需多步请全部列出），以完成任务：'在Pendle上zap in 1 WETH to the USDe pool: Market address: 0x9df192d13d61609d1852461c4850595e1f56e714, PT address: 0x917459337caac939d41d7493b3999f571d20d667, YT address: 0x733ee9ba88f16023146ebc965b7a1da18a322464'",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "yield",
+        "criteria": "1. 交互地址包含Pendle相关合约地址 2. 先approve 10 USDC给Pendle合约，再mint 10 PT 3. 钱包USDC减少10，PT增加"
+    }
 ]

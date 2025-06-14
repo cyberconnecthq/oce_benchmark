@@ -40,4 +40,6 @@ async def get_balances():
         f"{weth_balance_before / 10**18} WETH\n"
     )
 
-
+if __name__ == '__main__':
+    import asyncio
+    print(asyncio.run(get_balances()))

@@ -37,4 +37,22 @@ def sign_and_send_transaction(tx: TxParams, account:LocalAccount, w3:Web3) -> tu
         print("Transaction failed!")
         print(tx)
         print(f"Transaction hash: {tx_receipt['transactionHash'].hex()}")
+        print(tx_receipt.values())
         return False, 0
+
+
+if __name__ == "__main__":
+    w3 = Web3(HTTPProvider("http://127.0.0.1:8545"))
+    account = w3.eth.account.from_key("0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80")
+    tx = {
+        "chainId": 1,
+        "data": "0xa9059cbb0000000000000000000000007fd9dbad4d8b8f97bedac3662a0129a5774ada8e00000000000000000000000000000000000000000000000000002ba7def30000",
+        "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+        "gas": 34829,
+        "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+        "value": 0,
+        "nonce": 0,
+        "maxFeePerGas": 2464599966,
+        "maxPriorityFeePerGas": 618520
+    }
+    print(sign_and_send_transaction(tx, account, w3))
