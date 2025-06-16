@@ -28,11 +28,16 @@ weth_contract = w3.eth.contract(address=WETH, abi=ERC20_ABI)
 async def get_balances():
     wallet_weth = weth_contract.functions.balanceOf(addr).call()
     morpho_weth = weth_contract.functions.balanceOf(MORPHO).call()
+    market_id = '0xdbffac82c2dc7e8aa781bd05746530b0068d80929f23ac1628580e27810bc0c5'
+    supply_shares, borrow_shares, collateral = morpho_contract.functions.position(market_id, addr).call()
     return (
         f"Current wallet ({addr}) WETH balance: {wallet_weth / 1e18} WETH\n"
-        f"Morpho contract ({MORPHO}) WETH balance: {morpho_weth / 1e18} WETH"
+        f"Morpho contract ({MORPHO}) WETH balance: {morpho_weth / 1e18} WETH\n"
+        f"Account position:\n"
+        f"- WETH/USDT pair supply shares: {supply_shares}\n"
+        f"- WETH/USDT pair borrow shares: {borrow_shares}\n"
+        f"- WETH/USDT pair collateral: {collateral / 1e18} WETH\n"
     )
-
 if __name__ == '__main__':
     import asyncio
     print(asyncio.run(get_balances()))

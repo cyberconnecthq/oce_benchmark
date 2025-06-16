@@ -1,7 +1,7 @@
 [
     {
         "task_id": "36d5f310-d1b8-4eed-8b3c-eac086438659",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Wrap 1 ETH to WETH'. Don't give the hex directly, use code to actually generate the hex.",
+        "question":"Wrap 1 ETH to WETH",
         "level": 1,
         "chain": "ethereum",
         "category": "wrap", 
@@ -9,31 +9,39 @@
     },
     {
         "task_id": "98b6648e-b0d0-4f68-9f0c-0902b6886cbd",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Unwrap 1 WETh to ETH'. Don't give the hex directly, use code to actually generate the hex.",
+        "question":"Unwrap 1 WETh to ETH",
         "level": 1,
         "chain": "ethereum",
         "category": "wrap", 
         "criteria": "After TX executed, the ETH balance should increase about 1 with 1% fault tolerance, and the WETH balance of target address should decrease by 1 WETH with no fault tolerance."
     },
     {
-        "task_id": "123e4567-e89b-12d3-a456-426614174000",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'1. swap 1 eth to weth 2. swap 1 weth to usdc by Uniswap V3.'. Don't give the hex directly, use code to actually generate the hex.",
-        "level": 1,
+        "task_id": "b3db4ce1-ff65-4e7a-bffd-cb167521bd78",
+        "question":"swap 1 WETH to USDC by Uniswap V3.",
+        "level": 2,
         "chain": "ethereum",
         "category": "swap", 
-        "criteria": "1. Must interact with Uniswap V3 contract address: 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640 2. After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance"
+        "criteria": "1. Must interact with Uniswap V3 contract address: 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640 2. After TX executed, the WETH balance should decrease about 1, and the USDC balance should increase about 2600 with 5% fault tolerance"
+    },
+    {
+        "task_id": "123e4567-e89b-12d3-a456-426614174000",
+        "question":"Swap 1 ETH to USDC by Uniswap V3.",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "swap", 
+        "criteria": "1. Must wrap 1 ETH to WETH 2. Must interact with Uniswap V3 contract address: 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640 3. After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance"
     },
     {
         "task_id": "f29345cf-9d69-41ed-91b1-44aa238b359d",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'1. swap 1 ETH to USDC by Uniswap V2.'. Don't give the hex directly, use code to actually generate the hex.",
-        "level": 1,
+        "question":"1. swap 1 ETH to USDC by Uniswap V2.",
+        "level": 2,
         "chain": "ethereum",
         "category": "swap", 
         "criteria": "1. Must interact with Uniswap V2 contract address: 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D 2. After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance."
     },
     {
         "task_id": "dddd9ef5-b067-4421-8bef-1a9fa746e2b4",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 2600 USDT to WETH by Uniswap V2.'. Don't give the hex directly, use code to actually generate the hex.",
+        "question":"Swap 2600 USDT to WETH by Uniswap V2.",
         "level": 1,
         "chain": "ethereum",
         "category": "swap", 
@@ -41,7 +49,7 @@
     },
     {
         "task_id": "a2d42815-a8c4-4132-8851-f266f6cc8056",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 10 USDT to USDC by Uniswap V3.'. Don't give the hex directly, use code to actually generate the hex.",
+        "question":"Swap 10 USDT to USDC by Uniswap V3 on mainnet.",
         "level": 1,
         "chain": "ethereum",
         "category": "swap", 
@@ -49,15 +57,15 @@
     },
     {
         "task_id": "b8f9a1c2-4d3e-11ee-be56-0242ac120002",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 1 weth to PEPE by Uniswap V2 on mainnet.'. Don't give the hex directly, use code to actually generate the hex.",
+        "question":"Swap 1 WETH to PEPE by Uniswap V2 on mainnet.",
         "level": 1,
         "chain": "ethereum",
         "category": "swap", 
-        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the PEPE balance should increase about 220,227,559 with 5% fault tolerance"
+        "criteria": "After TX executed, the WETH balance should decrease about 1, and the PEPE balance should increase about 220,227,559 with 5% fault tolerance"
     },
     {
         "task_id": "7c0be74e-2f8d-4fae-b900-4f790fa5cf12",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 1 weth to SHIB by Uniswap V2 on mainnet.'. Don't give the hex directly, use code to actually generate the hex.",
+        "question":"Swap 1 WETH to SHIB by Uniswap V2 on mainnet.",
         "level": 1,
         "chain": "ethereum",
         "category": "swap", 
@@ -65,7 +73,7 @@
     },
     {
         "task_id": "b9a1c3d4-5e6f-11ee-be56-0242ac120002",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Send 1 ETH to address: 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216'. Don't give the hex directly, use code to actually generate the hex.",
+        "question":"Send 1 ETH to address: 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216",
         "level": 1,
         "chain": "ethereum",
         "category": "transfer", 
@@ -73,7 +81,7 @@
     },
     {
         "task_id": "60d4b5fb-0a04-49fb-bd16-7ad56cfc0b1d",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Stake 0.5 eth to Lido'. Don't give the hex directly, use code to actually generate the hex.",
+        "question":"Stake 0.5 ETH to Lido",
         "level": 1,
         "chain": "ethereum",
         "category": "test", 
@@ -81,15 +89,15 @@
     },
     {
         "task_id": "9024c6df-d393-4770-8719-cad56a802154",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Provide 1 WETH and corresponding number of USDC liquidity to USDC-ETH 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3'. Don't give the hex directly, use code to actually generate the hex.",
-        "level": 1,
+        "question":"Provide 1 WETH and corresponding number of USDC liquidity to USDC-ETH 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3",
+        "level": 2,
         "chain": "ethereum",
         "category": "LP", 
         "criteria": "Before and after the transaction, the balance of the pool should increase about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should decrease about 1 WETH and corresponding number(about 2600) of USDC. The NFT liquidity positions will increase/appear."
     },
     {
         "task_id": "1131eee3-ca61-468b-b004-b48757d8a10f",
-        "question":"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'withdrawl 1 WETH and corresponding number of USDC liquidity from USDC-ETH 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3'. Don't give the hex directly, use code to actually generate the hex.",
+        "question":"withdrawl 1 WETH and corresponding number of USDC liquidity from USDC-ETH 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3",
         "level": 1,
         "chain": "ethereum",
         "category": "LP", 
@@ -97,23 +105,23 @@
     },
     {
         "task_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 0.5 eth to USDC through Uniswap v4.'",
-        "level": 1,
+        "question": "Swap 0.5 ETH to USDC through Uniswap v4 on mainnet.",
+        "level": 2,
         "chain": "ethereum",
         "category": "swap",
         "criteria": "Check the balance changes of USDC, ETH and WETH in the wallet, ensure the contract interaction address includes Uniswap v4 contract address: 0x66a9893cc07d91d95644aedd05d03f95e1dba8af"
     },
     {
         "task_id": "5d1fed5d-1dbd-4791-91da-16186af000c9",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Swap 100 USDC to ETH through Uniswap v4.'",
-        "level": 1,
+        "question": "Swap 100 USDC to ETH through Uniswap v4.'",
+        "level": 2,
         "chain": "ethereum",
         "category": "swap",
         "criteria": "Check the balance changes of USDC, ETH and WETH in the wallet, ensure the contract interaction address includes Uniswap v4 contract address: 0x66a9893cc07d91d95644aedd05d03f95e1dba8af"
     },
     {
         "task_id": "550e8400-e29b-41d4-a716-446655440000",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Send 10 USDT from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216'",
+        "question": "Send 10 USDT from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216'",
         "level": 1,
         "chain": "ethereum", 
         "category": "transfer",
@@ -121,7 +129,7 @@
     },
     {
         "task_id": "437f29db-3939-41e2-9ea0-07d1862509f6",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Send 10000 PEPE from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216'",
+        "question": "Send 10000 PEPE from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216'",
         "level": 1,
         "chain": "ethereum", 
         "category": "transfer",
@@ -129,7 +137,7 @@
     },
     {
         "task_id": "6ba7b811-9dad-11d1-80b4-00c04fd430c8",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Send 10 USDC from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216'. Don't give the hex directly, use code to actually generate the hex.",
+        "question": "Send 10 USDC from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216",
         "level": 1,
         "chain": "ethereum",
         "category": "transfer",
@@ -137,7 +145,7 @@
     },
     {
         "task_id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Approve 10 USDC for Address 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+        "question": "Approve 10 USDC for Address 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "level": 1,
         "chain": "ethereum",
         "category": "approve",
@@ -145,7 +153,7 @@
     },
     {
         "task_id": "69983eaa-4257-4bfe-8904-511497b912e0",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Dis-Approve all USDC right for Address 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+        "question": "Dis-Approve all USDC right for Address 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "level": 1,
         "chain": "ethereum",
         "category": "approve",
@@ -153,7 +161,7 @@
     },
     {
         "task_id": "3b9274f0-b0fb-4cfe-abba-6439f9b10d15",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Borrow 120 USDT from Aave V3'",
+        "question": "Borrow 120 USDT from Aave V3",
         "level": 1,
         "chain": "ethereum", 
         "category": "lending",
@@ -161,15 +169,15 @@
     },
     {
         "task_id": "52315328-c76a-4a6c-891f-786fdfbc1431",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Supply 1 ETH to Aave V3'",
-        "level": 1,
+        "question": "Supply 1 ETH to Aave V3",
+        "level": 2,
         "chain": "ethereum",
         "category": "lending",
         "criteria": "Supply ETH to Aave V3, wallet ETH decreases by 1, Aave Total Collateral increases by 1 ETH"
     },
     {
         "task_id": "b643cab6-98a2-42e4-9e40-20213a88b86a",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Repay 150 USDT to Aave V3'",
+        "question": "Repay 150 USDT to Aave V3",
         "level": 1,
         "chain": "ethereum",
         "category": "lending", 
@@ -177,7 +185,7 @@
     },
     {
         "task_id": "02dacdba-9618-49b3-a113-bd7e9ecbb8c8",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Withdraw 500 USDT from Aave V3'",
+        "question": "Withdraw 500 USDT from Aave V3'",
         "level": 1,
         "chain": "ethereum",
         "category": "lending",
@@ -185,23 +193,39 @@
     },
     {
         "task_id": "470e7450-6281-49da-a8da-bc7f093af089",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Supply 1 ETH toto Morpho'",
-        "level": 1,
+        "question": "Supply 1 WETH to Morpho WETH/USDT pair, market id: 0xdbffac82c2dc7e8aa781bd05746530b0068d80929f23ac1628580e27810bc0c5",
+        "level": 2,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "Supply ETH from Morpho, wallet ETH decreases by 1, Morpho WETH balance increases by 1 WETH"
+        "criteria": "Supply WETH from Morpho, wallet ETH decreases by 1, Morpho WETH balance increases by 1 WETH, collateral increases by 1 WETH"
     },
     {
         "task_id": "800ab787-13f5-4dec-b7e4-5f59c947817f",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Withdrawl 1 WETH from Morpho'",
-        "level": 1,
+        "question": "Withdrawl 1 WETH from Morpho'",
+        "level": 2,
         "chain": "ethereum",
         "category": "lending",
         "criteria": "Withdrawl WETH from Morpho, wallet WETH increases by 1, Morpho WETH balance decreases by 1 WETH"
     },
     {
+        "task_id": "05f3b51f-cd7b-4258-bf6d-096b9f8382de",
+        "question": "Borrow 100 USDT from Morpho, market id: 0xdbffac82c2dc7e8aa781bd05746530b0068d80929f23ac1628580e27810bc0c5",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "Borrow 100 USDT from Morpho, wallet USDT increases by 100, Morpho USDT balance decreases by 100 USDT. Account position WETH/USDT pair borrow shares should increase."
+    },
+    {
+        "task_id": "470e7450-6281-49da-a8da-bc7f093af089",
+        "question": "Repay 100 USDT to Morpho, USDT/WETH pair market id: 0xdbffac82c2dc7e8aa781bd05746530b0068d80929f23ac1628580e27810bc0c5",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "After repaying, the wallet USDT balance decrease by 100 USDT, and the Morpho USDT banalce increase by 100 USDT. Account position WETH/USDT pair borrow shares decrease."
+    },
+    {
         "task_id": "4649fbaf-f0b6-4851-b666-7f09a02041b6",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Bridge 1 WETH from ETH network to Base by Across Protocol'",
+        "question": "Bridge 1 WETH from ETH network to Base by Across Protocol",
         "level": 1,
         "chain": "ethereum",
         "category": "bridge",
@@ -209,7 +233,7 @@
     },
     {
         "task_id": "9a55fbc9-a9a4-4566-9717-f2d12cd401bc",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Bridge 1 WETH from ETH network to Optimism by Across Protocol'",
+        "question": "Bridge 1 WETH from ETH network to Optimism by Across Protocol",
         "level": 1,
         "chain": "ethereum",
         "category": "bridge",
@@ -217,7 +241,7 @@
     },
     {
         "task_id": "73caf323-7b49-40e4-b42e-147cb235eb8d",
-        "question": "Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'Bridge 10 USDC from ETH network to Base by Across Protocol'",
+        "question": "Bridge 10 USDC from ETH network to Base by Across Protocol",
         "level": 1,
         "chain": "ethereum",
         "category": "bridge",
@@ -225,7 +249,7 @@
     },
     {
         "task_id": "e1a1b2c3-d4e5-4f6a-8b9c-1234567890ab",
-        "question": "Please provide the directly signable and sendable TX json list (list all steps if multiple are needed) to complete the task: 'Buy 1 WETH worth of PT sUSDe on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, PT address: 0x3b3fb9c57858ef816833dc91565efcd85d96f634'",
+        "question": "Buy 1 WETH worth of PT sUSDe on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, PT address: 0x3b3fb9c57858ef816833dc91565efcd85d96f634",
         "level": 2,
         "chain": "ethereum",
         "category": "yield",
@@ -233,7 +257,7 @@
     },
     {
         "task_id": "f2b3c4d5-e6f7-4a8b-9c0d-abcdef123456",
-        "question": "Please provide the directly signable and sendable TX json list (list all steps if multiple are needed) to complete the task: 'Buy 1 WETH worth of YT sUSDe on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, YT address: 0xb7e51d15161c49c823f3951d579ded61cd27272b'",
+        "question": "Buy 1 WETH worth of YT sUSDe on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, YT address: 0xb7e51d15161c49c823f3951d579ded61cd27272b",
         "level": 2,
         "chain": "ethereum",
         "category": "yield",
@@ -241,7 +265,7 @@
     },
     {
         "task_id": "a3b4c5d6-e7f8-4b9c-0d1e-654321fedcba",
-        "question": "Please provide the directly signable and sendable TX json list (list all steps if multiple are needed) to complete the task: 'Zap in 1 WETH to the USDe pool on Pendle: Market address: 0x9df192d13d61609d1852461c4850595e1f56e714, PT address: 0x917459337caac939d41d7493b3999f571d20d667, YT address: 0x733ee9ba88f16023146ebc965b7a1da18a322464'",
+        "question": "Zap in 1 WETH to the USDe pool on Pendle: Market address: 0x9df192d13d61609d1852461c4850595e1f56e714, PT address: 0x917459337caac939d41d7493b3999f571d20d667, YT address: 0x733ee9ba88f16023146ebc965b7a1da18a322464",
         "level": 2,
         "chain": "ethereum",
         "category": "yield",

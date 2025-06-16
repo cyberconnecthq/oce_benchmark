@@ -5,26 +5,26 @@ import math
 from pathlib import Path
 
 ###############################################################################
-# 环境参数 – 请根据自己情况修改
+# Environment parameters – please modify according to your setup
 ###############################################################################
 RPC_URL = "http://127.0.0.1:8545"
 PRIVATE_KEY = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
 ACCOUNT = Account.from_key(PRIVATE_KEY)
-CHAIN_ID = 1                                                # mainnet=1, sepolia=11155111…
+CHAIN_ID = 1  # mainnet=1, sepolia=11155111, etc.
 
 ###############################################################################
-# 合约常量
+# Contract constants
 ###############################################################################
 WETH  = Web3.to_checksum_address("0xC02aaA39b223FE8D0A0E5C4F27eAD9083C756Cc2")
 USDC  = Web3.to_checksum_address("0xA0b86991C6218b36c1d19D4a2e9Eb0cE3606EB48")
 POOL  = Web3.to_checksum_address("0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640") # WETH/USDC 0.05 %
 NPM   = Web3.to_checksum_address("0xC36442b4a4522E871399CD717aBDD847Ab11FE88") # NonfungiblePositionManager
 
-AMOUNT_WETH = Web3.to_wei(2, "ether")           # 想投入的 WETH 数量
-PRICE_BAND  = 0.01                              # tick ±1 % 宽度
+AMOUNT_WETH = Web3.to_wei(2, "ether")           # Amount of WETH to provide
+PRICE_BAND  = 0.01                              # tick ±1 % width
 
 ###############################################################################
-# 加载 ABI（只用到的函数片段，减小脚本体积）
+# Load ABIs (only necessary fragments to reduce script size)
 ###############################################################################
 script_dir = Path(__file__).parent
 abi_dir = script_dir.parent.parent.parent / "abi"
@@ -36,7 +36,7 @@ with open(abi_dir / "erc20_abi.json") as f:
     ERC20_ABI = json.load(f)
 
 ###############################################################################
-# 工具：Tick ↔ Price 互转
+# Utility: Tick ↔ Price conversion
 ###############################################################################
 def price_to_tick(price):
     return int(math.log(price, 1.0001))
@@ -45,7 +45,7 @@ def nearest_tick(tick, spacing=10):
     return tick - (tick % spacing)
 
 ###############################################################################
-# 连接链并实例化合约
+# Connect to chain and instantiate contracts
 ###############################################################################
 w3 = Web3(Web3.HTTPProvider(RPC_URL))
 pool = w3.eth.contract(address=POOL, abi=POOL_ABI)
@@ -54,47 +54,47 @@ weth = w3.eth.contract(address=WETH, abi=ERC20_ABI)
 usdc = w3.eth.contract(address=USDC, abi=ERC20_ABI)
 
 ###############################################################################
-# 1) 若手里是原生 ETH 而非 WETH – 先 wrap
+# 1) If you have native ETH instead of WETH – wrap first
 ###############################################################################
 
 ###############################################################################
-# 2) 读取池价格，估算需要配对的 USDC
+# 2) Read pool price and estimate required USDC
 ###############################################################################
 slot0 = pool.functions.slot0().call()
 sqrtPriceX96 = slot0[0]
 
-# 正确计算价格 - 考虑token0和token1的顺序
-# 在USDC/WETH池中，USDC是token0，WETH是token1
+# Correct price calculation - consider token0 and token1 order
+# In the USDC/WETH pool, USDC is token0, WETH is token1
 # sqrtPriceX96 = sqrt(token1/token0) * 2^96
-# 所以 price = (sqrtPriceX96/2^96)^2 = token1/token0 = WETH/USDC
+# So price = (sqrtPriceX96/2^96)^2 = token1/token0 = WETH/USDC
 weth_per_usdc = (sqrtPriceX96 / (2**96)) ** 2
 
-# 我们需要 USDC/WETH 的比率
+# We need the USDC/WETH ratio
 usdc_per_weth = 1 / weth_per_usdc
 
-# 计算需要的USDC数量（考虑小数位差异）
-# AMOUNT_WETH 是18位小数的wei
-# USDC是6位小数
-# usdc_per_weth是token单位比率，需要调整到wei单位
+# Calculate required USDC amount (considering decimal differences)
+# AMOUNT_WETH is in wei (18 decimals)
+# USDC uses 6 decimals
+# usdc_per_weth is in token units, need to adjust to wei units
 usdc_needed = int(AMOUNT_WETH * usdc_per_weth)
 
 print(f"Pool price ≈ {usdc_per_weth*1e12:,.2f} USDC/WETH")
-print(f"需要约 {usdc_needed / 10**6:,.2f} USDC ({usdc_needed} wei)")
+print(f"Need about {usdc_needed / 10**6:,.2f} USDC ({usdc_needed} wei)")
 
 ###############################################################################
-# 3) 计算 tick 区间
+# 3) Calculate tick range
 ###############################################################################
 def align_to_spacing(tick, spacing):
     return tick - (tick % spacing)
 current_tick = slot0[1]
-tick_spacing=10
+tick_spacing = 10
 band_ticks   = int(math.log(1+PRICE_BAND, 1.0001))        # ≈96
 lower_tick   = align_to_spacing(current_tick - band_ticks, tick_spacing)
 upper_tick   = align_to_spacing(current_tick + band_ticks, tick_spacing)
 print("tick range:", lower_tick, "→", upper_tick)
 
 ###############################################################################
-# 4) 批准 WETH & USDC 给 NPM
+# 4) Approve WETH & USDC to NPM
 ###############################################################################
 def approve(token, amount):
     allowance = token.functions.allowance(ACCOUNT.address, NPM).call()
@@ -111,10 +111,10 @@ def approve(token, amount):
         w3.eth.wait_for_transaction_receipt(tx_hash)
 
 ###############################################################################
-# 主流程
+# Main process
 ###############################################################################
 def main():
-    # 若需要，先 wrap
+    # If needed, wrap ETH to WETH and swap for USDC
     from evaluate_utils.common_util import wrap_eth_to_weth
     from evaluate_utils.uniswap_v3_util import swap_weth_to_usdc
     import asyncio
@@ -124,7 +124,7 @@ def main():
     approve(weth, AMOUNT_WETH)
     approve(usdc, usdc_needed)
 
-    # 放宽滑点保护，使用90%而非95%
+    # Loosen slippage protection, use 80% instead of 95%
     params = {
         "token0": USDC,
         "token1": WETH,
@@ -133,17 +133,17 @@ def main():
         "tickUpper": upper_tick,
         "amount0Desired": usdc_needed,        # USDC (6 dec)
         "amount1Desired": AMOUNT_WETH,        # WETH (18 dec)
-        "amount0Min": int(usdc_needed * 0.80),  # 放宽滑点到10%
-        "amount1Min": int(AMOUNT_WETH * 0.80),  # 放宽滑点到10%
+        "amount0Min": int(usdc_needed * 0.80),  # Loosen slippage to 20%
+        "amount1Min": int(AMOUNT_WETH * 0.80),  # Loosen slippage to 20%
         "recipient": ACCOUNT.address,
         "deadline": w3.eth.get_block("latest")["timestamp"] + 3600
     }
 
-    # 增加gas限制，防止out of gas
+    # Increase gas limit to prevent out of gas
     tx = npm.functions.mint(params).build_transaction({
         "from": ACCOUNT.address,
         "nonce": w3.eth.get_transaction_count(ACCOUNT.address),
-        "gas": 1_000_000,  # 增加gas限制
+        "gas": 1_000_000,  # Increased gas limit
         "chainId": CHAIN_ID,
     })
     signed = ACCOUNT.sign_transaction(tx)
@@ -156,14 +156,14 @@ def main():
         if log["address"].lower() == NPM.lower():
             try:
                 parsed = npm.events.IncreaseLiquidity().process_log(log)
-                print("==> 成功创建头寸 NFT ID:", parsed["args"]["tokenId"])
-                print("     流动性 L:", parsed["args"]["liquidity"])
+                print("==> Successfully created position NFT ID:", parsed["args"]["tokenId"])
+                print("     Liquidity L:", parsed["args"]["liquidity"])
             except:
                 try:
-                    # 尝试解析Mint事件
+                    # Try to parse Mint event
                     parsed = npm.events.Mint().process_log(log) 
-                    print("==> 成功创建头寸 NFT ID:", parsed["args"]["tokenId"])
-                    print("     流动性 L:", parsed["args"]["liquidity"])
+                    print("==> Successfully created position NFT ID:", parsed["args"]["tokenId"])
+                    print("     Liquidity L:", parsed["args"]["liquidity"])
                 except:
                     continue
 
