@@ -192,6 +192,22 @@
         "criteria": "Withdraw USDT from Aave V3, wallet USDT increases by 500, Aave Total Collateral decreases by 500 USD"
     },
     {
+        "task_id": "11d5d2f8-63d2-4176-9e3d-52e48c8b2d24",
+        "question": "Supply 1 ETH to Aave V3 and borrow 50% of borrowable USDT from Aave V3 on mainnet",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "Supply ETH to Aave V3, wallet ETH decreases by 1, USDT increase about 1000, Aave Total Collateral increases by 1 ETH or 2500 USDT, total debt increase about 1000 USDT"
+    },
+    {
+        "task_id": "2a8bffc6-597c-47d8-985f-a13df1168c0c",
+        "question": "Supply 1 ETH to Aave V3 and borrow all the borrowable USDT, and then swap USDT to ETH, then repeat the above opearation until the health factor is about 0.5",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "After all TXs executed, the aave health factor should be about 0.5. Total collateral is about 2500 USD."
+    },
+    {
         "task_id": "470e7450-6281-49da-a8da-bc7f093af089",
         "question": "Supply 1 WETH to Morpho WETH/USDT pair, market id: 0xdbffac82c2dc7e8aa781bd05746530b0068d80929f23ac1628580e27810bc0c5",
         "level": 2,
