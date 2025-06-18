@@ -68,7 +68,8 @@ async def swap(
     token_0_address: ChecksumAddress,
     token_1_address: ChecksumAddress,
     amount_token_0: int,
-    amount_token_1: Optional[int] = None
+    amount_token_1: Optional[int] = None,
+    fee:int = 500
 ):
     """
     通用的Uniswap V3 swap方法，支持任意ERC20代币之间的兑换
@@ -85,10 +86,10 @@ async def swap(
     receipt = send_transaction(
         token_0.functions.approve(ROUTER, amount_token_0).build_transaction({
             "from": addr,
-            "gas": 80_000
+            "gas": 800_000
         })
     )
-    print("   授权完成")
+    print("授权完成")
 
     # 2. 执行swap
     router = w3.eth.contract(address=ROUTER, abi=ROUTER_ABI)
@@ -96,7 +97,7 @@ async def swap(
     params = (
         token_0_address,
         token_1_address,
-        500,  # 0.05% fee tier，主流池一般用500
+        fee,  # 0.05% fee tier，主流池一般用500
         addr,
         deadline,
         amount_token_0,
@@ -109,7 +110,7 @@ async def swap(
         router.functions.exactInputSingle(params).build_transaction({
             "from": addr,
             "value": 0,
-            "gas": 300_000
+            "gas": 800_000
         })
     )
     print("Swap完成, gas消耗:", receipt.gasUsed)

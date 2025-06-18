@@ -168,6 +168,14 @@
         "criteria": "1. Verify transaction hash 2. Interact with USDC contract (0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) 3. The allowance change to 0 USDC"
     },
     {
+        "task_id": "806b1415-1843-42ad-9456-68e3e04c4066",
+        "question": "Approve 1000 PEPE for Address 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "approve",
+        "criteria": "1. Verify transaction hash 2. Interact with PEPE contract (0x6982508145454Ce325dDbE47a25d4ec3d2311933) 3. The allowance increase to 1000 PEPE"
+    },
+    {
         "task_id": "a8e42738-f753-4d87-8309-3e1b0bf6f8c1",
         "question": "Approve 1 WETH for Address Uniswap V3 Router contract.",
         "level": 2,
@@ -320,6 +328,14 @@
         "criteria": "1. Must call exactOutputSingle on SwapRouter; 2. After TX, USDC balance increase = 1000; 3. ETH spent, balance decreased."
     },
     {
+        "task_id": "1743f367-e7a9-4206-a75e-c3eeac3decaa",
+        "question": "Execute an exact-output swap: get exactly 1000000 SHIB for ETH on Uniswap V3",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "swap",
+        "criteria": "1. Must call exactOutputSingle on SwapRouter; 2. After TX, SHIB balance increase = 1000000; 3. ETH spent, balance decreased."
+    },
+    {
         "task_id": "4e5f6789-0123-4bcd-ef56-567890klmno",
         "question": "Create a limit order: swap WETH→USDC at price 1 WETH=3000 USDC using Uniswap V3",
         "level": 3,
@@ -341,6 +357,22 @@
         "level": 3,
         "chain": "ethereum",
         "category": "LP",
-        "criteria": "1. old NFT destroyed, new NFT created. 2. new NFT ticker range different from old NFT."
-    }
+        "criteria": "1. old position NFT destroyed, new NFT created. 2. new position NFT ticker range different from old NFT."
+    },
+    {
+        "task_id": "a2dd5897-0bec-4806-b6f2-68c370d6288f",
+        "question": "Multi-hop swap 1 WETH → USDT → USDC on Uniswap V3",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "swap",
+        "criteria": "1. Must call exactInput on SwapRouter at 0xE592427A0AEce92De3Edee1F18E0157C05861564; 2. Path includes WETH→USDT→USDC pools; 3. WETH balance decreases ~1±1%, USDC increases expected amount 2600 ±5%"
+    },
+    {
+        "task_id": "0ff83232-9046-4743-a35f-634d344483d1",
+        "question": "Swap 1 ETH to USDT on Uniswap V3, and send all swapped USDT to 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "swap",
+        "criteria": "After tx executed, the wallet balance of ETH should decrease about 1 ETH, and the balance of 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216 should increase about 2600 USDT"
+    },
 ]
