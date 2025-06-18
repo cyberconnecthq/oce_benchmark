@@ -129,7 +129,7 @@
     },
     {
         "task_id": "550e8400-e29b-41d4-a716-446655440000",
-        "question": "Send 10 USDT from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216",
+        "question": "Send 10 USDT from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216 on mainnet",
         "level": 1,
         "chain": "ethereum", 
         "category": "transfer",
@@ -137,7 +137,7 @@
     },
     {
         "task_id": "437f29db-3939-41e2-9ea0-07d1862509f6",
-        "question": "Send 10000 PEPE from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216",
+        "question": "Send 10000 PEPE from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216 on mainnet",
         "level": 1,
         "chain": "ethereum", 
         "category": "transfer",
@@ -145,7 +145,7 @@
     },
     {
         "task_id": "6ba7b811-9dad-11d1-80b4-00c04fd430c8",
-        "question": "Send 10 USDC from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216",
+        "question": "Send 10 USDC from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216 on mainnet",
         "level": 1,
         "chain": "ethereum",
         "category": "transfer",
@@ -225,11 +225,11 @@
     },
     {
         "task_id": "2a8bffc6-597c-47d8-985f-a13df1168c0c",
-        "question": "Supply 1 ETH to Aave V3 and borrow all the borrowable USDT, and then swap borrowed USDT to ETH, then repeat the above opearation until the health factor is about 1.5",
+        "question": "Supply 1 ETH to Aave V3 and borrow all the borrowable USDT, and then swap borrowed USDT to ETH, then repeat the above opearation until the health factor is about 1.5 and the balance of USDT borrowed from less than 100 USDT",
         "level": 3,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "After all TXs executed, the aave health factor should be about 1.5. Total collateral is about 2500 USD."
+        "criteria": "After all TXs executed, the aave health factor should be about 1.5. Total collateral is about 2500 USD. The balance of USDT from less than 100 USDT"
     },
     {
         "task_id": "470e7450-6281-49da-a8da-bc7f093af089",
@@ -288,6 +288,22 @@
         "criteria": "Check the balance changes of USDC in the wallet, ensure the contract interaction address includes Across Protocol contract address: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913. USDC balance should decrease by 10 USDC, Across Protocol locked balance should increase by 1 USDC"
     },
     {
+        "task_id": "c3d4e5f6-a7b8-4901-cdef-34567890abcd",
+        "question": "Bridge 20 USDT from ETH network to Optimism by Across Protocol",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "bridge",
+        "criteria": "Ensure the tx interacts with Across Protocol contract 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913; wallet USDT balance decreases by ~20 USDT; Across Protocol locked USDT increases by ~20 USDT; destination chainId = 10"
+    },
+    {
+        "task_id": "d4e5f6a7-b8c9-4012-def0-4567890abcde",
+        "question": "Bridge 100 USDC from ETH network to Polygon by Across Protocol",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "bridge",
+        "criteria": "Ensure the tx interacts with Across Protocol contract 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913; wallet USDC balance decreases by ~100 USDC; Across Protocol locked USDC increases by ~100 USDC; destination chainId = 137"
+    },
+    {
         "task_id": "e1a1b2c3-d4e5-4f6a-8b9c-1234567890ab",
         "question": "Buy 1 WETH worth of PT sUSDe on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, PT address: 0x3b3fb9c57858ef816833dc91565efcd85d96f634",
         "level": 2,
@@ -337,7 +353,7 @@
     },
     {
         "task_id": "4e5f6789-0123-4bcd-ef56-567890klmno",
-        "question": "Create a limit order: swap WETH→USDC at price 1 WETH=3000 USDC using Uniswap V3",
+        "question": "Create a limit order: swap 0.1WETH→USDC at price 1 WETH=3000 USDC using Uniswap V3",
         "level": 3,
         "chain": "ethereum",
         "category": "swap",
@@ -345,7 +361,7 @@
     },
     {
         "task_id": "eeeb6ff2-4b1c-4bc3-8b29-985f4f1898dd",
-        "question": "Create a limit order: swap WETH→USDT at price 1 WETH=3000 USDT using Uniswap V3",
+        "question": "Create a limit order: swap 0.1WETH→USDT at price 1 WETH=3000 USDT using Uniswap V3",
         "level": 3,
         "chain": "ethereum",
         "category": "swap",
@@ -353,7 +369,7 @@
     },
     {
         "task_id": "63d23a18-6847-43e7-be77-dd7042db3556",
-        "question": "Rebalance an existing V3 WETH/USDC 0.05% pool position to a new tick range",
+        "question": "Rebalance an existing V3 WETH/USDC 0.05% pool position to a new tick range, make the range larger than 10%",
         "level": 3,
         "chain": "ethereum",
         "category": "LP",
@@ -374,5 +390,5 @@
         "chain": "ethereum",
         "category": "swap",
         "criteria": "After tx executed, the wallet balance of ETH should decrease about 1 ETH, and the balance of 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216 should increase about 2600 USDT"
-    },
+    }
 ]
