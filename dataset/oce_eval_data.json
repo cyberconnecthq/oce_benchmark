@@ -335,4 +335,12 @@
         "category": "swap",
         "criteria": "Must mint a position NFT with liquidity=10955736910417970 and tick range matching price:  about 196250 → 196260 with 2% fault tolerance. The NFT status shoud be inactive, estimated value should be about 252 USD"
     },
+    {
+        "task_id": "63d23a18-6847-43e7-be77-dd7042db3556",
+        "question": "Rebalance an existing V3 WETH/USDC 0.05% pool position to a new tick range",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "LP",
+        "criteria": "1. old NFT destroyed, new NFT created. 2. new NFT ticker range different from old NFT."
+    }
 ]
