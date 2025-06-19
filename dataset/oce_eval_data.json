@@ -84,8 +84,40 @@
         "question":"Stake 0.5 ETH to Lido",
         "level": 1,
         "chain": "ethereum",
-        "category": "test", 
+        "category": "staking", 
         "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, the balance of stETH should increase 0.5. The balance of Lido should increase 0.5 ETH"
+    },
+    {
+        "task_id": "5c21fd5a-8e06-4f36-b9c5-bc358c002631",
+        "question":"Unstake 0.5 stETH via Lido’s redemption portal",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "staking", 
+        "criteria": "After TX executed, the stETH balance should decrease about 0.5 with 1% fault tolerance, the balance of ETH should increase 0.5. The balance of Lido should decrease 0.5 ETH"
+    },
+    {
+        "task_id": "eb586bf7-63fe-4462-873e-3c888d0d3f8d",
+        "question": "Redeem 0.5 wstETH back to ETH",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "staking",
+        "criteria": "Unwrap wstETH → stETH → ETH; wallet wstETH decreases by 0.5; ETH balance increases by equivalent ETH amount minus fees"
+    },
+    {
+        "task_id": "d5e6f7a8-9b0c-4123-def0-5678901234b2",
+        "question": "Wrap 1 stETH to wstETH on mainnet",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "staking",
+        "criteria": "Call WstETH `wrap(1e18)`; wallet stETH decreases by ~1±1%, wstETH increases by expected share amount"
+    },
+    {
+        "task_id": "7c4e299e-286f-49de-84e9-6b86b6e7dc3f",
+        "question": "Stake 1 ETH to Lido using the stETH wrapper contract",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "staking",
+        "criteria": "1. Directly interact with WSTETH contract, address:0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0.2. After executed, balance of ETH decrease about 1ETH + fee, and wstETH increase about 0.83 with 10% fault tolerance"
     },
     {
         "task_id": "9024c6df-d393-4770-8719-cad56a802154",
