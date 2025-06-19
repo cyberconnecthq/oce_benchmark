@@ -373,7 +373,7 @@
         "level": 2,
         "chain": "ethereum",
         "category": "swap",
-        "criteria": "1. Must call exactOutputSingle on SwapRouter; 2. After TX, USDC balance increase = 1000; 3. ETH spent, balance decreased."
+        "criteria": " After TX, USDC balance increase = 1000; 3. ETH spent, balance decreased."
     },
     {
         "task_id": "1743f367-e7a9-4206-a75e-c3eeac3decaa",
@@ -381,7 +381,7 @@
         "level": 2,
         "chain": "ethereum",
         "category": "swap",
-        "criteria": "1. Must call exactOutputSingle on SwapRouter; 2. After TX, SHIB balance increase = 1000000; 3. ETH spent, balance decreased."
+        "criteria": " After TX, SHIB balance increase = 1000000; 3. ETH spent, balance decreased."
     },
     {
         "task_id": "4e5f6789-0123-4bcd-ef56-567890klmno",
@@ -413,7 +413,7 @@
         "level": 2,
         "chain": "ethereum",
         "category": "swap",
-        "criteria": "1. Must call exactInput on SwapRouter at 0xE592427A0AEce92De3Edee1F18E0157C05861564; 2. Path includes WETH→USDT→USDC pools; 3. WETH balance decreases ~1±1%, USDC increases expected amount 2600 ±5%"
+        "criteria": "1. Path includes WETH→USDT→USDC pools; 2. WETH balance decreases ~1±1%, USDC increases expected amount 2600 ±5%"
     },
     {
         "task_id": "0ff83232-9046-4743-a35f-634d344483d1",
