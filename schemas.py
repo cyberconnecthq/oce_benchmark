@@ -89,6 +89,10 @@ class QuestionData(BaseModel):
         prompt = f"Task ID: {self.task_id}\n"
         prompt += f"Question: {self.question}\n"
         return prompt
+    
+    def to_question(self) -> str:
+        question = f"Give me the correct and executable TX json list(if need multi steps to achieve) that can be directly signed and sent for me to execute the task:'{self.question}'. Don't give the hex directly, use code to actually generate the hex."
+        return question
 
 
 class AnvilConfig(BaseModel):

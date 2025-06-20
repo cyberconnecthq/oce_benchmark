@@ -513,7 +513,8 @@ class ParseHtmlPage(Tool):
 
 class CodeInterpreter(Tool):
     name = "code_interpreter"
-    description = python_repl_tool.description + "\nPackage Web3 is installed."
+    from dataset.constants import RPC_URL, PRIVATE_KEY
+    description = python_repl_tool.description + f"\nPackage Web3 is installed. RPC_URL = '{RPC_URL}' and Private_key = '{PRIVATE_KEY}'"
     input_arguments = python_repl_tool.args_schema.model_json_schema()['properties']
     # input_arguments: dict = {
     #     "query": 
