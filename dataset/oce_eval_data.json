@@ -232,6 +232,14 @@
         "criteria": "Borrow USDT from Aave V3, wallet USDT increases by 120, Aave debt increases by 120 USD"
     },
     {
+        "task_id": "90f3fd80-206e-458b-bcbe-f285062b1f5b",
+        "question": "Borrow 1000 USDC from Aave V3",
+        "level": 1,
+        "chain": "ethereum", 
+        "category": "lending",
+        "criteria": "Borrow USDC from Aave V3, wallet USDC increases by 1000, Aave debt increases by 1000 USD"
+    },
+    {
         "task_id": "52315328-c76a-4a6c-891f-786fdfbc1431",
         "question": "Supply 1 ETH to Aave V3",
         "level": 2,
@@ -278,6 +286,14 @@
         "chain": "ethereum",
         "category": "lending",
         "criteria": "Withdraw USDT from Aave V3, wallet USDT increases by 500, Aave Total Collateral decreases by 500 USD"
+    },
+    {
+        "task_id": "8cc64c73-8e8c-45e3-bc0b-3c2591dcf5e4",
+        "question": "Withdraw 2 WETH from Aave V3'",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "Withdraw WETH from Aave V3, wallet WETH increases by 2, Aave Total Collateral decreases by 2 WETH"
     },
     {
         "task_id": "11d5d2f8-63d2-4176-9e3d-52e48c8b2d24",
@@ -454,5 +470,95 @@
         "chain": "ethereum",
         "category": "swap",
         "criteria": "After tx executed, the wallet balance of ETH should decrease about 1 ETH, and the balance of 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216 should increase about 2600 USDT"
-    }
+    },
+    {
+        "task_id": "a6bb6f47-afe1-41f3-8eb7-c77f93965f36",
+        "question": "Stake 1 WETH to Lido, and wrap the stETH to wstETH, then supply all the wstETH to Morpho wstETH/WETH pair. hint: market_id:0xb8fc70e82bc5bb53e773626fcc6a23f7eefa036918d7ef216ecfb1950a94a85e",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "overlap",
+        "criteria": "After tx executed, the wallet balance should: decrease 1 WETH, some ETH gas fee. The Morpho wstETH/WETH pair collateral should increase about 0.83 wstETH with 10% fault tolerance"
+    },
+    {
+        "task_id": "ef2245aa-8d83-42f2-8c98-5f252c7f6968",
+        "question": "Stake 1 ETH to Lido to get wstETH directly, then supply all the wstETH to Morpho wstETH/WETH pair. hint: market_id:0xb8fc70e82bc5bb53e773626fcc6a23f7eefa036918d7ef216ecfb1950a94a85e",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "overlap",
+        "criteria": "1. After tx executed, the wallet balance should: decrease 1 ETH plus some ETH gas fee. The Morpho wstETH/WETH pair collateral should increase about 0.83 wstETH with 10% fault tolerance. 2. Directly interact with WSTETH contract, address:0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0."
+    },
+    {
+        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
+        "question": "Swap 1 ETH to USDT, then bridge the USDT from ETH to BSC.",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "overlap",
+        "criteria": ""
+    },
+    {
+        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
+        "question": "",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "",
+        "criteria": ""
+    },
+    {
+        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
+        "question": "",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "",
+        "criteria": ""
+    },
+    {
+        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
+        "question": "",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "",
+        "criteria": ""
+    },
+    {
+        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
+        "question": "",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "",
+        "criteria": ""
+    },
+    {
+        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
+        "question": "",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "",
+        "criteria": ""
+    },
+    {
+        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
+        "question": "",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "",
+        "criteria": ""
+    },
+    {
+        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
+        "question": "",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "",
+        "criteria": ""
+    },
+    {
+        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
+        "question": "",
+        "level": 3,
+        "chain": "ethereum",
+        "category": "",
+        "criteria": ""
+    },
+      
+
 ]
