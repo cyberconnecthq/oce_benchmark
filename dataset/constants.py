@@ -46,8 +46,14 @@ with open('./abi/erc20_abi.json', 'r') as f:
 with open('./abi/aave_v3_abi.json', 'r') as f:
     AAVE_V3_POOL_ABI = json.load(f)
 
+with open('./abi/ens_register_controller_abi.json', 'r') as f:
+    ENS_REGISTER_CONTROLLER_ABI = json.load(f)
 
 WETH_CONTRACT_ADDRESS_BASE='0x4200000000000000000000000000000000000006'
 
 
 MORPHO_CONTRACT_ADDRESS_ETH='0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb'
+
+
+ENS_REGISTER_CONTROLLER_ADDRESS_ETH = "0x253553366Da8546fC250F225fe3d25d0C782303b"
+ENS_WRAPPER_ADDRESS_ETH = "0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401"

@@ -529,27 +529,27 @@
     },
     {
         "task_id": "66896b62-f671-4740-85fd-813b95a02e2a",
-        "question": "",
+        "question": "Register (mint) a new ENS name 'caiba-ai.eth' for 1 year. Your wallet address is:0xcCb30F16d38424F7a546944F0cf5EF8F2d116F70",
         "level": 3,
         "chain": "ethereum",
-        "category": "",
-        "criteria": "Register (mint) a new ENS name 'caiba_ai.eth' for 1 year"
+        "category": "ENS",
+        "criteria": "After all TXs executed, the wallet balance of wENS should increase by 1 and the remaining time should be about 365 days."
     },
     {
-        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
-        "question": "",
+        "task_id": "f7cfb844-cf8b-430a-8256-154e30d7a997",
+        "question": "Register (mint) a new ENS name 'caiba.eth' for 1 year and target its onwer to be 0xcCb30F16d38424F7a546944F0cf5EF8F2d116F70",
         "level": 3,
         "chain": "ethereum",
-        "category": "",
-        "criteria": ""
+        "category": "ENS",
+        "criteria": "After all TXs executed, the 0xcCb30F16d38424F7a546944F0cf5EF8F2d116F70 wallet balance of wENS should increase by 1 and the remaining time should be about 365 days."
     },
     {
-        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
-        "question": "",
+        "task_id": "49a179af-7af1-4c0d-a091-3579b3752caa",
+        "question": "Register (mint) a new ENS name 'caiba-ai.eth' for 1 year. Your wallet address is:0xcCb30F16d38424F7a546944F0cf5EF8F2d116F70. And then transfer it to 0xD117Bd6dE83e3F14265a3CE2BEEE6bd69d29eC7E",
         "level": 3,
         "chain": "ethereum",
-        "category": "",
-        "criteria": ""
+        "category": "ENS",
+        "criteria": "After all TXs executed, the 0xD117Bd6dE83e3F14265a3CE2BEEE6bd69d29eC7E wallet balance of wENS should increase by 1 and the remaining time should be about 365 days."
     },
     {
         "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
