@@ -13,6 +13,7 @@ SHIB_CONTRACT_ADDRESS_ETH="0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE"
 
 UNISWAP_V2_ROUTER_ADDRESS_ETH = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
 UNISWAP_V2_POOL_ADDRESS_WETH_PEPE = "0x0bfbcf9fa4f9c56b0cc798c395a75d9d4c79dd93"
+UNISWAP_V2_POOL_ADDRESS_ETH_PEPE = "0xA43fe16908251ee70EF74718545e4FE6C5cCEc9f"
 
 UNISWAP_V3_ROUTER_ADDRESS_ETH = "0xE592427A0AEce92De3Edee1F18E0157C05861564"
 UNISWAP_V3_POOL_ADDRESS_WETH_USDC = "0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640"
@@ -41,15 +42,9 @@ PENDLE_EUSDE_YT_ADDRESS="0x733ee9ba88f16023146ebc965b7a1da18a322464"
 # ERC20 ABI
 with open('./abi/erc20_abi.json', 'r') as f:
     ERC20_ABI = json.load(f)
-# ERC20_ABI = [
-#     {
-#         "constant": True,
-#         "inputs": [{"name": "_owner", "type": "address"}],
-#         "name": "balanceOf",
-#         "outputs": [{"name": "balance", "type": "uint256"}],
-#         "type": "function"
-#     }
-# ]
+
+with open('./abi/aave_v3_abi.json', 'r') as f:
+    AAVE_V3_POOL_ABI = json.load(f)
 
 
 WETH_CONTRACT_ADDRESS_BASE='0x4200000000000000000000000000000000000006'
