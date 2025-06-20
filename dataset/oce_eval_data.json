@@ -320,7 +320,7 @@
         "criteria": "After all TXs executed, the aave health factor should be about 1.5. Total collateral is about 2500 USD. The balance of USDT from less than 100 USDT"
     },
     {
-        "task_id": "470e7450-6281-49da-a8da-bc7f093af089",
+        "task_id": "8436c675-c2d0-491b-a775-6861b4a4c4f8",
         "question": "Supply 1 WETH to Morpho WETH/USDT pair, market id: 0xdbffac82c2dc7e8aa781bd05746530b0068d80929f23ac1628580e27810bc0c5",
         "level": 2,
         "chain": "ethereum",
@@ -484,7 +484,7 @@
         "question": "Stake 1 WETH to Lido, and wrap the stETH to wstETH, then supply all the wstETH to Morpho wstETH/WETH pair. hint: market_id:0xb8fc70e82bc5bb53e773626fcc6a23f7eefa036918d7ef216ecfb1950a94a85e",
         "level": 3,
         "chain": "ethereum",
-        "category": "overlap",
+        "category": "composite",
         "criteria": "After tx executed, the wallet balance should: decrease 1 WETH, some ETH gas fee. The Morpho wstETH/WETH pair collateral should increase about 0.83 wstETH with 10% fault tolerance"
     },
     {
@@ -492,7 +492,7 @@
         "question": "Stake 1 ETH to Lido to get wstETH directly, then supply all the wstETH to Morpho wstETH/WETH pair. hint: market_id:0xb8fc70e82bc5bb53e773626fcc6a23f7eefa036918d7ef216ecfb1950a94a85e",
         "level": 3,
         "chain": "ethereum",
-        "category": "overlap",
+        "category": "composite",
         "criteria": "1. After tx executed, the wallet balance should: decrease 1 ETH plus some ETH gas fee. The Morpho wstETH/WETH pair collateral should increase about 0.83 wstETH with 10% fault tolerance. 2. Directly interact with WSTETH contract, address:0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0."
     },
     {
@@ -500,7 +500,7 @@
         "question": "Swap 1 ETH to USDT on Ethereum, then bridge the USDT from ETH to BSC by Across Protocol.",
         "level": 3,
         "chain": "ethereum",
-        "category": "overlap",
+        "category": "composite",
         "criteria": "1. After TX executed, the wallet balance should: decrease 1 ETH plus some ETH gas fee. The Across Protocol locked USDT should increase about 2600 USDT with 10% fault tolerance. 2. The destination chainId should be 56."
     },
     {
@@ -508,7 +508,7 @@
         "question": "Stake 1 ETH to Lido, deposit resulting stETH into Aave V3, borrow 500 USDC, then swap USDC→USDT on Uniswap V3",
         "level": 3,
         "chain": "ethereum",
-        "category": "overlap",
+        "category": "composite",
         "criteria": "1. After tx executed, the wallet balance should: decrease 1 ETH plus some ETH gas fee. 2.The Aave V3 debt should increase about 500 USDC with 10% fault tolerance. 2. The Uniswap V3 swap should be successful."
     },
     {
@@ -516,7 +516,7 @@
         "question": "Stake 2 ETH to Lido, deposit stETH into Aave, borrow 1000 USDT, swap USDT→USDC on Uniswap V3",
         "level": 3,
         "chain": "ethereum",
-        "category": "overlap",
+        "category": "composite",
         "criteria": "After tx executed: 1. wallet balance decrease about 2 ETH plus some ETH gas fee. 2. The Aave V3 debt should increase about 1000 USDT with 10% fault tolerance. 3. Aave collateral increase about 5200 USD.  4. The Uniswap V3 swap should be successful, the wallet balance of USDC increase about 1000."
     },
     {
@@ -524,7 +524,7 @@
         "question": "Swap 1 ETH→USDC on Uniswap V3, supply USDC to Aave, borrow 0.1 WETH, stake borrowed WETH to Lido",
         "level": 3,
         "chain": "ethereum",
-        "category": "overlap",
+        "category": "composite",
         "criteria": "After tx executed: 1. wallet balance decrease about 1 ETH plus some ETH gas fee. 2. The Aave V3 debt should increase about 255 USD with 10% fault tolerance. 3. Aave collateral increase about 2550 USD.  4. the Lido WETH balance should increase about 0.1 WETH with 10% fault tolerance 5. wallet balance of stWETH should increase about 0.1."
     },
     {
@@ -552,21 +552,11 @@
         "criteria": "After all TXs executed, the 0xD117Bd6dE83e3F14265a3CE2BEEE6bd69d29eC7E wallet balance of wENS should increase by 1 and the remaining time should be about 365 days."
     },
     {
-        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
-        "question": "",
+        "task_id": "091cf29d-965e-484d-b84b-d7d184d7163b",
+        "question": "Swap 2 ETH to 1 ETH and 2600 USDC then provide 1 WETH and corresponding number of USDC liquidity to USDC-ETH 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3. Then transfer the acquired NFT to address: 0xD117Bd6dE83e3F14265a3CE2BEEE6bd69d29eC7E",
         "level": 3,
         "chain": "ethereum",
-        "category": "",
-        "criteria": ""
-    },
-    {
-        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
-        "question": "",
-        "level": 3,
-        "chain": "ethereum",
-        "category": "",
-        "criteria": ""
-    },
-      
-
+        "category": "composite",
+        "criteria": "After all TXs executed: 1. the wallet balalnce should decrease about 2 ETH, and 0xD117Bd6dE83e3F14265a3CE2BEEE6bd69d29eC7E should increase one NFT"
+    }
 ]
