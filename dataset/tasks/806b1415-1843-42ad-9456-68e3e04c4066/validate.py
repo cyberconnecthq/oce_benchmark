@@ -32,7 +32,7 @@ async def get_balances():
     # 检查 addr 对 USDC 合约的授权额度
     allowance = pepe_contract.functions.allowance(addr, SPENDER_A).call()
     return (
-        f"PEPE Allowance for address {addr}:\n"
+        f"PEPE Allowance for address {SPENDER_A}:\n"
         f"{allowance / 10**6} PEPE\n"
     )
 

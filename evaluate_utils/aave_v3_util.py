@@ -164,6 +164,53 @@ async def supply_eth(amount_eth: float):
     receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
     return f"存入ETH交易已确认: {receipt.values()}"
 
+async def supply_aave_v3_token(token_add, address, amount):
+    """
+    向Aave V3存入任意ERC20代币
+    :param token_add: 代币合约地址 (str)
+    :param address: 存款人地址 (str)
+    :param amount: 存款数量 (int, 单位为最小单位)
+    :return: 交易哈希
+    """
+    # 初始化合约
+    token_add = Web3.to_checksum_address(token_add)
+    token_contract = w3.eth.contract(address=token_add, abi=ERC20_ABI)
+    # 授权Aave Pool合约
+    approve_tx = token_contract.functions.approve(AAVE_POOL, amount).build_transaction({
+        'from': address,
+        'gas': 100000,
+        'gasPrice': w3.to_wei('20', 'gwei'),
+        'nonce': w3.eth.get_transaction_count(address)
+    })
+    signed_approve = account.sign_transaction(approve_tx)
+    approve_hash = w3.eth.send_raw_transaction(signed_approve.raw_transaction)
+    w3.eth.wait_for_transaction_receipt(approve_hash)
+    print(f"已授权Aave Pool使用 {amount} token: {token_add}")
+
+    # 调用Aave Pool的supply方法
+    tx = aave_pool.functions.supply(
+        token_add,
+        amount,
+        address,
+        0
+    ).build_transaction({
+        'from': address,
+        'value': 0,
+        'gas': 500000,
+        'gasPrice': w3.to_wei('20', 'gwei'),
+        'nonce': w3.eth.get_transaction_count(address)
+    })
+    signed_tx = account.sign_transaction(tx)
+    tx_hash = w3.eth.send_raw_transaction(signed_tx.raw_transaction)
+    receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+    print(f"存入Aave V3成功, 交易哈希: {receipt.transactionHash.hex()}")
+    return receipt.values()
+
+
+
+
 if __name__ == '__main__':
     import asyncio
-    print(asyncio.run(get_aave_info("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")))
+    # print(asyncio.run(get_aave_info("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")))
+    from dataset.constants import USDT_CONTRACT_ADDRESS_ETH
+    print(asyncio.run(supply_aave_v3_token(USDT_CONTRACT_ADDRESS_ETH, addr, 1000*10**6)))
