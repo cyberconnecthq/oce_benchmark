@@ -1,0 +1,5 @@
+# 继承 requirements.txt 的内容，并额外增加 fastapi 依赖
+-r requirements.txt
+-r demo/requirements.txt
+fastapi
+uvicorn

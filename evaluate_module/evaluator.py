@@ -3,8 +3,8 @@ import asyncio
 from statistics import mean
 from typing import List
 from demo.agent import Agent
-from schemas import AgentOutputItem, Answer, BenchmarkItem, EvaluateScore
-from validate_agent import get_evaluate_agent
+from evaluate_module.schemas import AgentOutputItem, BenchmarkItem 
+from evaluate_module.validate_agent import get_evaluate_agent
 
 
 def load_llm_config(config_path:str = "llm_config.json") -> dict:
@@ -35,7 +35,7 @@ async def get_eval_agent_by_task_id(task_id:str, model_name:str = 'gpt-4.1') -> 
     return eval_agent
 
 
-async def load_evaluate_data(eval_dataset_path:str) -> List[BenchmarkItem]:
+async def load_evaluate_data(eval_dataset_path:str) -> list[BenchmarkItem]:
     with open(eval_dataset_path, "r") as f:
         content = json.load(f)
         benchmark_items = []
@@ -89,8 +89,6 @@ if __name__ == "__main__":
     agent_output_item = AgentOutputItem(
         task_id=task_id,
         answer="```json\n[{\n    \"from\": \"0xFAafe5FcaC0E87D40017E44CD462398026a12230\",\n    \"to\": \"0xae7ab96520de3a18e5e111b5eaab095312d7fe84\",\n    \"value\": 500000000000000000,\n    \"gas\": 200000,\n    \"gasPrice\": 150000000000,\n    \"nonce\": 5949,\n    \"data\": \"0xa1903eab0000000000000000000000000000000000000000000000000000000000000000\",\n    \"chainId\": 1\n}]\n```\nThis transaction stakes 0.5 ETH to Lido on Ethereum mainnet with the correct calldata for `submit(address)` (referral: 0x0), ready to be signed and sent.",
-        tool_use_list=[],
-        reasoning_list=[]
     )
 
     # asyncio.run(run_evaluate(agent_output_item))

@@ -20,19 +20,19 @@ ERC20_ABI = [
 ]
 
 # Initialize web3 object
-w3_eth = Web3(HTTPProvider(ETH_RPC_URL))
+w3 = Web3(HTTPProvider(ETH_RPC_URL))
 
 # Get account address
-account = w3_eth.eth.account.from_key(PRIVATE_KEY)
+account = w3.eth.account.from_key(PRIVATE_KEY)
 addr = account.address
 
 # Contract instances
-weth_contract = w3_eth.eth.contract(address=Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH), abi=ERC20_ABI)
-bnb_contract = w3_eth.eth.contract(address=Web3.to_checksum_address(BNB_CONTRACT_ADDRESS_ETH), abi=ERC20_ABI)
+weth_contract = w3.eth.contract(address=Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH), abi=ERC20_ABI)
+bnb_contract = w3.eth.contract(address=Web3.to_checksum_address(BNB_CONTRACT_ADDRESS_ETH), abi=ERC20_ABI)
 
 async def get_balances():
     # ETH balance
-    eth_balance = w3_eth.eth.get_balance(addr)
+    eth_balance = w3.eth.get_balance(addr)
     # WETH balance
     weth_balance = weth_contract.functions.balanceOf(addr).call()
     # BNB balance

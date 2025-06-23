@@ -393,7 +393,7 @@
     },
     {
         "task_id": "e1a1b2c3-d4e5-4f6a-8b9c-1234567890ab",
-        "question": "Buy 1 WETH worth of PT sUSDe on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, PT address: 0x3b3fb9c57858ef816833dc91565efcd85d96f634",
+        "question": "Buy 1 WETH worth of PT sUSDe(USDe) 31, July 2025 on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, PT address: 0x3b3fb9c57858ef816833dc91565efcd85d96f634",
         "level": 2,
         "chain": "ethereum",
         "category": "yield",

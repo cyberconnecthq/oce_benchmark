@@ -5,7 +5,7 @@ from demo.agent import Agent
 from demo.llm import GeneralLLM
 from demo.tools import Tool, CodeInterpreter
 from pydantic import BaseModel, Field
-from execute import sign_and_send_transaction
+from evaluate_module.execute import sign_and_send_transaction
 from eth_account.signers.local import LocalAccount
 
 
@@ -132,7 +132,7 @@ class EvaluateAgent(Agent):
         super().__init__(llm=llm, tools=tools, max_turns=max_turns, instructions_prompt=instructions_prompt)
         self.w3 = w3
 
-    async def run(self, question:str, session_id:str = None) -> tuple[str, dict]:
+    async def run(self, question:str, session_id:str = "") -> tuple[str, dict]:
         await self.reset_anvil()
         return await super().run(question, session_id)
     

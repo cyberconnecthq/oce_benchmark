@@ -10,3 +10,5 @@
 *.pyzwz
 results/
 logs/
+
+converted_agent_outputs/
