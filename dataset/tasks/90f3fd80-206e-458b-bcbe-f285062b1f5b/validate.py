@@ -1,11 +1,9 @@
 from web3 import Web3, HTTPProvider
 from eth_account.signers.local import LocalAccount
-from dataset.constants import USDC_CONTRACT_ADDRESS_ETH, WETH_CONTRACT_ADDRESS_ETH
+from dataset.constants import USDC_CONTRACT_ADDRESS_ETH, WETH_CONTRACT_ADDRESS_ETH, RPC_URL, PRIVATE_KEY
 from evaluate_utils.aave_v3_util import get_aave_info
 
 
-RPC_URL = "http://127.0.0.1:8545"
-PRIVATE_KEY = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80" #the first default anvil account
 w3 = Web3(HTTPProvider(RPC_URL))
 account: LocalAccount = w3.eth.account.from_key(PRIVATE_KEY)
 addr = account.address

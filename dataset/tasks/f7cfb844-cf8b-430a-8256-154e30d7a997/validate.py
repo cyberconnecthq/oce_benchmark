@@ -1,10 +1,12 @@
 from web3 import HTTPProvider, Web3
-from dataset.constants import ENS_REGISTER_CONTROLLER_ABI, ENS_REGISTER_CONTROLLER_ADDRESS_ETH, RPC_URL
+from dataset.constants import RPC_URL, PRIVATE_KEY
 from datetime import datetime, timezone
 from eth_utils.crypto import keccak
 from eth_utils.address import to_checksum_address
+from eth_account.signers.local import LocalAccount
 
 w3 = Web3(HTTPProvider(RPC_URL))
+account: LocalAccount = w3.eth.account.from_key(PRIVATE_KEY)
 
 def namehash(name: str) -> bytes:
     """
@@ -61,7 +63,7 @@ def get_balances():
     else:
         # Use the latest block's timestamp as the current time
         latest_block = w3.eth.get_block('latest')
-        now_ts = latest_block['timestamp']
+        now_ts = latest_block['timestamp'] # type: ignore
         dt_expire = datetime.fromtimestamp(ts_expire, tz=timezone.utc)
         dt_now = datetime.fromtimestamp(now_ts, tz=timezone.utc)
         remaining = dt_expire - dt_now

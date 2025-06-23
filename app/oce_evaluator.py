@@ -61,7 +61,7 @@ class OCEEvaluator:
                 "task_id": agent_output.task_id,
                 "score": score,
                 "result": result,
-                # "metadata": metadata,
+                "metadata": metadata,
                 "status": "success"
             }
             

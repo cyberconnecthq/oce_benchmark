@@ -93,7 +93,7 @@ class ExecuteTxTool(Tool):
         for tx in tx_list:
             success, gas_used = sign_and_send_transaction(tx, self.account, self.w3)
             if not success:
-                return "Transaction execution failed"
+                return f"Transaction execution failed : {tx}"
             total_gas_used += gas_used
         return f"Transaction executed successfully, total gas used: {total_gas_used}"
 
