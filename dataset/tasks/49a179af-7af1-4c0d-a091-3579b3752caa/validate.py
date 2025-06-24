@@ -65,7 +65,7 @@ def get_balances():
     else:
         # Use the latest block's timestamp as the current time
         latest_block = w3.eth.get_block('latest')
-        now_ts = latest_block['timestamp']
+        now_ts = latest_block['timestamp'] # type: ignore
         dt_expire = datetime.fromtimestamp(ts_expire, tz=timezone.utc)
         dt_now = datetime.fromtimestamp(now_ts, tz=timezone.utc)
         remaining = dt_expire - dt_now

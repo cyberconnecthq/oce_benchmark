@@ -1,27 +1,38 @@
+import asyncio
 import json
-from schemas import AgentOutputItem, QuestionData
+from typing import Any, Dict
+from evaluate_module.schemas import AgentOutputItem, QuestionData
 from web3 import Web3, HTTPProvider
 from dataset.constants import RPC_URL
 from demo.get_agent import get_agent
 from evaluator import get_eval_agent_by_task_id
+from evaluate_module.oce_evaluator import OCEEvaluator
 
 w3 = Web3(HTTPProvider(RPC_URL)) 
+# 便捷函数
+async def quick_evaluate(
+    task_id: str,
+    answer: str,
+    model_name: str = "gpt-4.1"
+) -> Dict[str, Any]:
+    """快速评估单个任务"""
+    evaluator = OCEEvaluator()
+    agent_output = AgentOutputItem(
+        task_id=task_id,
+        answer=answer,
+    )
+    return await evaluator.evaluate_single(agent_output, model_name)
 
-async def run_eval(agent_outputs:list[AgentOutputItem],questions:list[QuestionData]):
-    snapshot_id = w3.provider.make_request("evm_snapshot", [])["result"]
+async def run_eval(agent_outputs:list[AgentOutputItem]):
     results = []
     for output in agent_outputs:
-        w3.provider.make_request("evm_revert", [snapshot_id])
-        print("anvil已重置")
+        result = await quick_evaluate(output.task_id, output.answer) if output.task_id else None
+        results.append(result)
     return results
-    for question in questions:
 
 
-
-if __name__ == '__main__':
-    with open("dataset/oce_eval_data.json", "r") as f:
-        questions_data = json.load(f)
+# if __name__ == '__main__':
+    # asyncio.run(run_eval(agent_outputs))
     
-    questions = [QuestionData(**item) for item in questions_data]
 
 

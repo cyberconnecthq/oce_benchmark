@@ -1,8 +1,6 @@
 # oce_evaluator.py - 核心评估库
-import asyncio
-import json
-from typing import Optional, Dict, Any
-from evaluate_module.schemas import AgentOutputItem, BenchmarkItem, EvaluateScore
+from typing import Dict, Any
+from evaluate_module.schemas import AgentOutputItem, BenchmarkItem
 from evaluate_module.evaluator import get_eval_agent_by_task_id, load_evaluate_data
 from web3 import Web3, HTTPProvider
 from dataset.constants import RPC_URL
@@ -96,16 +94,3 @@ class OCEEvaluator:
         else:
             return 0.0
 
-# 便捷函数
-async def quick_evaluate(
-    task_id: str,
-    answer: str,
-    model_name: str = "gpt-4.1"
-) -> Dict[str, Any]:
-    """快速评估单个任务"""
-    evaluator = OCEEvaluator()
-    agent_output = AgentOutputItem(
-        task_id=task_id,
-        answer=answer,
-    )
-    return await evaluator.evaluate_single(agent_output, model_name)
