@@ -1,10 +1,13 @@
 from web3 import HTTPProvider, Web3
-from dataset.constants import ENS_REGISTER_CONTROLLER_ABI, ENS_REGISTER_CONTROLLER_ADDRESS_ETH, RPC_URL
+from eth_account.signers.local import LocalAccount
+from dataset.constants import PRIVATE_KEY, RPC_URL
 from datetime import datetime, timezone
 from eth_utils.crypto import keccak
 from eth_utils.address import to_checksum_address
 
 w3 = Web3(HTTPProvider(RPC_URL))
+account: LocalAccount = w3.eth.account.from_key(PRIVATE_KEY)
+addr = account.address
 
 def namehash(name: str) -> bytes:
     """

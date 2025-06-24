@@ -1,4 +1,5 @@
 from web3 import Web3, HTTPProvider
+from eth_account.signers.local import LocalAccount
 
 from dataset.constants import WETH_CONTRACT_ADDRESS_ETH, BNB_CONTRACT_ADDRESS_ETH
 
@@ -23,7 +24,7 @@ ERC20_ABI = [
 w3 = Web3(HTTPProvider(ETH_RPC_URL))
 
 # Get account address
-account = w3.eth.account.from_key(PRIVATE_KEY)
+account: LocalAccount = w3.eth.account.from_key(PRIVATE_KEY)
 addr = account.address
 
 # Contract instances
