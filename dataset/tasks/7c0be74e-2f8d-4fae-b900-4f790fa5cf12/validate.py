@@ -2,7 +2,6 @@ from web3 import Web3, HTTPProvider
 from eth_account.signers.local import LocalAccount
 from dataset.constants import SHIB_CONTRACT_ADDRESS_ETH, WETH_CONTRACT_ADDRESS_ETH
 
-
 RPC_URL = "http://127.0.0.1:8545"
 PRIVATE_KEY = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80" #the first default anvil account
 w3 = Web3(HTTPProvider(RPC_URL))
@@ -27,8 +26,6 @@ ERC20_ABI = [
 shib_contract = w3.eth.contract(address=SHIB, abi=ERC20_ABI)
 weth_contract = w3.eth.contract(address=WETH, abi=ERC20_ABI)
 
-
-
 async def get_balances():
     eth_balance= w3.eth.get_balance(addr)
     shib_balance = shib_contract.functions.balanceOf(addr).call()
@@ -39,7 +36,6 @@ async def get_balances():
         f"{shib_balance / 10**18} SHIB\n"
         f"{weth_balance / 10**18} WETH\n"
     )
-
 
 if __name__ == '__main__':
     import asyncio 

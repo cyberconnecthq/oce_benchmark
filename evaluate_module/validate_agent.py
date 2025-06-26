@@ -5,7 +5,7 @@ from demo.agent import Agent
 from demo.llm import GeneralLLM
 from demo.tools import Tool, CodeInterpreter
 from pydantic import BaseModel, Field
-from evaluate_module.execute import sign_and_send_transaction
+from execute import sign_and_send_transaction
 from eth_account.signers.local import LocalAccount
 
 

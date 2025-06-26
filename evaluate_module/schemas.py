@@ -219,3 +219,30 @@ class EvaluateScore(BaseModel):
                 f'answer_score + reasoning_score + tool_use_score ({expected})'
             )
         return self
+
+
+class EvaluateResult(BaseModel):
+    """评估结果模型"""
+    task_id: Optional[str] = None
+    status: str = Field(description="评估状态: success 或 failed")
+    
+    # 成功时的字段
+    score: Optional[EvaluateScore] = None
+    result: Optional[str] = None
+    metadata: Optional[dict] = None
+    
+    # 失败时的字段  
+    error: Optional[str] = None
+    
+    @model_validator(mode='after')
+    def validate_result_fields(self):
+        """验证根据状态字段的合法性"""
+        if self.status == "success":
+            if self.score is None:
+                raise ValueError("成功状态时score字段不能为空")
+        elif self.status == "failed":
+            if self.error is None:
+                raise ValueError("失败状态时error字段不能为空")
+        else:
+            raise ValueError("status字段必须为'success'或'failed'")
+        return self

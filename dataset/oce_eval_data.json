@@ -17,11 +17,11 @@
     },
     {
         "task_id": "b3db4ce1-ff65-4e7a-bffd-cb167521bd78",
-        "question":"Swap 1 WETH to USDC by Uniswap V3.",
+        "question":"Swap 1 WETH to USDC by Uniswap V3 with slippage max to 5%.",
         "level": 2,
         "chain": "ethereum",
         "category": "swap", 
-        "criteria": "1. Must interact with Uniswap V3 contract address: 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640 2. After TX executed, the WETH balance should decrease about 1, and the USDC balance should increase about 2600 with 5% fault tolerance"
+        "criteria": "1. Must interact with Uniswap V3 contract address: 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640 2. After TX executed, the WETH balance should decrease about 1, and the USDC balance should increase about 2600 with 5% fault tolerance. 3. The transaction"
     },
     {
         "task_id": "123e4567-e89b-12d3-a456-426614174000",
@@ -121,11 +121,11 @@
     },
     {
         "task_id": "9024c6df-d393-4770-8719-cad56a802154",
-        "question":"Provide 1 WETH and corresponding number of USDC liquidity to WETH-USDC 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3",
+        "question":"Provide 1 WETH and corresponding number of USDC liquidity to WETH-USDC 0.05 pool on uniswap v3 with ticker range from 2300 to 3000",
         "level": 2,
         "chain": "ethereum",
         "category": "LP", 
-        "criteria": "Before and after the transaction, the balance of the pool should increase about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should decrease about 1 WETH and corresponding number(about 2600) of USDC. The NFT liquidity positions will increase/appear."
+        "criteria": "Before and after the transaction, the balance of the pool should increase about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should decrease about 1 WETH and corresponding number(about 2600) of USDC. The NFT liquidity positions will increase/appear with ticker price range from 2300 to 3000. The add liquidity transaction must interact with pool address 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640."
     },
     {
         "task_id": "a996ca14-3315-4164-aa09-622dfaaeb676",

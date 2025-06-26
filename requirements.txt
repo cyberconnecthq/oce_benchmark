@@ -1,4 +1,4 @@
-web3
+web3>=6.0.0
 openai
 langchain-experimental
 solders
@@ -6,3 +6,5 @@ solana
 pyyaml
 zstandard
 requests
+eth-abi>=4.0.0
+typing-extensions>=4.0.0

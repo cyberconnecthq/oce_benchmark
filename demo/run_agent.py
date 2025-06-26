@@ -111,7 +111,7 @@ if __name__ == "__main__":
     with open("dataset/oce_eval_data.json", "r") as f:
         questions_data = json.load(f)
     
-    questions = [QuestionData(**item) for item in questions_data][-20:]
+    questions = [QuestionData(**item) for item in questions_data][:35]
     # 提取所有问题
     # result = asyncio.run(run_tests_parallel(
     #     output_dir="results",

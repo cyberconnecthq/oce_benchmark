@@ -1,6 +1,6 @@
 # oce_evaluator.py - 核心评估库
 from typing import Dict, Any
-from evaluate_module.schemas import AgentOutputItem, BenchmarkItem
+from evaluate_module.schemas import AgentOutputItem, BenchmarkItem, EvaluateResult, EvaluateScore
 from evaluate_module.evaluator import get_eval_agent_by_task_id, load_evaluate_data
 from web3 import Web3, HTTPProvider
 from dataset.constants import RPC_URL
@@ -24,7 +24,7 @@ class OCEEvaluator:
         self, 
         agent_output: AgentOutputItem,
         model_name: str = "gpt-4.1"
-    ) -> Dict[str, Any]:
+    ) -> EvaluateResult:
         """评估单个任务"""
         try:
             await self.load_eval_dataset(self.evaluate_dataset_path)
@@ -36,11 +36,11 @@ class OCEEvaluator:
             elif agent_output.question:
                 item = [item for item in self.evaluate_dataset if item.question == agent_output.question]
                 if not item or len(item) <= 0:
-                    return {
-                        "task_id": agent_output.task_id,
-                        "error": f"no evaluate data found for question : '{agent_output.question}'",
-                        "status": "failed"
-                    }
+                    return EvaluateResult(
+                        task_id=agent_output.task_id,
+                        status="failed",
+                        error=f"no evaluate data found for question : '{agent_output.question}'"
+                    )
                 task_id = item[0].task_id
             
             # 获取评估智能体
@@ -53,23 +53,44 @@ class OCEEvaluator:
             result, metadata = await eval_agent.run(agent_output.to_question())
             
             # 解析结果
-            score = self._parse_evaluation_result(result, agent_output)
+            raw_score = self._parse_evaluation_result(result, agent_output)
             
-            return {
-                "task_id": agent_output.task_id,
-                "score": score,
-                "result": result,
-                "metadata": metadata,
-                "status": "success"
-            }
+            # 获取数据集中的任务信息
+            benchmark_item = next((item for item in self.evaluate_dataset if item.task_id == task_id), None)
+            level = benchmark_item.level if benchmark_item and benchmark_item.level else 1
+            category = benchmark_item.category if benchmark_item else "unknown"
+            
+            # 创建EvaluateScore对象
+            score = EvaluateScore(
+                answer_total_score=10.0,
+                reasoning_total_score=0.0,
+                tool_use_total_score=0.0,
+                answer_score=raw_score,
+                reasoning_score=0.0,
+                tool_use_score=0.0,
+                total_score=raw_score,
+                evaluate_detail=result,
+                model_name=model_name,
+                task_id=task_id,
+                level=level,
+                category=category
+            )
+            
+            return EvaluateResult(
+                task_id=agent_output.task_id,
+                status="success",
+                score=score,
+                result=result,
+                metadata=metadata
+            )
             
         except Exception as e:
             print(e)
-            return {
-                "task_id": agent_output.task_id,
-                "error": str(e),
-                "status": "failed"
-            }
+            return EvaluateResult(
+                task_id=agent_output.task_id,
+                status="failed",
+                error=str(e)
+            )
         finally:
             # 恢复快照
             if snapshot_id:
@@ -79,7 +100,7 @@ class OCEEvaluator:
         self, 
         agent_outputs: list[AgentOutputItem],
         model_name: str = "gpt-4.1"
-    ) -> list[Dict[str, Any]]:
+    ) -> list[EvaluateResult]:
         """批量评估"""
         results = []
         for output in agent_outputs:
