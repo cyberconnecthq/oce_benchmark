@@ -181,27 +181,28 @@ class EvaluateScore(BaseModel):
 
 
 class EvaluateResult(BaseModel):
-    """评估结果模型"""
+    """Evaluation result model"""
     task_id: Optional[str] = None
-    status: str = Field(description="评估状态: success 或 failed")
+    status: str = Field(description="Evaluation status: success or failed")
     
-    # 成功时的字段
+    # Fields for success
     score: Optional[EvaluateScore] = None
     result: Optional[str] = None
     metadata: Optional[dict] = None
     
-    # 失败时的字段  
+    # Fields for failure
     error: Optional[str] = None
+    usage: Optional[Usage] = None
     
     @model_validator(mode='after')
     def validate_result_fields(self):
-        """验证根据状态字段的合法性"""
+        """Validate the legality of fields according to the status field"""
         if self.status == "success":
             if self.score is None:
-                raise ValueError("成功状态时score字段不能为空")
+                raise ValueError("Field 'score' cannot be None when status is 'success'")
         elif self.status == "failed":
             if self.error is None:
-                raise ValueError("失败状态时error字段不能为空")
+                raise ValueError("Field 'error' cannot be None when status is 'failed'")
         else:
-            raise ValueError("status字段必须为'success'或'failed'")
+            raise ValueError("Field 'status' must be either 'success' or 'failed'")
         return self

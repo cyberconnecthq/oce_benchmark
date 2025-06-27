@@ -39,6 +39,7 @@ class OCEEvaluator:
                     return EvaluateResult(
                         task_id=agent_output.task_id,
                         status="failed",
+                        usage = agent_output.usage,
                         error=f"no evaluate data found for question : '{agent_output.question}'"
                     )
                 task_id = item[0].task_id
@@ -75,7 +76,8 @@ class OCEEvaluator:
                 status="success",
                 score=score,
                 result=result,
-                metadata=metadata
+                metadata=metadata,
+                usage=agent_output.usage
             )
             
         except Exception as e:
@@ -83,7 +85,8 @@ class OCEEvaluator:
             return EvaluateResult(
                 task_id=agent_output.task_id,
                 status="failed",
-                error=str(e)
+                error=str(e),
+                usage=agent_output.usage
             )
         finally:
             # 恢复快照
