@@ -64,7 +64,7 @@ def send_transaction(tx: TxParams):
     return receipt
 
 
-async def swap(
+def swap(
     token_0_address: ChecksumAddress,
     token_1_address: ChecksumAddress,
     amount_token_0: int,
@@ -115,7 +115,7 @@ async def swap(
     )
     print("Swap完成, gas消耗:", receipt.gasUsed)
 
-async def swap_weth_to_usdc(amount_weth: float):
+def swap_weth_to_usdc(amount_weth: float):
     """
     使用Uniswap V3将ETH换成USDC
     

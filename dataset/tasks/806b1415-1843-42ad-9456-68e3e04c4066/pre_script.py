@@ -4,14 +4,14 @@ from dataset.constants import PEPE_CONTRACT_ADDRESS_ETH, WETH_CONTRACT_ADDRESS_E
 from web3 import Web3 
 import asyncio
 
-asyncio.run(wrap_eth_to_weth(2))
-asyncio.run(swap(
+wrap_eth_to_weth(2)
+swap(
     Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),
     Web3.to_checksum_address(PEPE_CONTRACT_ADDRESS_ETH),
     int(1*1e18),
     0,
     10000
-))
+)
 
 
 

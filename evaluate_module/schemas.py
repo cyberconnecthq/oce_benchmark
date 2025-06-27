@@ -162,15 +162,8 @@ class AgentOutputItem(BaseModel):
         return prompt
 
 class EvaluateScore(BaseModel):
-    answer_total_score: float = Field(description="The total score of the answer worth")
-    reasoning_total_score: float = Field(description="The total score of the reasoning worth")
-    tool_use_total_score: float = Field(description="The total score of the tool use worth")
 
     answer_score: float = Field(description="The score of the agent get from the answer")
-    reasoning_score: float = Field(description="The score of the agent get from the reasoning")
-    tool_use_score: float = Field(description="The score of the agent get from the tool use")
-
-    total_score: float = Field(description="The total score of the agent")
 
     evaluate_detail:Optional[str] = Field(description="The detail of the evaluation")
     model_name: str
@@ -178,47 +171,6 @@ class EvaluateScore(BaseModel):
     level:int
     category:str
 
-
-    # @field_validator('total_score')
-    @field_validator('answer_score', 'reasoning_score', 'tool_use_score')
-    def non_negative(cls, v):
-        if v < 0:
-            raise ValueError('score cannot be negative')
-        return v
-
-    @field_validator('answer_score')
-    def check_answer_score(cls, v, info):
-        max_score = info.data.get('answer_total_score', 0)
-        if v > max_score:
-            raise ValueError('answer_score cannot exceed answer_total_score')
-        return v
-
-    @field_validator('reasoning_score')
-    def check_reasoning_score(cls, v, info):
-        max_score = info.data.get('reasoning_total_score', 0)
-        if v > max_score:
-            raise ValueError('reasoning_score cannot exceed reasoning_total_score')
-        return v
-
-    @field_validator('tool_use_score')
-    def check_tool_use_score(cls, v, info):
-        max_score = info.data.get('tool_use_total_score', 0)
-        if v > max_score:
-            raise ValueError('tool_use_score cannot exceed tool_use_total_score')
-        return v
-    
-    @model_validator(mode='after')
-    def check_totals(self):
-        if self.total_score > 10:
-            raise ValueError('total_score cannot exceed 10')
-
-        expected = self.answer_score + self.reasoning_score + self.tool_use_score
-        if not isclose(self.total_score, expected, abs_tol=1e-6):
-            raise ValueError(
-                f'total_score ({self.total_score}) must equal the sum of '
-                f'answer_score + reasoning_score + tool_use_score ({expected})'
-            )
-        return self
 
 
 class EvaluateResult(BaseModel):

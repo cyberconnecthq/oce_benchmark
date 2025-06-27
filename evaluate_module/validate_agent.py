@@ -1,3 +1,4 @@
+from types import ModuleType
 from typing import Any, Callable, Optional
 from openai import AsyncClient
 from web3 import Web3
@@ -128,12 +129,15 @@ Task: {question}
 
 
 class EvaluateAgent(Agent):
-    def __init__(self, llm:GeneralLLM, tools:dict[str, Tool], max_turns:int = 10, instructions_prompt:str = INSTRUCTIONS_PROMPT, w3:Optional[Web3] = None) -> None:
+    def __init__(self, llm:GeneralLLM, tools:dict[str, Tool], max_turns:int = 10, instructions_prompt:str = INSTRUCTIONS_PROMPT, w3:Optional[Web3] = None, pre_script:Optional[ModuleType] = None) -> None:
         super().__init__(llm=llm, tools=tools, max_turns=max_turns, instructions_prompt=instructions_prompt)
         self.w3 = w3
+        self.pre_script = pre_script
 
     async def run(self, question:str, session_id:str = "") -> tuple[str, dict]:
         await self.reset_anvil()
+        if self.pre_script:
+            execute_pre_script(self.pre_script)
         return await super().run(question, session_id)
     
     async def reset_anvil(self):
@@ -162,3 +166,41 @@ async def get_evaluate_agent(model_name:str, parameters:dict, account:LocalAccou
     return agent
     
     
+def execute_pre_script(pre_script: Optional[ModuleType]) -> bool:
+    """
+    执行pre_script模块
+    
+    Args:
+        pre_script: pre_script模块对象
+        
+    Returns:
+        bool: 执行是否成功
+    """
+    if not pre_script:
+        print("未找到pre_script模块")
+        return False
+        
+    print("正在运行 pre_script ...")
+    try:
+        # 优先尝试运行 run() 函数
+        if hasattr(pre_script, "run"):
+            pre_script.run()
+            print("pre_script.run() 运行完成。")
+            return True
+        # 如果没有 run() 函数，尝试运行 main() 函数
+        elif hasattr(pre_script, "main"):
+            pre_script.main()
+            print("pre_script.main() 运行完成。")
+            return True
+        # 如果都没有，尝试执行模块级别的代码（重新导入以执行）
+        else:
+            print("未找到 run() 或 main() 函数，尝试执行模块级别代码...")
+            import importlib
+            importlib.reload(pre_script)
+            print("模块重新加载完成。")
+            return True
+    except Exception as e:
+        print(f"pre_script 运行出错: {e}")
+        import traceback
+        traceback.print_exc()
+        return False

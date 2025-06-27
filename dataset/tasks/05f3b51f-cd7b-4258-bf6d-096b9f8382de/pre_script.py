@@ -6,7 +6,7 @@ import asyncio
 
 addr =  Web3.to_checksum_address("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
 
-asyncio.run(wrap_eth_to_weth(2))
+wrap_eth_to_weth(2)
 approve_weth_to_morpho(int(2*1e18), addr)
 market_params = (
     Web3.to_checksum_address(USDT_CONTRACT_ADDRESS_ETH),  # loanToken 

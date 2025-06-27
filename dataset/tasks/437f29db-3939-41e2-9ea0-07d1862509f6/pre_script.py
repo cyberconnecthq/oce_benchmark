@@ -19,7 +19,7 @@ from eth_account.signers.local import (
 from evaluate_utils.common_util import wrap_eth_to_weth
 import asyncio
 
-asyncio.run(wrap_eth_to_weth(1))
+wrap_eth_to_weth(1)
 # ─── Basic Config ────────────────────────────────────────────────────────────────
 RPC_URL =  "http://127.0.0.1:8545"
 PRIVATE_KEY = os.getenv(

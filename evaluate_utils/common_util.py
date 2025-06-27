@@ -26,7 +26,7 @@ def send_transaction(tx: TxParams):
     receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
     return receipt
 
-async def wrap_eth_to_weth(amount_eth: float):
+def wrap_eth_to_weth(amount_eth: float):
     """
     将ETH包装为WETH
     

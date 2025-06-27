@@ -11,7 +11,7 @@ market_params = (
     "0x870aC11D48B15DB9a138Cf899d20F13F79Ba00BC",         # irm
     915000000000000000                                   # lltv
 )
-asyncio.run(wrap_eth_to_weth(2))
+wrap_eth_to_weth(2)
 borrow_usdt_from_morpho(
     int(1000 * 1e6),
     addr,

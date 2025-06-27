@@ -62,13 +62,7 @@ class OCEEvaluator:
             
             # 创建EvaluateScore对象
             score = EvaluateScore(
-                answer_total_score=10.0,
-                reasoning_total_score=0.0,
-                tool_use_total_score=0.0,
                 answer_score=raw_score,
-                reasoning_score=0.0,
-                tool_use_score=0.0,
-                total_score=raw_score,
                 evaluate_detail=result,
                 model_name=model_name,
                 task_id=task_id,

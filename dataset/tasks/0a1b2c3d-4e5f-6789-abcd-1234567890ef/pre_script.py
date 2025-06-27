@@ -3,6 +3,7 @@ from eth_account import Account
 import json
 import math
 from pathlib import Path
+import time
 
 ###############################################################################
 # Environment parameters – please modify according to your setup
@@ -111,15 +112,75 @@ def approve(token, amount):
         w3.eth.wait_for_transaction_receipt(tx_hash)
 
 ###############################################################################
+# 创建同步版本的swap函数
+###############################################################################
+def swap_weth_to_usdc_sync(amount_weth: float):
+    """
+    同步版本：使用Uniswap V3将WETH换成USDC
+    
+    Args:
+        amount_weth: 要交换的WETH数量
+    """
+    amount_in_wei = int(amount_weth * 10**18)
+    
+    # Router地址
+    ROUTER = Web3.to_checksum_address("0xE592427A0AEce92De3Edee1F18E0157C05861564")
+    
+    # 1. Approve Router
+    print("\nApproving Router to spend WETH...")
+    approve(weth, amount_in_wei)
+
+    # 2. Swap WETH to USDC
+    router_abi = [{"inputs":[{"components":[
+        {"name":"tokenIn","type":"address"},
+        {"name":"tokenOut","type":"address"},
+        {"name":"fee","type":"uint24"},
+        {"name":"recipient","type":"address"},
+        {"name":"deadline","type":"uint256"},
+        {"name":"amountIn","type":"uint256"},
+        {"name":"amountOutMinimum","type":"uint256"},
+        {"name":"sqrtPriceLimitX96","type":"uint160"}
+    ],"name":"params","type":"tuple"}],
+    "name":"exactInputSingle",
+    "outputs":[{"name":"amountOut","type":"uint256"}],
+    "stateMutability":"payable","type":"function"}]
+    
+    router = w3.eth.contract(address=ROUTER, abi=router_abi)
+    deadline = int(w3.eth.get_block("latest").get("timestamp", int(time.time()))) + 600
+    params = (
+        WETH,
+        USDC,
+        500,  # 0.05% fee tier
+        ACCOUNT.address,
+        deadline,
+        amount_in_wei,
+        0,  # amountOutMinimum
+        0   # sqrtPriceLimitX96
+    )
+
+    print("Executing swap...")
+    tx = router.functions.exactInputSingle(params).build_transaction({
+        "from": ACCOUNT.address,
+        "value": 0,
+        "gas": 300_000,
+        "nonce": w3.eth.get_transaction_count(ACCOUNT.address),
+        "chainId": CHAIN_ID,
+    })
+    signed = ACCOUNT.sign_transaction(tx)
+    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
+    receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+    print("Swap complete, gas used:", receipt["gasUsed"])
+
+###############################################################################
 # Main process
 ###############################################################################
 def main():
     # If needed, wrap ETH to WETH and swap for USDC
     from evaluate_utils.common_util import wrap_eth_to_weth
-    from evaluate_utils.uniswap_v3_util import swap_weth_to_usdc
-    import asyncio
-    asyncio.run(wrap_eth_to_weth(10))
-    asyncio.run(swap_weth_to_usdc(2))
+    
+    # 使用同步调用
+    wrap_eth_to_weth(10)
+    swap_weth_to_usdc_sync(2)
 
     approve(weth, AMOUNT_WETH)
     approve(usdc, usdc_needed)
@@ -136,7 +197,7 @@ def main():
         "amount0Min": int(usdc_needed * 0.80),  # Loosen slippage to 20%
         "amount1Min": int(AMOUNT_WETH * 0.80),  # Loosen slippage to 20%
         "recipient": ACCOUNT.address,
-        "deadline": w3.eth.get_block("latest")["timestamp"] + 3600
+        "deadline": int(w3.eth.get_block("latest").get("timestamp", int(time.time()))) + 3600
     }
 
     # Increase gas limit to prevent out of gas

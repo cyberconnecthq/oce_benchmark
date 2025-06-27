@@ -8,11 +8,11 @@ from dataset.constants import (
 )
 from web3 import Web3
 import asyncio
-asyncio.run(wrap_eth_to_weth(10))
-asyncio.run(swap(
+wrap_eth_to_weth(10)
+swap(
     Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),
     Web3.to_checksum_address(USDT_CONTRACT_ADDRESS_ETH),
     int(1*1e18),
     0
-))
+)
 
