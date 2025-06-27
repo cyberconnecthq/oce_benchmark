@@ -8,5 +8,5 @@ from evaluate_utils.aave_v3_util import supply_eth, borrow_usdt
 
 if __name__ == '__main__':
     import asyncio
-    asyncio.run(supply_eth(1))
-    asyncio.run(borrow_usdt(2000))
+    supply_eth(1)
+    (borrow_usdt(2000))

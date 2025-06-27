@@ -117,7 +117,7 @@
         "level": 2,
         "chain": "ethereum",
         "category": "staking",
-        "criteria": "1. Directly interact with WSTETH contract, address:0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0.2. After executed, balance of ETH decrease about 1ETH + fee, and wstETH increase about 0.83 with 10% fault tolerance"
+        "criteria": "1. Directly interact with WSTETH contract, address:0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0  2. After executed, balance of ETH decrease about 1ETH + fee, and wstETH increase about 0.83 with 10% fault tolerance"
     },
     {
         "task_id": "9024c6df-d393-4770-8719-cad56a802154",
@@ -217,7 +217,7 @@
     },
     {
         "task_id": "7fa443d5-03f6-47d2-ba13-ff147687069d",
-        "question": "Approve 10 WETH for aave V3 contract().",
+        "question": "Approve 10 WETH for aave V3 contract.",
         "level": 1,
         "chain": "ethereum",
         "category": "approve",
@@ -249,11 +249,11 @@
     },
     {
         "task_id": "52315328-c76a-4a6c-891f-786fdfbc1431",
-        "question": "Supply 1 ETH to Aave V3",
+        "question": "Supply 1 WETH to Aave V3",
         "level": 2,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "Supply ETH to Aave V3, wallet ETH decreases by 1, Aave Total Collateral increases by 1 ETH. Need to wrap ETH to WETH first."
+        "criteria": "Supply WETH to Aave V3, wallet WETH decreases by 1, Aave Total Collateral increases by 1 WETH."
     },
     {
         "task_id": "76a64842-0a68-407e-bfad-660985e0b66c",

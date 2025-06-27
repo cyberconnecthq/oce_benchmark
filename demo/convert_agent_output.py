@@ -35,33 +35,58 @@ def convert_agent_outputs():
             results = [results]
 
         for item in results:
-            # 只处理包含answer字段的项
-            answer = item['result'][0]
-            task_id = item.get("task_id", None)
-            question = item.get("question", None)
+            try:
+                # 检查item是否包含必要的字段
+                if not isinstance(item, dict):
+                    print(f"跳过非字典项: {item}")
+                    continue
+                    
+                # 获取answer，支持多种数据结构
+                answer = None
+                if 'result' in item and isinstance(item['result'], list) and len(item['result']) > 0:
+                    answer = item['result'][0]
+                elif 'result' in item and isinstance(item['result'], str):
+                    answer = item['result']
+                elif 'answer' in item:
+                    answer = item['answer']
+                else:
+                    print(f"跳过缺少answer/result字段的项: task_id={item.get('task_id', 'unknown')}")
+                    continue
+                    
+                task_id = item.get("task_id", None)
+                question = item.get("question", None)
+                
+                # 如果没有task_id或question，也跳过
+                if not task_id or not question:
+                    print(f"跳过缺少task_id或question的项: task_id={task_id}, question={question}")
+                    continue
 
-            # 处理tool_calls
-            tool_use_list = []
-            tool_calls = item.get("tool_calls", [])
-            for tool_call in tool_calls:
-                tool_use = ToolUse(
-                    call_id=str(uuid.uuid4()),
-                    tool_name=tool_call.get("tool_name", ""),
-                    tool_description=tool_call.get("tool_description", ""),
-                    tool_input=json.dumps(tool_call.get("arguments", {}), ensure_ascii=False),
-                    tool_output=tool_call.get("tool_output", None)
+                # 处理tool_calls
+                tool_use_list = []
+                tool_calls = item.get("tool_calls", [])
+                for tool_call in tool_calls:
+                    tool_use = ToolUse(
+                        call_id=str(uuid.uuid4()),
+                        tool_name=tool_call.get("tool_name", ""),
+                        tool_description=tool_call.get("tool_description", ""),
+                        tool_input=json.dumps(tool_call.get("arguments", {}), ensure_ascii=False),
+                        tool_output=tool_call.get("tool_output", None)
+                    )
+                    tool_use_list.append(tool_use)
+
+                # 构造AgentOutputItem
+                output_item = AgentOutputItem(
+                    task_id=task_id,
+                    question=question,
+                    answer=answer,
+                    # schemas.py中AgentOutputItem只需要answer, task_id, question
+                    # 其余字段如tool_use_list, reasoning_list不是必需
                 )
-                tool_use_list.append(tool_use)
-
-            # 构造AgentOutputItem
-            output_item = AgentOutputItem(
-                task_id=task_id,
-                question=question,
-                answer=answer,
-                # schemas.py中AgentOutputItem只需要answer, task_id, question
-                # 其余字段如tool_use_list, reasoning_list不是必需
-            )
-            converted_outputs.append(output_item)
+                converted_outputs.append(output_item)
+                
+            except Exception as e:
+                print(f"处理单个项时出错: {e}, item: {item}")
+                continue
 
         # 保存
         output_file = os.path.join(output_dir, f"converted_{json_file}")

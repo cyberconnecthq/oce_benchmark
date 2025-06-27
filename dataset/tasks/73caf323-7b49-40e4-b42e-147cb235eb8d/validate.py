@@ -23,8 +23,8 @@ async def get_balances():
     return (
         f"Balances:\n"
         f"{eth_balance / 10**18} ETH in wallet\n"
-        f"{usdc_balance / 10**18} USDC in wallet\n\n"
-        f"Balance of Across:\n{usdc_balance_across / 10**18} USDC\n"
+        f"{usdc_balance / 10**6} USDC in wallet\n\n"
+        f"Balance of Across:\n{usdc_balance_across / 10**6} USDC\n"
     )
 
 

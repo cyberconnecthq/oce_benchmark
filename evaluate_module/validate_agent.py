@@ -112,6 +112,8 @@ class GetBalancesTool(Tool):
 
     async def call_tool(self, arguments:dict) -> str:
         return await self.get_balances()
+
+
 INSTRUCTIONS_PROMPT = """You are a validator for a transaction execution. You will be given a list of transactions and you need to validate if they are executed successfully.
 
 ## How to validate
@@ -120,6 +122,9 @@ INSTRUCTIONS_PROMPT = """You are a validator for a transaction execution. You wi
 3. Validate the transaction json by using the `validate_tx_execution` tool to execute the transaction
 4. According to the task and evaluate criteria, identify whether the transactions generated are all correct. 
 5. check current balanced by usign the `get_balances` tool to check current balance state satisfy the criteria and correct.
+
+## Note
+1. If no TX provided, you should just answer "FINAL ANSWER: FAIL"
 
 Your final answer should be "FINAL ANSWER: PASS" or "FINAL ANSWER: FAIL"
 

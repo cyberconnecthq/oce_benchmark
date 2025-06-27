@@ -7,4 +7,4 @@ from evaluate_utils.aave_v3_util import supply_eth
 
 if __name__ == '__main__':
     import asyncio
-    print(asyncio.run(supply_eth(1)))
+    print(supply_eth(1))

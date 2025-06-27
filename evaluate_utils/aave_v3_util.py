@@ -85,7 +85,7 @@ async def get_aave_info(address: ChecksumAddress|str):
         f"Health Factor: {health_factor / 10**18}\n"
     )
 
-async def borrow_usdt(amount_usdt: float):
+def borrow_usdt(amount_usdt: float):
     # 构建借款交易
     amount = int(amount_usdt * 10**6)  # USDT 6位小数
     
@@ -109,7 +109,7 @@ async def borrow_usdt(amount_usdt: float):
     receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
     return f"借款交易已确认: {receipt.transactionHash.hex()}"
 
-async def supply_eth(amount_eth: float):
+def supply_eth(amount_eth: float):
     # 构建存款交易
     amount = Web3.to_wei(amount_eth, 'ether')
 

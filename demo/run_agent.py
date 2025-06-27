@@ -103,7 +103,7 @@ async def run_tests_parallel_with_reset(
     output_dir,
     questions: list[QuestionData] = [],
     model_name="anthropic/claude-3-7-sonnet-20250219",
-    max_concurrent=5,
+    max_concurrent=10,
     save_results=False,
     parameters={},
 ):
@@ -118,8 +118,8 @@ async def run_tests_parallel_with_reset(
                 agent = await get_agent(model_name=model_name, parameters=parameters)
                 
                 # 创建独立的snapshot并重置环境
-                snapshot_id = w3.provider.make_request("evm_snapshot", [])["result"] # type: ignore
-                w3.provider.make_request("evm_revert", [snapshot_id]) # type: ignore
+                # snapshot_id = w3.provider.make_request("evm_snapshot", [])["result"] # type: ignore
+                # w3.provider.make_request("evm_revert", [snapshot_id]) # type: ignore
                 
                 # 运行agent
                 result = await agent.run(question=question.to_question())
@@ -215,10 +215,10 @@ if __name__ == "__main__":
     #     parameters={"max_turns": 25}
     # ))
     
-    result = asyncio.run(run_tests(
+    result = asyncio.run(run_tests_parallel_with_reset(
         output_dir="results",
         questions=questions,
-        model_name="openai/gpt-4.1",
+        model_name="openai/o3-2025-04-16",
         save_results=True,
         parameters={"max_turns":25}
     ))
