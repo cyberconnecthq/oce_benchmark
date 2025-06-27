@@ -1,7 +1,7 @@
 import json
 import os
 import uuid
-from schemas import AgentOutputItem, ToolUse
+from evaluate_module.schemas import AgentOutputItem, ToolUse
 
 def convert_agent_outputs():
     """

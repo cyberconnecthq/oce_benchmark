@@ -151,11 +151,18 @@ class ToolUseEvaluateResult(BaseModel):
         return "\n".join([item.__str__() for item in self.items])
 
 
+class Usage(BaseModel):
+    completion_tokens: int = 0
+    output_tokens: int = 0
+    total_tokens: int = 0
+    time_cost: float = 0
 
 class AgentOutputItem(BaseModel):
     task_id: Optional[str] = None
     question: Optional[str] = None
     answer: str
+    usage:Optional[Usage] = None
+    
     
     def to_question(self) -> str:
         prompt = f"Agent output: {self.answer}\nNow validate the answer TXs are correct, executable and result in the right balance change"

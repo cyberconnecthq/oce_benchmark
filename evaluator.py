@@ -3,7 +3,7 @@ import asyncio
 from statistics import mean
 from typing import List
 from demo.agent import Agent
-from schemas import AgentOutputItem, Answer, BenchmarkItem, EvaluateScore
+from evaluate_module.schemas import AgentOutputItem, BenchmarkItem 
 from evaluate_module.validate_agent import get_evaluate_agent
 
 

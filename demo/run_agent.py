@@ -15,7 +15,7 @@ class InputQuestion(BaseModel):
     question:str
     task_id:str
 
-from schemas import QuestionData
+from evaluate_module.schemas import QuestionData
 from web3 import Web3, HTTPProvider
 from dataset.constants import RPC_URL
 
