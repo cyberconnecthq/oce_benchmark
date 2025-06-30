@@ -9,10 +9,12 @@ class OCEEvaluator:
     """轻量级OCE评估器"""
     
     def __init__(self, rpc_url: str = RPC_URL, evaluate_dataset_path:str = "dataset/oce_eval_data.json"):
+        import os
         self.w3 = Web3(HTTPProvider(rpc_url))
         self._snapshots = {}
-        self.evaluate_dataset: list[BenchmarkItem]=  []
-        self.evaluate_dataset_path = evaluate_dataset_path
+        self.evaluate_dataset: list[BenchmarkItem] = []
+        # 使用相对路径
+        self.evaluate_dataset_path = os.path.relpath(evaluate_dataset_path)
     
     async def load_eval_dataset(self, evaluate_dataset_path:str , force_reload:bool = False) -> list[BenchmarkItem]:
         if self.evaluate_dataset and not force_reload:
