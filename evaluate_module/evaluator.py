@@ -37,7 +37,7 @@ async def get_eval_agent_by_task_id(task_id:str, model_name:str = 'gpt-4.1') -> 
     return eval_agent
 
 
-async def load_evaluate_data(eval_dataset_path:str) -> list[BenchmarkItem]:
+def load_evaluate_data(eval_dataset_path:str) -> list[BenchmarkItem]:
     with open(eval_dataset_path, "r") as f:
         content = json.load(f)
         benchmark_items = []

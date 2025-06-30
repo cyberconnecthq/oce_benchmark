@@ -14,11 +14,12 @@ class OCEEvaluator:
         self.evaluate_dataset: list[BenchmarkItem] = []
         # 使用相对路径
         self.evaluate_dataset_path = evaluate_dataset_path
+        self.evaluate_dataset = self.load_eval_dataset(self.evaluate_dataset_path, force_reload=True)
     
-    async def load_eval_dataset(self, evaluate_dataset_path:str , force_reload:bool = False) -> list[BenchmarkItem]:
+    def load_eval_dataset(self, evaluate_dataset_path:str , force_reload:bool = False) -> list[BenchmarkItem]:
         if self.evaluate_dataset and not force_reload:
             return self.evaluate_dataset
-        self.evaluate_dataset = await load_evaluate_data(evaluate_dataset_path)
+        self.evaluate_dataset = load_evaluate_data(evaluate_dataset_path)
         return self.evaluate_dataset
     
     async def evaluate_single(
@@ -28,7 +29,7 @@ class OCEEvaluator:
     ) -> EvaluateResult:
         """评估单个任务"""
         try:
-            await self.load_eval_dataset(self.evaluate_dataset_path)
+            self.load_eval_dataset(self.evaluate_dataset_path)
             # 创建快照
             snapshot_id = self.w3.provider.make_request("evm_snapshot", []).get("result", "") # type: ignore
 
