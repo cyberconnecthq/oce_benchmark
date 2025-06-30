@@ -1,4 +1,6 @@
 import json, os
+from pathlib import Path
+
 RPC_URL = "http://127.0.0.1:8545"
 PRIVATE_KEY = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80" 
 USDT_CONTRACT_ADDRESS_ETH  = "0xdAC17F958D2ee523a2206206994597C13D831ec7"
@@ -40,13 +42,17 @@ PENDLE_EUSDE_PT_ADDRESS="0x917459337caac939d41d7493b3999f571d20d667"
 PENDLE_EUSDE_YT_ADDRESS="0x733ee9ba88f16023146ebc965b7a1da18a322464"
 
 # ERC20 ABI
-with open('./abi/erc20_abi.json', 'r') as f:
+# 获取当前文件所在目录
+current_dir = Path(__file__).parent
+abi_dir = current_dir.parent / "abi"
+
+with open(abi_dir / 'erc20_abi.json', 'r') as f:
     ERC20_ABI = json.load(f)
 
-with open('./abi/aave_v3_abi.json', 'r') as f:
+with open(abi_dir / 'aave_v3_abi.json', 'r') as f:
     AAVE_V3_POOL_ABI = json.load(f)
 
-with open('./abi/ens_register_controller_abi.json', 'r') as f:
+with open(abi_dir / 'ens_register_controller_abi.json', 'r') as f:
     ENS_REGISTER_CONTROLLER_ABI = json.load(f)
 
 WETH_CONTRACT_ADDRESS_BASE='0x4200000000000000000000000000000000000006'
