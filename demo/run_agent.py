@@ -182,17 +182,17 @@ if __name__ == "__main__":
     
     questions = [QuestionData(**item) for item in questions_data]
     # 提取所有问题
+    result = asyncio.run(run_tests_parallel(
+        output_dir="results",
+        questions=questions,
+        model_name="volcengine/deepseek-r1-250120",
+        max_concurrent=5,
+        save_results=True,
+    ))
     # result = asyncio.run(run_tests_parallel(
     #     output_dir="results",
     #     questions=questions,
-    #     model_name="volcengine/deepseek-r1-250120",
-    #     max_concurrent=5,
-    #     save_results=True,
-    # ))
-    # result = asyncio.run(run_tests_parallel(
-    #     output_dir="results",
-    #     questions=questions,
-    #     model_name="openrouter/anthropic/claude-opus-4",
+    #     model_name="openrouter/anthropic/claude-4-sonnet-20250522",
     #     max_concurrent=5,
     #     save_results=True,
     # ))
@@ -215,12 +215,12 @@ if __name__ == "__main__":
     #     parameters={"max_turns": 25}
     # ))
     
-    result = asyncio.run(run_tests_parallel_with_reset(
-        output_dir="results",
-        questions=questions,
-        model_name="openai/o3-2025-04-16",
-        save_results=True,
-        parameters={"max_turns":25}
-    ))
+    # result = asyncio.run(run_tests_parallel_with_reset(
+    #     output_dir="results",
+    #     questions=questions,
+    #     model_name="openai/o3-2025-04-16",
+    #     save_results=True,
+    #     parameters={"max_turns":25}
+    # ))
     
 

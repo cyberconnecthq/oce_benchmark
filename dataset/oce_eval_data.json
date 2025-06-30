@@ -1,102 +1,102 @@
 [
     {
-        "task_id": "36d5f310-d1b8-4eed-8b3c-eac086438659",
-        "question":"Wrap 1 ETH to WETH",
+        "task_id": "16daa94d-1d50-4ab4-b7e1-b30487b40a34",
+        "question": "Wrap 1 ETH to WETH",
         "level": 1,
         "chain": "ethereum",
-        "category": "wrap", 
+        "category": "wrap",
         "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and theW ETH balance should increase by 1 WETH with no fault tolerance."
     },
     {
-        "task_id": "98b6648e-b0d0-4f68-9f0c-0902b6886cbd",
-        "question":"Unwrap 1 WETh to ETH",
+        "task_id": "3cca30e4-485b-4019-881e-1fbce11271b0",
+        "question": "Unwrap 1 WETh to ETH",
         "level": 1,
         "chain": "ethereum",
-        "category": "wrap", 
+        "category": "wrap",
         "criteria": "After TX executed, the ETH balance should increase about 1 with 1% fault tolerance, and the WETH balance of target address should decrease by 1 WETH with no fault tolerance."
     },
     {
-        "task_id": "b3db4ce1-ff65-4e7a-bffd-cb167521bd78",
-        "question":"Swap 1 WETH to USDC by Uniswap V3 with slippage max to 5%.",
+        "task_id": "8f8905d0-02c6-4bc2-872c-47a4bcb79ce5",
+        "question": "Swap 1 WETH to USDC by Uniswap V3 with slippage max to 5%.",
         "level": 2,
         "chain": "ethereum",
-        "category": "swap", 
+        "category": "swap",
         "criteria": "1. Must interact with Uniswap V3 contract address: 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640 2. After TX executed, the WETH balance should decrease about 1, and the USDC balance should increase about 2600 with 5% fault tolerance. 3. The transaction"
     },
     {
-        "task_id": "123e4567-e89b-12d3-a456-426614174000",
-        "question":"Swap 1 ETH to USDC by Uniswap V3.",
+        "task_id": "c3b8f3c4-5fe2-4855-8d0e-5fef669e2935",
+        "question": "Swap 1 ETH to USDC by Uniswap V3.",
         "level": 2,
         "chain": "ethereum",
-        "category": "swap", 
+        "category": "swap",
         "criteria": "1. Must wrap 1 ETH to WETH 2. Must interact with Uniswap V3 contract address: 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640 3. After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance"
     },
     {
-        "task_id": "f29345cf-9d69-41ed-91b1-44aa238b359d",
-        "question":"Swap 1 ETH to USDC by Uniswap V2.",
+        "task_id": "5ef4223a-0806-4d60-a887-42513ccee6c5",
+        "question": "Swap 1 ETH to USDC by Uniswap V2.",
         "level": 2,
         "chain": "ethereum",
-        "category": "swap", 
+        "category": "swap",
         "criteria": "1. Must interact with Uniswap V2 contract address: 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D 2. After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the USDC balance should increase about 2600 with 5% fault tolerance."
     },
     {
-        "task_id": "dddd9ef5-b067-4421-8bef-1a9fa746e2b4",
-        "question":"Swap 2600 USDT to WETH by Uniswap V2.",
+        "task_id": "52c63454-26e1-4062-8c0f-29f920fd4702",
+        "question": "Swap 2600 USDT to WETH by Uniswap V2.",
         "level": 1,
         "chain": "ethereum",
-        "category": "swap", 
+        "category": "swap",
         "criteria": "1. Must interact with Uniswap V2 contract address: 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D 2. After TX executed, the WETH balance should increase about 1 with 1% fault tolerance, and the USDT balance should decrease about 2600 with 5% fault tolerance."
     },
     {
-        "task_id": "a2d42815-a8c4-4132-8851-f266f6cc8056",
-        "question":"Swap 10 USDT to USDC by Uniswap V3 on mainnet.",
+        "task_id": "7284ddfb-fb56-4783-ae44-21187ba90246",
+        "question": "Swap 10 USDT to USDC by Uniswap V3 on mainnet.",
         "level": 1,
         "chain": "ethereum",
-        "category": "swap", 
+        "category": "swap",
         "criteria": "1. Must interact with Uniswap V2 contract address: 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640 2. After TX executed, the USDT balance should decrease about 10, and the USDC balance should increase 10"
     },
     {
-        "task_id": "b8f9a1c2-4d3e-11ee-be56-0242ac120002",
-        "question":"Swap 1 WETH to PEPE by Uniswap V2 on mainnet.",
+        "task_id": "0981e67b-7e63-4947-9ee8-850cd8551d9c",
+        "question": "Swap 1 WETH to PEPE by Uniswap V2 on mainnet.",
         "level": 1,
         "chain": "ethereum",
-        "category": "swap", 
+        "category": "swap",
         "criteria": "After TX executed, the WETH balance should decrease about 1, and the PEPE balance should increase about 220,227,559 with 5% fault tolerance"
     },
     {
-        "task_id": "7c0be74e-2f8d-4fae-b900-4f790fa5cf12",
-        "question":"Swap 1 WETH to SHIB by Uniswap V2 on mainnet.",
+        "task_id": "5092d4fd-2382-4c30-b9dc-3262de183a87",
+        "question": "Swap 1 WETH to SHIB by Uniswap V2 on mainnet.",
         "level": 1,
         "chain": "ethereum",
-        "category": "swap", 
+        "category": "swap",
         "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the SHIB balance should increase reasonable number"
     },
     {
-        "task_id": "b9a1c3d4-5e6f-11ee-be56-0242ac120002",
-        "question":"Send 1 ETH to address: 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216",
+        "task_id": "61a383d6-f201-4b4a-b980-59f75e121b4f",
+        "question": "Send 1 ETH to address: 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216",
         "level": 1,
         "chain": "ethereum",
-        "category": "transfer", 
+        "category": "transfer",
         "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and the ETH balance of target address should increase by 1 ETH with no fault tolerance."
     },
     {
-        "task_id": "60d4b5fb-0a04-49fb-bd16-7ad56cfc0b1d",
-        "question":"Stake 0.5 ETH to Lido",
+        "task_id": "3c471671-2dde-4bca-b035-79967cd1e57f",
+        "question": "Stake 0.5 ETH to Lido",
         "level": 1,
         "chain": "ethereum",
-        "category": "staking", 
+        "category": "staking",
         "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, the balance of stETH should increase 0.5. The balance of Lido should increase 0.5 ETH"
     },
     {
-        "task_id": "5c21fd5a-8e06-4f36-b9c5-bc358c002631",
-        "question":"Unstake 0.5 stETH via Lido",
+        "task_id": "350e3ca0-d76d-4a9c-9054-4156f7965d67",
+        "question": "Unstake 0.5 stETH via Lido",
         "level": 1,
         "chain": "ethereum",
-        "category": "staking", 
+        "category": "staking",
         "criteria": "After TX executed, the stETH balance should decrease about 0.5 with 1% fault tolerance, the balance of ETH should increase 0.5. The balance of Lido should decrease 0.5 ETH"
     },
     {
-        "task_id": "eb586bf7-63fe-4462-873e-3c888d0d3f8d",
+        "task_id": "215f56f6-e35b-45e5-bd85-46c48cdc30d9",
         "question": "Redeem 0.5 wstETH back to ETH",
         "level": 2,
         "chain": "ethereum",
@@ -104,7 +104,7 @@
         "criteria": "Unwrap wstETH → stETH → ETH; wallet wstETH decreases by 0.5; ETH balance increases by equivalent ETH amount minus fees"
     },
     {
-        "task_id": "d5e6f7a8-9b0c-4123-def0-5678901234b2",
+        "task_id": "9635cadf-2295-4c4a-9f77-c0ff375a1c47",
         "question": "Wrap 1 stETH to wstETH on mainnet",
         "level": 2,
         "chain": "ethereum",
@@ -112,7 +112,7 @@
         "criteria": "Call WstETH `wrap(1e18)`; wallet stETH decreases by ~1±1%, wstETH increases by expected share amount"
     },
     {
-        "task_id": "7c4e299e-286f-49de-84e9-6b86b6e7dc3f",
+        "task_id": "42f64414-f3b4-416d-a360-46835179ca3e",
         "question": "Stake 1 ETH to Lido using the stETH wrapper contract",
         "level": 2,
         "chain": "ethereum",
@@ -120,31 +120,31 @@
         "criteria": "1. Directly interact with WSTETH contract, address:0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0  2. After executed, balance of ETH decrease about 1ETH + fee, and wstETH increase about 0.83 with 10% fault tolerance"
     },
     {
-        "task_id": "9024c6df-d393-4770-8719-cad56a802154",
-        "question":"Provide 1 WETH and corresponding number of USDC liquidity to WETH-USDC 0.05 pool on uniswap v3 with ticker range from 2300 to 3000",
+        "task_id": "deb71b11-b6ce-48db-afcf-e485c30ebe2a",
+        "question": "Provide 1 WETH and corresponding number of USDC liquidity to WETH-USDC 0.05 pool on uniswap v3 with ticker range from 2300 to 3000",
         "level": 2,
         "chain": "ethereum",
-        "category": "LP", 
+        "category": "LP",
         "criteria": "Before and after the transaction, the balance of the pool should increase about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should decrease about 1 WETH and corresponding number(about 2600) of USDC. The NFT liquidity positions will increase/appear with ticker price range from 2300 to 3000. The add liquidity transaction must interact with pool address 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640."
     },
     {
-        "task_id": "a996ca14-3315-4164-aa09-622dfaaeb676",
-        "question":"Swap 1 ETH to USDC by Uniswap V3 then provide 1 ETH and corresponding number of USDC liquidity to WETH-USDC 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3",
+        "task_id": "f906fa74-db74-4a80-b33c-61001455a35d",
+        "question": "Swap 1 ETH to USDC by Uniswap V3 then provide 1 ETH and corresponding number of USDC liquidity to WETH-USDC 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3",
         "level": 3,
         "chain": "ethereum",
-        "category": "LP", 
+        "category": "LP",
         "criteria": "Before and after the transaction, the balance of the pool should increase about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should decrease about 2 ETH. The NFT liquidity positions will increase/appear."
     },
     {
-        "task_id": "1131eee3-ca61-468b-b004-b48757d8a10f",
-        "question":"withdrawl 1 WETH and corresponding number of USDC liquidity from WETH-USDC 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3",
+        "task_id": "51ea5266-caad-4979-a042-9b98d3dd6843",
+        "question": "withdrawl 1 WETH and corresponding number of USDC liquidity from WETH-USDC 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3",
         "level": 1,
         "chain": "ethereum",
-        "category": "LP", 
+        "category": "LP",
         "criteria": "Before and after the transaction, the balance of the pool should decrease about 1 WETH and corresponding number(about 2600) of USDC. The balance of the wallet should increase about 1 WETH and corresponding number(about 2600) of USDC. The NFT liquidty position should decrease/disappear."
     },
     {
-        "task_id": "0a1b2c3d-4e5f-6789-abcd-1234567890ef",
+        "task_id": "131203c4-e7f2-4c9c-952d-280b105e1f6a",
         "question": "Remove 50% liquidity from a Uniswap V3 WETH-USDC 0.05% pool position",
         "level": 3,
         "chain": "ethereum",
@@ -152,7 +152,7 @@
         "criteria": "1. Must call decreaseLiquidity on position NFT; 2. After TX, NFT liquidity ticks decrease by ~50%; 3. Wallet receives corresponding token amounts within 2% tolerance."
     },
     {
-        "task_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+        "task_id": "7c821fa4-8054-4441-a604-618645364802",
         "question": "Swap 0.5 ETH to USDC through Uniswap v4 on mainnet.",
         "level": 2,
         "chain": "ethereum",
@@ -160,7 +160,7 @@
         "criteria": "1. Check the balance changes of USDC, ETH and WETH in the wallet, ETH decrease about 0.5. USDC increase about 1300. 2. ensure the contract interaction address includes Uniswap v4 contract address: 0x66a9893cc07d91d95644aedd05d03f95e1dba8af"
     },
     {
-        "task_id": "5d1fed5d-1dbd-4791-91da-16186af000c9",
+        "task_id": "0b75d9bc-5a8e-44a7-9825-afca6545ac1b",
         "question": "Swap 100 USDC to ETH through Uniswap v4 on mainnet.",
         "level": 2,
         "chain": "ethereum",
@@ -168,23 +168,23 @@
         "criteria": "Check the balance changes of USDC, ETH and WETH in the wallet, ensure the contract interaction address includes Uniswap v4 contract address: 0x66a9893cc07d91d95644aedd05d03f95e1dba8af"
     },
     {
-        "task_id": "550e8400-e29b-41d4-a716-446655440000",
+        "task_id": "21553fca-4fe6-4c99-b1e7-1996d7b51667",
         "question": "Send 10 USDT from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216 on mainnet",
         "level": 1,
-        "chain": "ethereum", 
+        "chain": "ethereum",
         "category": "transfer",
         "criteria": "Check USDT balances of both addresses before and after executing the transaction, verify that the USDT balance changes match the expected amounts"
     },
     {
-        "task_id": "437f29db-3939-41e2-9ea0-07d1862509f6",
+        "task_id": "99081d2f-9965-4725-98d9-1f3d9c709ce8",
         "question": "Send 10000 PEPE from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216 on mainnet",
         "level": 1,
-        "chain": "ethereum", 
+        "chain": "ethereum",
         "category": "transfer",
         "criteria": "Check PEPE balances of both addresses before and after executing the transaction, verify that the PEPE balance changes match the expected amounts"
     },
     {
-        "task_id": "6ba7b811-9dad-11d1-80b4-00c04fd430c8",
+        "task_id": "e34121a9-e831-48b7-be6e-3b3ec923dcf3",
         "question": "Send 10 USDC from Address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 to Address 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216 on mainnet",
         "level": 1,
         "chain": "ethereum",
@@ -192,7 +192,7 @@
         "criteria": "Check USDC balances of both addresses before and after executing the transaction, verify that the USDC balance changes match the expected amounts"
     },
     {
-        "task_id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+        "task_id": "0a7e2e48-5407-450d-a836-d9db07585c86",
         "question": "Approve 10 USDC for Address 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "level": 1,
         "chain": "ethereum",
@@ -200,7 +200,7 @@
         "criteria": "1. Verify transaction hash 2. Interact with USDC contract (0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) 3. The allowance increase to 10 USDC"
     },
     {
-        "task_id": "69983eaa-4257-4bfe-8904-511497b912e0",
+        "task_id": "c267c46e-d6f4-4d6d-83d3-53f5f48f5889",
         "question": "Dis-Approve all USDC right for Address 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "level": 1,
         "chain": "ethereum",
@@ -208,7 +208,7 @@
         "criteria": "1. Verify transaction hash 2. Interact with USDC contract (0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) 3. The allowance change to 0 USDC"
     },
     {
-        "task_id": "806b1415-1843-42ad-9456-68e3e04c4066",
+        "task_id": "f3c4c846-5da0-4474-831b-2f31de6bf5e7",
         "question": "Approve 1000 PEPE for Address 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "level": 1,
         "chain": "ethereum",
@@ -216,7 +216,7 @@
         "criteria": "1. Verify transaction hash 2. Interact with PEPE contract (0x6982508145454Ce325dDbE47a25d4ec3d2311933) 3. The allowance increase to 1000 PEPE"
     },
     {
-        "task_id": "7fa443d5-03f6-47d2-ba13-ff147687069d",
+        "task_id": "dc27468c-2cd6-414f-870d-5b714d8a3474",
         "question": "Approve 10 WETH for aave V3 contract.",
         "level": 1,
         "chain": "ethereum",
@@ -224,7 +224,7 @@
         "criteria": "1. Verify transaction hash 2. Interact with WETH contract  3. The allowance increase to 10 WETH"
     },
     {
-        "task_id": "a8e42738-f753-4d87-8309-3e1b0bf6f8c1",
+        "task_id": "ad556eee-d2e3-4add-93fc-5fcdbf8fe527",
         "question": "Approve 1 WETH for Address Uniswap V3 Router contract.",
         "level": 2,
         "chain": "ethereum",
@@ -232,23 +232,23 @@
         "criteria": "1. Verify transaction hash 2. Interact with Uniswap V3 Router contract (0xE592427A0AEce92De3Edee1F18E0157C05861564) 3. The allowance increase to 1 WETH"
     },
     {
-        "task_id": "3b9274f0-b0fb-4cfe-abba-6439f9b10d15",
+        "task_id": "907be2a0-18ac-4187-9158-f10fdcda1c4a",
         "question": "Borrow 120 USDT from Aave V3",
         "level": 1,
-        "chain": "ethereum", 
+        "chain": "ethereum",
         "category": "lending",
         "criteria": "Borrow USDT from Aave V3, wallet USDT increases by 120, Aave debt increases by 120 USD"
     },
     {
-        "task_id": "90f3fd80-206e-458b-bcbe-f285062b1f5b",
+        "task_id": "b937d41f-361d-4deb-b122-0275b7a5613b",
         "question": "Borrow 1000 USDC from Aave V3",
         "level": 1,
-        "chain": "ethereum", 
+        "chain": "ethereum",
         "category": "lending",
         "criteria": "Borrow USDC from Aave V3, wallet USDC increases by 1000, Aave debt increases by 1000 USD"
     },
     {
-        "task_id": "52315328-c76a-4a6c-891f-786fdfbc1431",
+        "task_id": "e2de787b-14a9-414e-94ae-a4e9cb7ee629",
         "question": "Supply 1 WETH to Aave V3",
         "level": 2,
         "chain": "ethereum",
@@ -256,7 +256,7 @@
         "criteria": "Supply WETH to Aave V3, wallet WETH decreases by 1, Aave Total Collateral increases by 1 WETH."
     },
     {
-        "task_id": "76a64842-0a68-407e-bfad-660985e0b66c",
+        "task_id": "bd35b7e6-3fe0-47a4-9c6f-60a2b45c88e3",
         "question": "Supply 1000 USDT to Aave V3",
         "level": 2,
         "chain": "ethereum",
@@ -264,7 +264,7 @@
         "criteria": "Supply USDT to Aave V3, wallet USDT decreases by 1000, Aave Total Collateral increases by 1000 USDT."
     },
     {
-        "task_id": "91e5ad04-c537-4391-ae73-0deddfab949e",
+        "task_id": "e441676e-284b-40d9-a019-0c9ff97c19e4",
         "question": "Supply 1000 USDC to Aave V3",
         "level": 2,
         "chain": "ethereum",
@@ -272,23 +272,23 @@
         "criteria": "Supply USDC to Aave V3, wallet USDC decreases by 1000, Aave Total Collateral increases by 1000 USDC."
     },
     {
-        "task_id": "b643cab6-98a2-42e4-9e40-20213a88b86a",
+        "task_id": "1d4f12b7-f7d0-4740-9e0b-18b00469ed0b",
         "question": "Repay 150 USDT to Aave V3",
         "level": 1,
         "chain": "ethereum",
-        "category": "lending", 
+        "category": "lending",
         "criteria": "Repay USDT to Aave V3, wallet USDT decreases by 150, Aave debt decreases by 150 USD"
     },
     {
-        "task_id": "c6f4ded2-6364-461e-a7d0-53ae420d55a5",
+        "task_id": "799ef002-cf0f-4a11-834d-46cf6b9a3403",
         "question": "Repay 1000 USDT to Aave V3",
         "level": 1,
         "chain": "ethereum",
-        "category": "lending", 
+        "category": "lending",
         "criteria": "Repay USDT to Aave V3, wallet USDT decreases by 1000, Aave debt decreases by 1000 USD"
     },
     {
-        "task_id": "02dacdba-9618-49b3-a113-bd7e9ecbb8c8",
+        "task_id": "9164ef4e-0e74-4727-abaa-7317c09a6687",
         "question": "Withdraw 500 USDT from Aave V3'",
         "level": 1,
         "chain": "ethereum",
@@ -296,7 +296,7 @@
         "criteria": "Withdraw USDT from Aave V3, wallet USDT increases by 500, Aave Total Collateral decreases by 500 USD"
     },
     {
-        "task_id": "8cc64c73-8e8c-45e3-bc0b-3c2591dcf5e4",
+        "task_id": "c2e86c5e-53b5-4d0b-acbb-200cf1f0affe",
         "question": "Withdraw 2 WETH from Aave V3'",
         "level": 1,
         "chain": "ethereum",
@@ -304,7 +304,7 @@
         "criteria": "Withdraw WETH from Aave V3, wallet WETH increases by 2, Aave Total Collateral decreases by 2 WETH"
     },
     {
-        "task_id": "11d5d2f8-63d2-4176-9e3d-52e48c8b2d24",
+        "task_id": "e92bedfd-ab70-460b-83eb-1d5dacd7d2ec",
         "question": "Supply 1 ETH to Aave V3 and borrow 50% of borrowable USDT from Aave V3 on mainnet",
         "level": 3,
         "chain": "ethereum",
@@ -312,7 +312,7 @@
         "criteria": "Supply ETH to Aave V3, wallet ETH decreases by 1, USDT increase about 1000, Aave Total Collateral increases by 1 ETH or 2500 USDT, total debt increase about 1000 USDT"
     },
     {
-        "task_id": "2a8bffc6-597c-47d8-985f-a13df1168c0c",
+        "task_id": "c6eaad75-4287-4b36-b999-d39e8831edab",
         "question": "Supply 1 ETH to Aave V3 and borrow all the borrowable USDT, and then swap borrowed USDT to ETH, then repeat the above opearation until the health factor is about 1.5 and the balance of USDT borrowed from less than 100 USDT",
         "level": 3,
         "chain": "ethereum",
@@ -320,7 +320,7 @@
         "criteria": "After all TXs executed, the aave health factor should be about 1.5. Total collateral is about 2500 USD. The balance of USDT from less than 100 USDT"
     },
     {
-        "task_id": "8436c675-c2d0-491b-a775-6861b4a4c4f8",
+        "task_id": "c74a7bd4-7bcc-4b6d-8146-32fa3375f2da",
         "question": "Supply 1 WETH to Morpho WETH/USDT pair, market id: 0xdbffac82c2dc7e8aa781bd05746530b0068d80929f23ac1628580e27810bc0c5",
         "level": 2,
         "chain": "ethereum",
@@ -328,7 +328,7 @@
         "criteria": "Supply WETH from Morpho, wallet ETH decreases by 1, Morpho WETH balance increases by 1 WETH, collateral increases by 1 WETH"
     },
     {
-        "task_id": "800ab787-13f5-4dec-b7e4-5f59c947817f",
+        "task_id": "9c5a7810-6e2d-445a-b2e6-9ddac05954e6",
         "question": "Withdrawl 1 WETH from Morpho",
         "level": 2,
         "chain": "ethereum",
@@ -336,7 +336,7 @@
         "criteria": "Withdrawl WETH from Morpho, wallet WETH increases by 1, Morpho WETH balance decreases by 1 WETH"
     },
     {
-        "task_id": "05f3b51f-cd7b-4258-bf6d-096b9f8382de",
+        "task_id": "8f4e0192-285d-4cb2-a02b-4dd8edf7e2e1",
         "question": "Borrow 100 USDT from Morpho, market id: 0xdbffac82c2dc7e8aa781bd05746530b0068d80929f23ac1628580e27810bc0c5",
         "level": 1,
         "chain": "ethereum",
@@ -344,7 +344,7 @@
         "criteria": "Borrow 100 USDT from Morpho, wallet USDT increases by 100, Morpho USDT balance decreases by 100 USDT. Account position WETH/USDT pair borrow shares should increase."
     },
     {
-        "task_id": "470e7450-6281-49da-a8da-bc7f093af089",
+        "task_id": "5b59ac11-23ac-452f-935b-daf776b500f1",
         "question": "Repay 100 USDT to Morpho, USDT/WETH pair market id: 0xdbffac82c2dc7e8aa781bd05746530b0068d80929f23ac1628580e27810bc0c5",
         "level": 1,
         "chain": "ethereum",
@@ -352,7 +352,7 @@
         "criteria": "After repaying, the wallet USDT balance decrease by 100 USDT, and the Morpho USDT banalce increase by 100 USDT. Account position WETH/USDT pair borrow shares decrease."
     },
     {
-        "task_id": "4649fbaf-f0b6-4851-b666-7f09a02041b6",
+        "task_id": "0c4d21ce-1fa2-4734-8e37-9da8d8853a31",
         "question": "Bridge 1 WETH from ETH network to Base by Across Protocol",
         "level": 1,
         "chain": "ethereum",
@@ -360,7 +360,7 @@
         "criteria": "Check the balance changes of ETH in the wallet, ensure the contract interaction address includes Across Protocol contract address: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913. ETH balance should decrease by 1 ETH, Across Protocol locked balance should increase by 1 ETH"
     },
     {
-        "task_id": "9a55fbc9-a9a4-4566-9717-f2d12cd401bc",
+        "task_id": "666d0508-c0f6-44a1-85ef-883465b84dff",
         "question": "Bridge 1 WETH from ETH network to Optimism by Across Protocol",
         "level": 1,
         "chain": "ethereum",
@@ -368,7 +368,7 @@
         "criteria": "Check the balance changes of ETH in the wallet, ensure the contract interaction address includes Across Protocol contract address: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913. ETH balance should decrease by 1 ETH, Across Protocol locked balance should increase by 1 ETH. Optimism chain id :10. so the tx should specify destination chainid to be 10."
     },
     {
-        "task_id": "73caf323-7b49-40e4-b42e-147cb235eb8d",
+        "task_id": "af25abc4-37ff-4188-b681-2508dca22d86",
         "question": "Bridge 10 USDC from ETH network to Base by Across Protocol",
         "level": 1,
         "chain": "ethereum",
@@ -376,7 +376,7 @@
         "criteria": "Check the balance changes of USDC in the wallet, ensure the contract interaction address includes Across Protocol contract address: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913. USDC balance should decrease by 10 USDC, Across Protocol locked balance should increase by 1 USDC"
     },
     {
-        "task_id": "c3d4e5f6-a7b8-4901-cdef-34567890abcd",
+        "task_id": "52b97574-e9f5-4a1a-9dd8-e9a81409e7bc",
         "question": "Bridge 20 USDT from ETH network to Optimism by Across Protocol",
         "level": 1,
         "chain": "ethereum",
@@ -384,7 +384,7 @@
         "criteria": "Ensure the tx interacts with Across Protocol contract 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913; wallet USDT balance decreases by ~20 USDT; Across Protocol locked USDT increases by ~20 USDT; destination chainId = 10"
     },
     {
-        "task_id": "d4e5f6a7-b8c9-4012-def0-4567890abcde",
+        "task_id": "1a5ec8f3-47a4-4746-891d-912c2ae874e4",
         "question": "Bridge 100 USDC from ETH network to Polygon by Across Protocol",
         "level": 1,
         "chain": "ethereum",
@@ -392,7 +392,7 @@
         "criteria": "Ensure the tx interacts with Across Protocol contract 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913; wallet USDC balance decreases by ~100 USDC; Across Protocol locked USDC increases by ~100 USDC; destination chainId = 137"
     },
     {
-        "task_id": "e1a1b2c3-d4e5-4f6a-8b9c-1234567890ab",
+        "task_id": "46f14ec6-d72a-46a4-8974-b338cfcd3cbf",
         "question": "Buy 1 WETH worth of PT sUSDe on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, PT address: 0x3b3fb9c57858ef816833dc91565efcd85d96f634",
         "level": 2,
         "chain": "ethereum",
@@ -400,7 +400,7 @@
         "criteria": "Check wallet balance before and after execution. The wallet balance should decrease by about 1 WETH, and you should receive some PT sUSDe."
     },
     {
-        "task_id": "f2b3c4d5-e6f7-4a8b-9c0d-abcdef123456",
+        "task_id": "d89b2487-432f-489e-bc71-388e817c98ca",
         "question": "Buy 1 WETH worth of YT sUSDe on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, YT address: 0xb7e51d15161c49c823f3951d579ded61cd27272b",
         "level": 2,
         "chain": "ethereum",
@@ -408,7 +408,7 @@
         "criteria": "Check wallet balance before and after execution. The wallet balance should decrease by about 1 WETH, and you should receive some YT sUSDe."
     },
     {
-        "task_id": "a3b4c5d6-e7f8-4b9c-0d1e-654321fedcba",
+        "task_id": "de7d8b39-a63a-44c3-9b03-85307c898ea2",
         "question": "Zap in 1 WETH to the USDe pool on Pendle: Market address: 0x9df192d13d61609d1852461c4850595e1f56e714, PT address: 0x917459337caac939d41d7493b3999f571d20d667, YT address: 0x733ee9ba88f16023146ebc965b7a1da18a322464",
         "level": 2,
         "chain": "ethereum",
@@ -416,7 +416,7 @@
         "criteria": "Check wallet balance before and after execution. The wallet balance should decrease by about 1 WETH, and you should receive some PT sUSDe and YT sUSDe."
     },
     {
-        "task_id": "268509ac-c7db-47f5-913b-c5faf5e408e8",
+        "task_id": "804c5737-b81e-4638-a5a3-8620fc2301db",
         "question": "Swap 1 ETH to USDC by Uniswap V3 and then swap all USDC to BNB on mainnet by Uniswap",
         "level": 3,
         "chain": "ethereum",
@@ -424,7 +424,7 @@
         "criteria": "1. Check wallet balance before and after execution. The wallet balance should decrease by about 1 ETH with 2% of fault toelrance for gas fee, and should increase about related amount of BNB 2. The contract interaction address should include Uniswap V3 contract address: 0xE592427A0AEce92De3Edee1F18E0157C05861564. 3. Must have the process of swap WETH to USDC and then swap all USDC to BNB"
     },
     {
-        "task_id": "3d4e5f67-8901-2abc-def3-4567890ijklm",
+        "task_id": "29bdae21-c6e3-4a60-bd93-07cf41c2a5d2",
         "question": "Execute an exact-output swap: get exactly 1000 USDC for ETH on Uniswap V3",
         "level": 2,
         "chain": "ethereum",
@@ -432,7 +432,7 @@
         "criteria": " After TX, USDC balance increase = 1000; 3. ETH spent, balance decreased."
     },
     {
-        "task_id": "1743f367-e7a9-4206-a75e-c3eeac3decaa",
+        "task_id": "7645c743-a83c-4ea2-8af6-75327033e879",
         "question": "Execute an exact-output swap: get exactly 1000000 SHIB for ETH on Uniswap V3",
         "level": 2,
         "chain": "ethereum",
@@ -440,7 +440,7 @@
         "criteria": " After TX, SHIB balance increase = 1000000; 3. ETH spent, balance decreased."
     },
     {
-        "task_id": "4e5f6789-0123-4bcd-ef56-567890klmno",
+        "task_id": "6e3c148c-81b8-44c7-a597-6822c27fdcff",
         "question": "Create a limit order: swap 0.1WETH→USDC at price 1 WETH=3000 USDC using Uniswap V3",
         "level": 3,
         "chain": "ethereum",
@@ -448,7 +448,7 @@
         "criteria": "Must mint a position NFT with liquidity=10955736910417970 and tick range matching price:  about 196250 → 196260 with 2% fault tolerance."
     },
     {
-        "task_id": "eeeb6ff2-4b1c-4bc3-8b29-985f4f1898dd",
+        "task_id": "50086255-c6b6-4518-9fb8-8ccd8a29ee90",
         "question": "Create a limit order: swap 0.1WETH→USDT at price 1 WETH=3000 USDT using Uniswap V3",
         "level": 3,
         "chain": "ethereum",
@@ -456,7 +456,7 @@
         "criteria": "Must mint a position NFT with liquidity=10955736910417970 and tick range matching price:  about 196250 → 196260 with 2% fault tolerance. The NFT status shoud be inactive, estimated value should be about 252 USD"
     },
     {
-        "task_id": "63d23a18-6847-43e7-be77-dd7042db3556",
+        "task_id": "3bab8859-76de-4f45-b815-2d7174558840",
         "question": "Rebalance an existing V3 WETH/USDC 0.05% pool position to a new tick range, make the range larger than 10%",
         "level": 3,
         "chain": "ethereum",
@@ -464,7 +464,7 @@
         "criteria": "1. old position NFT destroyed, new NFT created. 2. new position NFT ticker range different from old NFT."
     },
     {
-        "task_id": "a2dd5897-0bec-4806-b6f2-68c370d6288f",
+        "task_id": "bf714adb-e32a-4903-b553-40677e413746",
         "question": "Multi-hop swap 1 WETH → USDT → USDC on Uniswap V3",
         "level": 2,
         "chain": "ethereum",
@@ -472,7 +472,7 @@
         "criteria": "1. Path includes WETH→USDT→USDC pools; 2. WETH balance decreases ~1±1%, USDC increases expected amount 2600 ±5%"
     },
     {
-        "task_id": "0ff83232-9046-4743-a35f-634d344483d1",
+        "task_id": "9240de6d-c507-4773-bf45-13ce6a19803b",
         "question": "Swap 1 ETH to USDT on Uniswap V3, and send all swapped USDT to 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216",
         "level": 2,
         "chain": "ethereum",
@@ -480,7 +480,7 @@
         "criteria": "After tx executed, the wallet balance of ETH should decrease about 1 ETH, and the balance of 0xAd4C0379544aE7efd56F2B58c7ffcfD63A1cb216 should increase about 2600 USDT"
     },
     {
-        "task_id": "a6bb6f47-afe1-41f3-8eb7-c77f93965f36",
+        "task_id": "13b429db-d46a-4d26-a224-19493ed95263",
         "question": "Stake 1 WETH to Lido, and wrap the stETH to wstETH, then supply all the wstETH to Morpho wstETH/WETH pair. hint: market_id:0xb8fc70e82bc5bb53e773626fcc6a23f7eefa036918d7ef216ecfb1950a94a85e",
         "level": 3,
         "chain": "ethereum",
@@ -488,7 +488,7 @@
         "criteria": "After tx executed, the wallet balance should: decrease 1 WETH, some ETH gas fee. The Morpho wstETH/WETH pair collateral should increase about 0.83 wstETH with 10% fault tolerance"
     },
     {
-        "task_id": "ef2245aa-8d83-42f2-8c98-5f252c7f6968",
+        "task_id": "7cd9bda3-5478-4fe8-84b6-75af5abf0041",
         "question": "Stake 1 ETH to Lido to get wstETH directly, then supply all the wstETH to Morpho wstETH/WETH pair. hint: market_id:0xb8fc70e82bc5bb53e773626fcc6a23f7eefa036918d7ef216ecfb1950a94a85e",
         "level": 3,
         "chain": "ethereum",
@@ -496,7 +496,7 @@
         "criteria": "1. After tx executed, the wallet balance should: decrease 1 ETH plus some ETH gas fee. The Morpho wstETH/WETH pair collateral should increase about 0.83 wstETH with 10% fault tolerance. 2. Directly interact with WSTETH contract, address:0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0."
     },
     {
-        "task_id": "2d141491-489e-4f2f-820d-220e4715a1b2",
+        "task_id": "4de80c50-3830-44b7-81fb-0516c91ef8d2",
         "question": "Swap 1 ETH to USDT on Ethereum, then bridge the USDT from ETH to BSC by Across Protocol.",
         "level": 3,
         "chain": "ethereum",
@@ -504,7 +504,7 @@
         "criteria": "1. After TX executed, the wallet balance should: decrease 1 ETH plus some ETH gas fee. The Across Protocol locked USDT should increase about 2600 USDT with 10% fault tolerance. 2. The destination chainId should be 56."
     },
     {
-        "task_id": "a7c13a6e-29ec-48a5-a3ad-3ff1ff8677dc",
+        "task_id": "665f38f9-5e1e-4578-928f-84282e16a00e",
         "question": "Stake 1 ETH to Lido, deposit resulting stETH into Aave V3, borrow 500 USDC, then swap USDC→USDT on Uniswap V3",
         "level": 3,
         "chain": "ethereum",
@@ -512,7 +512,7 @@
         "criteria": "1. After tx executed, the wallet balance should: decrease 1 ETH plus some ETH gas fee. 2.The Aave V3 debt should increase about 500 USDC with 10% fault tolerance. 2. The Uniswap V3 swap should be successful."
     },
     {
-        "task_id": "e355e5eb-f96d-43f3-9953-89f81c8ab291",
+        "task_id": "69761ae5-a048-4799-800f-5b588dbc721e",
         "question": "Stake 2 ETH to Lido, deposit stETH into Aave, borrow 1000 USDT, swap USDT→USDC on Uniswap V3",
         "level": 3,
         "chain": "ethereum",
@@ -520,7 +520,7 @@
         "criteria": "After tx executed: 1. wallet balance decrease about 2 ETH plus some ETH gas fee. 2. The Aave V3 debt should increase about 1000 USDT with 10% fault tolerance. 3. Aave collateral increase about 5200 USD.  4. The Uniswap V3 swap should be successful, the wallet balance of USDC increase about 1000."
     },
     {
-        "task_id": "8a5c7749-c9a9-4df5-86ae-306d5e05035a",
+        "task_id": "4270eb73-0078-4f1e-b14f-2fdfd20b4dba",
         "question": "Swap 1 ETH→USDC on Uniswap V3, supply USDC to Aave, borrow 0.1 WETH, stake borrowed WETH to Lido",
         "level": 3,
         "chain": "ethereum",
@@ -528,7 +528,7 @@
         "criteria": "After tx executed: 1. wallet balance decrease about 1 ETH plus some ETH gas fee. 2. The Aave V3 debt should increase about 255 USD with 10% fault tolerance. 3. Aave collateral increase about 2550 USD.  4. the Lido WETH balance should increase about 0.1 WETH with 10% fault tolerance 5. wallet balance of stWETH should increase about 0.1."
     },
     {
-        "task_id": "66896b62-f671-4740-85fd-813b95a02e2a",
+        "task_id": "cec903e4-8cac-47ce-9db3-4f8b17bb07a3",
         "question": "Register (mint) a new ENS name 'caiba-ai.eth' for 1 year. Your wallet address is:0xcCb30F16d38424F7a546944F0cf5EF8F2d116F70",
         "level": 3,
         "chain": "ethereum",
@@ -536,7 +536,7 @@
         "criteria": "After all TXs executed, the wallet balance of wENS should increase by 1 and the remaining time should be about 365 days."
     },
     {
-        "task_id": "f7cfb844-cf8b-430a-8256-154e30d7a997",
+        "task_id": "84486364-edbb-4082-b364-0e3738ec1573",
         "question": "Register (mint) a new ENS name 'caiba.eth' for 1 year and target its onwer to be 0xcCb30F16d38424F7a546944F0cf5EF8F2d116F70",
         "level": 3,
         "chain": "ethereum",
@@ -544,7 +544,7 @@
         "criteria": "After all TXs executed, the 0xcCb30F16d38424F7a546944F0cf5EF8F2d116F70 wallet balance of wENS should increase by 1 and the remaining time should be about 365 days."
     },
     {
-        "task_id": "49a179af-7af1-4c0d-a091-3579b3752caa",
+        "task_id": "d21baf60-e421-4107-acdc-f0e03be8bfba",
         "question": "Register (mint) a new ENS name 'caiba-ai.eth' for 1 year. Your wallet address is:0xcCb30F16d38424F7a546944F0cf5EF8F2d116F70. And then transfer it to 0xD117Bd6dE83e3F14265a3CE2BEEE6bd69d29eC7E",
         "level": 3,
         "chain": "ethereum",
@@ -552,7 +552,7 @@
         "criteria": "After all TXs executed, the 0xD117Bd6dE83e3F14265a3CE2BEEE6bd69d29eC7E wallet balance of wENS should increase by 1 and the remaining time should be about 365 days."
     },
     {
-        "task_id": "091cf29d-965e-484d-b84b-d7d184d7163b",
+        "task_id": "c9010049-07b9-4b10-a391-8df1e7d993e2",
         "question": "Swap 2 ETH to 1 ETH and 2600 USDC then provide 1 WETH and corresponding number of USDC liquidity to WETH-USDC 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3. Then transfer the acquired NFT to address: 0xD117Bd6dE83e3F14265a3CE2BEEE6bd69d29eC7E",
         "level": 3,
         "chain": "ethereum",

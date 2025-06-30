@@ -28,42 +28,19 @@ async def run_eval(agent_outputs:list[AgentOutputItem], save_file:bool = False):
             row = {}
             for key in wanted_keys:
                 value = getattr(item, key, "")
-                # 对于metadata进行特殊处理，只保留需要的字段
-                if key == "metadata" and isinstance(value, dict):
-                    simplified_metadata = {
-                        "final_answer": value.get("final_answer", ""),
-                        "turns": []
-                    }
-                    
-                    # 提取每个turn的tool_name和tool_output
-                    turns = value.get("turns", [])
-                    for turn in turns:
-                        turn_data = {}
-                        tool_calls = turn.get("tool_calls", [])
-                        if tool_calls:
-                            # 如果有多个tool_calls，保留所有
-                            turn_data["tools"] = []
-                            for tool_call in tool_calls:
-                                turn_data["tools"].append({
-                                    "tool_name": tool_call.get("tool_name", ""),
-                                    "tool_output": tool_call.get("tool_output", "")
-                                })
-                        if turn_data:  # 只添加有tool_calls的turn
-                            simplified_metadata["turns"].append(turn_data)
-                    
-                    value = json.dumps(simplified_metadata, ensure_ascii=False, indent=2)
-                # 对于其他复杂类型（如result为dict或list），转为格式化的JSON字符串
-                elif isinstance(value, (dict, list)):
+                # 对于复杂类型（如result/metadata为dict或list），转为格式化的JSON字符串
+                if isinstance(value, (dict, list)):
                     value = json.dumps(value, ensure_ascii=False, indent=2)
                 row[key] = value
             processed_results.append(row)
-        if save_file:
-            with open(csv_file, "w", newline='', encoding="utf-8") as f:
-                writer = csv.DictWriter(f, fieldnames=wanted_keys)
-                writer.writeheader()
-                for row in processed_results:
-                    writer.writerow(row)
-            print(f"评估结果已保存为 {csv_file}")
+        if not save_file:
+            return results
+        with open(csv_file, "w", newline='', encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=wanted_keys)
+            writer.writeheader()
+            for row in processed_results:
+                writer.writerow(row)
+        print(f"评估结果已保存为 {csv_file}")
 
     return results
 
