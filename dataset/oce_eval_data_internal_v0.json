@@ -1,27 +1,28 @@
 [
     {
-        "task_id": "46f14ec6-d72a-46a4-8974-b338cfcd3cbf",
-        "question": "Buy 0.001 WETH worth of PT sUSDe on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, PT address: 0x3b3fb9c57858ef816833dc91565efcd85d96f634",
+        "task_id": "fa8f8a0a-6485-4b94-92d2-53886df51ad6",
+        "question": "Buy 0.001 WETH worth of PT sUSDe(maturity date: 25 Sep 2025) on Pendle.",
         "level": 2,
         "chain": "ethereum",
         "category": "yield",
-        "criteria": "Check wallet balance before and after execution. The wallet balance should decrease by about 1 WETH, and you should receive some PT sUSDe."
+        "criteria": "Check wallet balance before and after execution. The wallet balance should decrease by about 0.001 WETH, and you should receive some(about 2.5) PT sUSDe."
     },
     {
-        "task_id": "7284ddfb-fb56-4783-ae44-21187ba90246",
-        "question": "Swap 1 USDT to USDC by Uniswap V3 on mainnet.",
-        "level": 1,
+        "task_id": "b9e5e21b-8002-4160-a577-e2992132678a",
+        "question": "sell 1 PT sUSDe(maturity date: 25 Sep 2025) on Pendle to USDC.",
+        "level": 2,
         "chain": "ethereum",
-        "category": "swap",
-        "criteria": "1. Must interact with Uniswap V2 contract address: 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640 2. After TX executed, the USDT balance should decrease about 1, and the USDC balance should increase 1"
+        "category": "yield",
+        "criteria": "Check wallet balance before and after execution. The wallet balance should decrease by about 0.001 PT sUSDe and you should receive some about 1 USDC."
     },
+   
     {
         "task_id": "1de2ab9c-e576-4a8b-92ae-2dcc4b08777b",
         "question": "buy eth using 0.01 usdc",
         "level": 1,
         "chain": "ethereum",
         "category": "swap",
-        "criteria": "After tx executed, the wallet balance should decrease about 0.01 USDC, and the ETH balance should increase about 0.000004 ETH with 10% fault tolerance"
+        "criteria": "After tx executed, the wallet balance should decrease exact 0.01 USDC, and the ETH balance should increase about 0.000004 ETH with 10% fault tolerance"
     },
     {
         "task_id": "0036b57a-9e02-4bdb-b956-79c8be567937",
@@ -87,5 +88,29 @@
         "category": "lending",
         "criteria": "Supply WETH from Morpho, wallet ETH decreases by 0.001, Morpho WETH balance increases by 0.001 WETH, collateral increases by 0.001 WETH"
     },
+    {
+        "task_id": "13a4020e-3a92-4dc5-8494-0b23b808889b",
+        "question": "add 0.01 usdc and matching weth to the usdc/weth pool on Uniswap with 0.05% fee",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "LP",
+        "criteria": "Before and after the transaction, the balance of the pool should increase about 0.01 USDC and corresponding number(about 0.0000041 wih fault tolerance) of WETH. The balance of the wallet should decrease about 1 WETH and corresponding number(about 2600) of USDC. The NFT liquidity positions will increase/appear with full range. The add liquidity transaction must interact with pool address 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640."
+    },
+    {
+        "task_id": "1aa73dd0-d119-4c7d-a592-006e6a19f462",
+        "question": "Increase 0.01 usdc and matching weth to my current position (token_id:1022831) on uniswap",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "LP",
+        "criteria": "Before and after the transaction, the pool balance should increase by about 0.01 USDC and the corresponding amount (about 0.0000041, with some tolerance) of WETH. The wallet balance should decrease by about 0.01 USDC and the corresponding amount of WETH. The NFT liquidity position should increase/appear, and this should be an increase to the existing token_id:3459813 position. The add liquidity transaction must interact with the pool address 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640."
+    },
+    {
+        "task_id": "e2b53e87-1fc5-40df-ae95-732a5fa2b59d",
+        "question": "withdraw 50% of my current usdc/weth position (token_id:1022831) on uniswap",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "LP",
+        "criteria": "Before and after the transaction, the pool balance should decrease by about 0.005 USDC and the corresponding amount of WETH. The wallet balance should increase by about 0.005 USDC and the corresponding amount of WETH. The NFT liquidity position should decrease by half, and this should be a decrease to the existing token_id:3459813 position. The remove liquidity transaction must interact with the pool address 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640."
+    }
     
 ]
