@@ -55,6 +55,9 @@ with open(abi_dir / 'aave_v3_abi.json', 'r') as f:
 with open(abi_dir / 'ens_register_controller_abi.json', 'r') as f:
     ENS_REGISTER_CONTROLLER_ABI = json.load(f)
 
+with open(abi_dir / "morpho_abi.json", 'r') as f:
+    MORPHO_CONTRACT_ABI = json.load(f)
+
 WETH_CONTRACT_ADDRESS_BASE='0x4200000000000000000000000000000000000006'
 
 

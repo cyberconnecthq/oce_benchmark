@@ -4,7 +4,8 @@ from dataset.constants import (
     RPC_URL, 
     PRIVATE_KEY, 
     ERC20_ABI,
-    WETH_CONTRACT_ADDRESS_ETH
+    WETH_CONTRACT_ADDRESS_ETH,
+    MORPHO_CONTRACT_ABI
 )
 import json
 from web3 import Web3
@@ -28,9 +29,7 @@ def load_morpho_contract(w3: Web3):
     返回:
         Contract: Morpho 合约对象
     """
-    with open("abi/morpho_abi.json", "r") as f:
-        abi = json.load(f)
-    contract = w3.eth.contract(address=Web3.to_checksum_address(MORPHO_CONTRACT_ADDRESS_ETH), abi=abi)
+    contract = w3.eth.contract(address=Web3.to_checksum_address(MORPHO_CONTRACT_ADDRESS_ETH), abi=MORPHO_CONTRACT_ABI)
     return contract
 
 
