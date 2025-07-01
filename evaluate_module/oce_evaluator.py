@@ -74,21 +74,21 @@ class OCEEvaluator:
             )
             
             return EvaluateResult(
-                task_id=agent_output.task_id,
+                task_id=task_id,
                 status="success",
                 score=score,
                 result=result,
                 metadata=metadata,
-                usage=agent_output.usage
+                # usage=agent_output.usage
             )
             
         except Exception as e:
             print(e)
             return EvaluateResult(
-                task_id=agent_output.task_id,
+                task_id=task_id,
                 status="failed",
                 error=str(e),
-                usage=agent_output.usage
+                # usage=agent_output.usage
             )
         finally:
             # 恢复快照

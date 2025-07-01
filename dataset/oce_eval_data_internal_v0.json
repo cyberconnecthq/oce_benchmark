@@ -1,0 +1,18 @@
+[
+    {
+        "task_id": "16daa94d-1d50-4ab4-b7e1-b30487b40a34",
+        "question": "Wrap 1 ETH to WETH",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "wrap",
+        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, and theW ETH balance should increase by 1 WETH with no fault tolerance."
+    },
+    {
+        "task_id": "3c471671-2dde-4bca-b035-79967cd1e57f",
+        "question": "Stake 0.5 ETH to Lido",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "staking",
+        "criteria": "After TX executed, the ETH balance should decrease about 1 with 1% fault tolerance, the balance of stETH should increase 0.5. The balance of Lido should increase 0.5 ETH"
+    }
+]
