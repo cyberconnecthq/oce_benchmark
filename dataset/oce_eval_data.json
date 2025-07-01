@@ -137,7 +137,7 @@
     },
     {
         "task_id": "51ea5266-caad-4979-a042-9b98d3dd6843",
-        "question": "withdrawl 1 WETH and corresponding number of USDC liquidity from WETH-USDC 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3",
+        "question": "Withdraw 1 WETH and corresponding number of USDC liquidity from WETH-USDC 0.05 pool(address:0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640) on uniswap v3",
         "level": 1,
         "chain": "ethereum",
         "category": "LP",
@@ -329,11 +329,11 @@
     },
     {
         "task_id": "9c5a7810-6e2d-445a-b2e6-9ddac05954e6",
-        "question": "Withdrawl 1 WETH from Morpho",
+        "question": "Withdraw 1 WETH from Morpho",
         "level": 2,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "Withdrawl WETH from Morpho, wallet WETH increases by 1, Morpho WETH balance decreases by 1 WETH"
+        "criteria": "Withdraw WETH from Morpho, wallet WETH increases by 1, Morpho WETH balance decreases by 1 WETH"
     },
     {
         "task_id": "8f4e0192-285d-4cb2-a02b-4dd8edf7e2e1",

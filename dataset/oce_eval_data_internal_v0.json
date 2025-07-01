@@ -1,21 +1,5 @@
 [
     {
-        "task_id": "16daa94d-1d50-4ab4-b7e1-b30487b40a34",
-        "question": "Wrap 0.001 ETH to WETH",
-        "level": 1,
-        "chain": "ethereum",
-        "category": "wrap",
-        "criteria": "After TX executed, the ETH balance should decrease about 0.001 with 1% fault tolerance, and theW ETH balance should increase by 0.001 WETH with no fault tolerance."
-    },
-    {
-        "task_id": "e2de787b-14a9-414e-94ae-a4e9cb7ee629",
-        "question": "Supply 0.001 WETH to Aave V3",
-        "level": 2,
-        "chain": "ethereum",
-        "category": "lending",
-        "criteria": "Supply WETH to Aave V3, wallet WETH decreases by 0.001, Aave Total Collateral increases by 0.001 WETH."
-    },
-    {
         "task_id": "46f14ec6-d72a-46a4-8974-b338cfcd3cbf",
         "question": "Buy 0.001 WETH worth of PT sUSDe on Pendle. Market address: 0x4339ffe2b7592dc783ed13cce310531ab366deac, PT address: 0x3b3fb9c57858ef816833dc91565efcd85d96f634",
         "level": 2,
@@ -32,11 +16,76 @@
         "criteria": "1. Must interact with Uniswap V2 contract address: 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640 2. After TX executed, the USDT balance should decrease about 1, and the USDC balance should increase 1"
     },
     {
+        "task_id": "1de2ab9c-e576-4a8b-92ae-2dcc4b08777b",
+        "question": "buy eth using 0.01 usdc",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "swap",
+        "criteria": "After tx executed, the wallet balance should decrease about 0.01 USDC, and the ETH balance should increase about 0.000004 ETH with 10% fault tolerance"
+    },
+    {
+        "task_id": "0036b57a-9e02-4bdb-b956-79c8be567937",
+        "question": "buy 0.01 usdc using weth",
+        "level": 1,
+        "chain": "ethereum",
+        "category": "swap",
+        "criteria": "After tx executed, the wallet balance should decrease about 0.0000041 WETH, and the USDC balance should increase about 0.01 USDC with no fault tolerance"
+    },
+    {
         "task_id": "c74a7bd4-7bcc-4b6d-8146-32fa3375f2da",
-        "question": "Supply 1 WETH to Morpho WETH/USDT pair, market id: 0xdbffac82c2dc7e8aa781bd05746530b0068d80929f23ac1628580e27810bc0c5",
+        "question": "Supply 0.001 WETH to Morpho WETH/USDT pair, market id: 0xdbffac82c2dc7e8aa781bd05746530b0068d80929f23ac1628580e27810bc0c5",
         "level": 2,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "Supply WETH from Morpho, wallet ETH decreases by 1, Morpho WETH balance increases by 1 WETH, collateral increases by 1 WETH"
-    }
+        "criteria": "Supply WETH from Morpho, wallet ETH decreases by 0.001, Morpho WETH balance increases by 0.001 WETH, collateral increases by 0.001 WETH"
+    },
+    {
+        "task_id": "262a9938-2700-4f60-bd4f-d010e0dbf326",
+        "question": "supply 0.1 usdc to aave",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "After tx executed, the wallet balance should decrease about 0.1 USDC, and the Aave Total Collateral should increase 0.1 USDC"
+    },
+    {
+        "task_id": "6f30d767-2e25-44e4-afc0-2e67f4ba15d8",
+        "question": "borrow 0.05 usdc from aave",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "After tx executed, the wallet balance should increase about 0.05 USDC, and Aave debt increases by 0.05 USDC"
+    },
+    {
+        "task_id": "ee7d0bad-0b66-4aae-b403-26eb52dc3854",
+        "question": "repay half of my borrowed usdc on aave",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "After tx executed, the wallet balance should decrease about 0.005 USDC, and the Aave debt should decrease by 0.005 USDC"
+    },
+    {
+        "task_id": "1f95209d-aac8-42ff-856a-f3111993520d",
+        "question": "withdraw all my usdc deposit on aave",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "After tx executed, the wallet balance should increase about 0.98 USDC, and Aave Total Collateral should decrease by 1 USDC"
+    },
+    {
+        "task_id": "08e9a7b4-d2be-4d26-b5f1-adb40086b04c",
+        "question": "deposit 0.01 usdc to Morpho Spark USDC Vault",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "Supply WETH from Morpho, wallet ETH decreases by 0.001, Morpho WETH balance increases by 0.001 WETH, collateral increases by 0.001 WETH"
+    },
+    {
+        "task_id": "a94e2095-4683-4e57-abd1-aa0020c5762a",
+        "question": "withdraw 0.000002 eth equivalent usdc from Morpho Spark USDC Vault",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "Supply WETH from Morpho, wallet ETH decreases by 0.001, Morpho WETH balance increases by 0.001 WETH, collateral increases by 0.001 WETH"
+    },
+    
 ]
