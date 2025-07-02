@@ -85,6 +85,9 @@ async def get_aave_info(address: ChecksumAddress|str):
         f"Health Factor: {health_factor / 10**18}\n"
     )
 
+# def withdraw(token_address: str, amount: float):
+
+
 def borrow_usdt(amount_usdt: float):
     # 构建借款交易
     amount = int(amount_usdt * 10**6)  # USDT 6位小数
