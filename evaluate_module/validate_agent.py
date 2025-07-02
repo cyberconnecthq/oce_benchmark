@@ -62,6 +62,10 @@ class ExecuteTxTool(Tool):
                         "type": "string",
                         "description": "The address of the contract to interact with"
                     },
+                    "from":{
+                        "type": "string",
+                        "description": "the address of the sender"
+                    },
                     "value": {
                         "type": "integer",
                         "description": "The value of the transaction in wei"
@@ -69,7 +73,8 @@ class ExecuteTxTool(Tool):
                     "data": {
                         "type": "string",
                         "description": "The data of the transaction, hex encoded"
-                    }
+                    },
+                    
                 },
                 "required": ["to", "value", "data"],
                 "additionalProperties": False
