@@ -1,6 +1,7 @@
 from eth_typing import ChecksumAddress
 from dataset.constants import (
-    MORPHO_CONTRACT_ADDRESS_ETH, 
+    MORPHO_CONTRACT_ADDRESS_ETH,
+    MORPHO_VAULT_ABI, 
     RPC_URL, 
     PRIVATE_KEY, 
     ERC20_ABI,
@@ -204,11 +205,8 @@ def deposit_to_vault(vault_address: ChecksumAddress, amount_usdc: float, receive
     :return: 交易回执或 None
     """
     # 加载 ABI
-    import json
-    with open("abi/morpho_vault_abi.json", "r") as f:
-        vault_abi = json.load(f)
 
-    vault_contract = w3.eth.contract(address=vault_address, abi=vault_abi)
+    vault_contract = w3.eth.contract(address=vault_address, abi=MORPHO_VAULT_ABI)
 
     # 获取 USDC 地址
     usdc_address = Web3.to_checksum_address(USDC_CONTRACT_ADDRESS_ETH)

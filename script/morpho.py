@@ -299,25 +299,25 @@ if __name__ == "__main__":
     
     # 2. 授权MorphO合约使用WETH
     # print("\n📋 步骤1: 检查WETH授权...")
-    # approve_weth_to_morpho(amount)
+    approve_weth_to_morpho(amount)
     
-    # # 3. 存入WETH作为抵押品
-    # print("\n📋 步骤2: 存入WETH作为抵押品...")
-    # success = supply_weth_to_morpho(amount)
+    # 3. 存入WETH作为抵押品
+    print("\n📋 步骤2: 存入WETH作为抵押品...")
+    success = supply_weth_to_morpho(amount)
     
-    # if success:
-    #     print("\n📋 步骤3: 查询账户位置信息...")
-    #     # 查询账户信息
-    #     result = get_morpho_weth_borrowable()
+    if success:
+        print("\n📋 步骤3: 查询账户位置信息...")
+        # 查询账户信息
+        result = get_morpho_weth_borrowable()
         
-    #     if result and result['collateral'] > 0:
-    #         print(f"\n✅ 成功！你现在有 {result['collateral'] / 1e18} WETH 抵押品")
-    #     else:
-    #         print("\n⚠️  警告：查询结果显示抵押品为0，可能需要等待几个区块确认")
-    # else:
-    #     print("\n❌ 抵押品存入失败，跳过查询步骤")
+        if result and result['collateral'] > 0:
+            print(f"\n✅ 成功！你现在有 {result['collateral'] / 1e18} WETH 抵押品")
+        else:
+            print("\n⚠️  警告：查询结果显示抵押品为0，可能需要等待几个区块确认")
+    else:
+        print("\n❌ 抵押品存入失败，跳过查询步骤")
     
-    # print("\n=== 流程完成 ===")
+    print("\n=== 流程完成 ===")
     
     # 注释掉借款功能，因为需要先有抵押品
     borrow_weth_from_morpho(amount)
