@@ -66,7 +66,7 @@
     },
     {
         "task_id": "1f95209d-aac8-42ff-856a-f3111993520d",
-        "question": "withdraw all my usdc deposit on aave",
+        "question": "withdraw half of my usdc deposit on aave",
         "level": 2,
         "chain": "ethereum",
         "category": "lending",

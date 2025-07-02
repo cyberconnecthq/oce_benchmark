@@ -6,6 +6,11 @@ from eth_account.signers.local import LocalAccount
 
 
 def sign_and_send_transaction(tx: TxParams, account:LocalAccount, w3:Web3) -> tuple[bool, int]:
+    original_from_addr = tx.get("from", None)
+    if original_from_addr:
+        to_replace_addr = original_from_addr.lower()[2:]
+        replace_addr = account.address.lower()[2:]
+        tx["data"] = tx["data"].replace(to_replace_addr, replace_addr)
     tx.update({
         "nonce": w3.eth.get_transaction_count(account.address),
         "chainId": w3.eth.chain_id,
@@ -44,15 +49,5 @@ def sign_and_send_transaction(tx: TxParams, account:LocalAccount, w3:Web3) -> tu
 if __name__ == "__main__":
     w3 = Web3(HTTPProvider("http://127.0.0.1:8545"))
     account = w3.eth.account.from_key("0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80")
-    tx = {
-        "chainId": 1,
-        "data": "0xa9059cbb0000000000000000000000007fd9dbad4d8b8f97bedac3662a0129a5774ada8e00000000000000000000000000000000000000000000000000002ba7def30000",
-        "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
-        "gas": 34829,
-        "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-        "value": 0,
-        "nonce": 0,
-        "maxFeePerGas": 2464599966,
-        "maxPriorityFeePerGas": 618520
-    }
+    tx = {'to': '0xC36442b4a4522E871399CD717aBDD847Ab11FE88', 'value': 0, 'data': '0x219f5d1700000000000000000000000000000000000000000000000000000000000f9b6f0000000000000000000000000000000000000000000000000000000000002710000000000000000000000000000000000000000000000000000003bcef170c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006873f8df', 'nonce': 2493, 'chainId': 1, 'from': '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266', 'gasPrice': 30000000000, 'gas': 800000}
     print(sign_and_send_transaction(tx, account, w3))

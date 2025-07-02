@@ -1,9 +1,10 @@
 import time
+from eth_typing import ChecksumAddress
 from web3 import Web3, HTTPProvider
 from web3.types import TxParams
 from eth_account.signers.local import LocalAccount
 from dataset.constants import (
-    RPC_URL, PRIVATE_KEY,
+    ERC20_ABI, RPC_URL, PRIVATE_KEY,
     WETH_CONTRACT_ADDRESS_ETH
 )
 
@@ -46,3 +47,18 @@ def wrap_eth_to_weth(amount_eth: float):
         })
     )
     print("Deposit complete, gas used:", receipt.gasUsed)
+
+
+def approve_erc20(token_address: ChecksumAddress, spender: ChecksumAddress, amount: int):
+    token_contract = w3.eth.contract(address=token_address, abi=ERC20_ABI)
+    tx = token_contract.functions.approve(spender, amount).build_transaction({
+        "from": addr,
+        "gas": 100_000
+    })
+    receipt = send_transaction(tx)
+    receipt = w3.eth.wait_for_transaction_receipt(receipt["transactionHash"])
+    if receipt["status"] == 1:
+        print("Approve successful")
+    else:
+        print("Approve failed")
+    return receipt
