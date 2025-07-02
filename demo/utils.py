@@ -42,7 +42,7 @@ If you need to generate a TX params that is executable and signable, here is a v
 Note:
 1. All hex data should be calculated correctly using python
 2. all address should be correct
-3. 'nonce' should be a number calculated from python, don't make it up
+3. 'nonce' should be an integer, you can make it up 
 
 Question:
 {question}

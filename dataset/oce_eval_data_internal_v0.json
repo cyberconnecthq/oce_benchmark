@@ -74,19 +74,19 @@
     },
     {
         "task_id": "08e9a7b4-d2be-4d26-b5f1-adb40086b04c",
-        "question": "deposit 0.01 usdc to Morpho Spark USDC Vault",
+        "question": "deposit 0.5 usdc to Morpho Steakhouse USDC Vault",
         "level": 2,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "Supply WETH from Morpho, wallet ETH decreases by 0.001, Morpho WETH balance increases by 0.001 WETH, collateral increases by 0.001 WETH"
+        "criteria": "After tx executed, the wallet balance should decrease about 0.01 USDC, and should get about 0.45-46 stUSDC"
     },
     {
         "task_id": "a94e2095-4683-4e57-abd1-aa0020c5762a",
-        "question": "withdraw 0.000002 eth equivalent usdc from Morpho Spark USDC Vault",
+        "question": "withdraw 0.5 USDC from Morpho Steakhouse USDC Vault",
         "level": 2,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "Supply WETH from Morpho, wallet ETH decreases by 0.001, Morpho WETH balance increases by 0.001 WETH, collateral increases by 0.001 WETH"
+        "criteria": "After tx executed, the wallet balance should increase about 0.5 USDC, and should lose about 0.45-46 stUSDC"
     },
     {
         "task_id": "13a4020e-3a92-4dc5-8494-0b23b808889b",
@@ -98,7 +98,7 @@
     },
     {
         "task_id": "1aa73dd0-d119-4c7d-a592-006e6a19f462",
-        "question": "Increase 0.01 usdc and matching weth to my current position (token_id:1022831) on uniswap",
+        "question": "Increase 0.01 usdc and matching weth to my current position on uniswap",
         "level": 2,
         "chain": "ethereum",
         "category": "LP",
@@ -106,7 +106,7 @@
     },
     {
         "task_id": "e2b53e87-1fc5-40df-ae95-732a5fa2b59d",
-        "question": "withdraw 50% of my current usdc/weth position (token_id:1022831) on uniswap",
+        "question": "withdraw 50% of my current usdc/weth position  on uniswap",
         "level": 2,
         "chain": "ethereum",
         "category": "LP",

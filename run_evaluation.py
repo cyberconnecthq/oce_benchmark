@@ -19,7 +19,7 @@ async def run_eval(agent_outputs:list[AgentOutputItem], save_file:bool = False):
     )
 
     # 保存为CSV
-    csv_file = "converted_results_parallel_20250627_o3_eval_result.csv"
+    csv_file = "eval_results_test_20250702_110818_ds_r1.csv"
     if results:
         # 只保留需要的字段，确保每一列单独列出来
         wanted_keys = ["task_id", "score", "result", "metadata", "status", "error"]
@@ -57,11 +57,11 @@ if __name__ == '__main__':
     # result = asyncio.run(run_eval([output]))
     # print(result)
 
-    output_file = 'converted_agent_outputs/converted_results_parallel_20250627_o3.json'
+    output_file = 'converted_agent_outputs/converted_results_test_20250702_110818_ds_r1.json'
     with open(output_file, 'r') as f:
         agent_outputs = [AgentOutputItem(**item) for item in json.load(f)]
 
-    results = asyncio.run(run_eval(agent_outputs=agent_outputs, save_file=True))
+    results = asyncio.run(run_eval(agent_outputs=agent_outputs,save_file=True))
 
 
     
