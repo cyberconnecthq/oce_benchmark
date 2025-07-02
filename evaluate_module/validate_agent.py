@@ -76,7 +76,7 @@ class ExecuteTxTool(Tool):
                     },
                     
                 },
-                "required": ["to", "value", "data"],
+                "required": ["to","from", "value", "data"],
                 "additionalProperties": False
             },
             "description": "The list of transactions to validate"

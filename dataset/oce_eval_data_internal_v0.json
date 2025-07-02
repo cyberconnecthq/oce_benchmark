@@ -90,7 +90,7 @@
     },
     {
         "task_id": "1aa73dd0-d119-4c7d-a592-006e6a19f462",
-        "question": "Increase 0.01 usdc and matching weth to my current position on uniswap",
+        "question": "Increase 0.01 usdc and matching weth to my current position on uniswap, token_id(1022831)",
         "level": 2,
         "chain": "ethereum",
         "category": "LP",
@@ -98,7 +98,7 @@
     },
     {
         "task_id": "e2b53e87-1fc5-40df-ae95-732a5fa2b59d",
-        "question": "withdraw 50% of my current usdc/weth position  on uniswap",
+        "question": "withdraw 50% of my current usdc/weth position  on uniswap, token_id(1022831)",
         "level": 2,
         "chain": "ethereum",
         "category": "LP",
