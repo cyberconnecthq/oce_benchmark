@@ -18,6 +18,6 @@ if __name__ == '__main__':
     )
     supply_aave_v3_token(
         USDC_CONTRACT_ADDRESS_ETH,
-        "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+        ACCOUNT_ADDRESS,
         1*10**6
     )

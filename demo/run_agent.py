@@ -182,13 +182,13 @@ if __name__ == "__main__":
     
     questions = [QuestionData(**item) for item in questions_data]
     # 提取所有问题
-    result = asyncio.run(run_tests_parallel(
-        output_dir="results",
-        questions=questions,
-        model_name="volcengine/deepseek-r1-250120",
-        max_concurrent=5,
-        save_results=True,
-    ))
+    # result = asyncio.run(run_tests_parallel(
+    #     output_dir="results",
+    #     questions=questions,
+    #     model_name="volcengine/deepseek-r1-250120",
+    #     max_concurrent=5,
+    #     save_results=True,
+    # ))
     # result = asyncio.run(run_tests_parallel(
     #     output_dir="results",
     #     questions=questions,
@@ -206,14 +206,14 @@ if __name__ == "__main__":
     # ))
     
     # 使用新的并行版本（带环境重置）
-    # result = asyncio.run(run_tests_parallel_with_reset(
-    #     output_dir="results",
-    #     questions=questions[:10],  # 测试前10个问题
-    #     model_name="openai/gpt-4.1",
-    #     max_concurrent=3,  # 控制并发数量
-    #     save_results=True,
-    #     parameters={"max_turns": 25}
-    # ))
+    result = asyncio.run(run_tests_parallel_with_reset(
+        output_dir="results",
+        questions=questions,  # 测试前10个问题
+        model_name="openai/gpt-4.1",
+        max_concurrent=8,  # 控制并发数量
+        save_results=True,
+        parameters={"max_turns": 25}
+    ))
     
     # result = asyncio.run(run_tests_parallel_with_reset(
     #     output_dir="results",

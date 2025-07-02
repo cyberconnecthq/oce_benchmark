@@ -145,21 +145,15 @@ class EvaluateAgent(Agent):
         self.pre_script = pre_script
 
     async def run(self, question:str, session_id:str = "") -> tuple[str, dict]:
-        await self.reset_anvil()
         if self.pre_script:
             execute_pre_script(self.pre_script)
         return await super().run(question, session_id)
     
-    async def reset_anvil(self):
-        ...
-        # self.w3.provider.make_request(
-        #     "anvil_reset",
-        #     []
-        # )
 
 
 
-async def get_evaluate_agent(model_name:str, parameters:dict, account:LocalAccount, w3:Web3, get_balances:Callable, *args, **kwargs) -> Agent:
+
+async def get_evaluate_agent(model_name:str, parameters:dict, account:LocalAccount, w3:Web3, get_balances:Callable,pre_script:Optional[ModuleType] = None,  *args, **kwargs) -> Agent:
     max_turns = parameters.get("max_turns", 10)
     selected_tools = {
         "validate_tx_execution": ExecuteTxTool(account=account, w3=w3),
@@ -172,7 +166,7 @@ async def get_evaluate_agent(model_name:str, parameters:dict, account:LocalAccou
         temperature=parameters.get("temperature", 0.0),
     )
 
-    agent = EvaluateAgent(llm=llm, tools=selected_tools, max_turns=max_turns, instructions_prompt=INSTRUCTIONS_PROMPT, w3 = w3)
+    agent = EvaluateAgent(llm=llm, tools=selected_tools, max_turns=max_turns, instructions_prompt=INSTRUCTIONS_PROMPT, w3 = w3, pre_script=pre_script)
     return agent
     
     
