@@ -1,11 +1,11 @@
 [
     {
         "task_id": "fa8f8a0a-6485-4b94-92d2-53886df51ad6",
-        "question": "Buy 0.001 WETH worth of PT sUSDe(maturity date: 25 Sep 2025) on Pendle.",
+        "question": "Buy 0.5 sUSDe of PT sUSDe(maturity date: 25 Sep 2025) on Pendle.",
         "level": 2,
         "chain": "ethereum",
         "category": "yield",
-        "criteria": "Check wallet balance before and after execution. The wallet balance should decrease by about 0.001 WETH, and you should receive some(about 2.5) PT sUSDe."
+        "criteria": "Check wallet balance before and after execution. The wallet balance should decrease by about 0.001 WETH, and you should receive some(about 0.48) PT sUSDe."
     },
     {
         "task_id": "b9e5e21b-8002-4160-a577-e2992132678a",
@@ -78,7 +78,7 @@
         "level": 2,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "After tx executed, the wallet balance should increase about 0.5 USDC, and should lose about 0.45-46 stUSDC"
+        "criteria": "After tx executed, the wallet balance should increase about 0.5 USDC, and should lose about 0.45-0.5 stUSDC"
     },
     {
         "task_id": "13a4020e-3a92-4dc5-8494-0b23b808889b",

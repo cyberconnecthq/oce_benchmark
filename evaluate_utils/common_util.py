@@ -58,7 +58,7 @@ def approve_erc20(token_address: ChecksumAddress, spender: ChecksumAddress, amou
     receipt = send_transaction(tx)
     receipt = w3.eth.wait_for_transaction_receipt(receipt["transactionHash"])
     if receipt["status"] == 1:
-        print("Approve successful")
+        print(f"Approve successful: token={token_address}, spender={spender}, amount={amount}, tx_hash={receipt['transactionHash'].hex()}, gas_used={receipt['gasUsed']}")
     else:
-        print("Approve failed")
+        print(f"Approve failed: token={token_address}, spender={spender}, amount={amount}, tx_hash={receipt['transactionHash'].hex()}, gas_used={receipt['gasUsed']}")
     return receipt

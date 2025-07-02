@@ -21,7 +21,7 @@ if __name__ == '__main__':
     supply_aave_v3_token(
         token_add=Web3.to_checksum_address(USDC_CONTRACT_ADDRESS_ETH),
         address=Web3.to_checksum_address(ACCOUNT_ADDRESS),
-        amount=int(1000*1e6)
+        amount=int(20*1e6)
     )
     approve_erc20(
         Web3.to_checksum_address(USDC_CONTRACT_ADDRESS_ETH),
