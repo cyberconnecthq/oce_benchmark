@@ -33,6 +33,7 @@ async def get_eval_agent_by_task_id(task_id:str, model_name:str = 'gpt-4.1') -> 
         account=account,
         w3=w3,
         get_balances=get_balances,
+        pre_script=pre_script
     )
     return eval_agent
 

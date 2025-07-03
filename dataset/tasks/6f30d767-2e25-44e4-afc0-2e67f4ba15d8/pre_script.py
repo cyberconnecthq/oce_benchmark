@@ -8,4 +8,4 @@ from evaluate_utils.common_util import wrap_eth_to_weth
 
 if __name__ == '__main__':
     wrap_eth_to_weth(10)
-    print(supply_eth(1))
+    supply_eth(1)
