@@ -14,12 +14,12 @@ def main():
     approve_erc20(
         Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),
         Web3.to_checksum_address(UNISWAP_V3_ROUTER_2_ADDRESS_ETH),
-        10
+        1*10**18
     )
     approve_erc20(
         Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),
         Web3.to_checksum_address(UNISWAP_V3_ROUTER_ADDRESS_ETH),
-        10
+        1*10**18
     )
 
 
