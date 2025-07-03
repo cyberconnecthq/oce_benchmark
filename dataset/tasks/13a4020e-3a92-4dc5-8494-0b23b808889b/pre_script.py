@@ -8,18 +8,21 @@ from dataset.constants import (
     UNISWAP_NPM_ADDRESS_ETH
 )
 
-wrap_eth_to_weth(0.01)
-swap_weth_to_usdc(0.005)
+def main():
+    wrap_eth_to_weth(0.01)
+    swap_weth_to_usdc(0.005)
 
-approve_erc20(
-    Web3.to_checksum_address(USDC_CONTRACT_ADDRESS_ETH),
-    Web3.to_checksum_address(UNISWAP_NPM_ADDRESS_ETH),
-    int(5000*1e6)
-)
+    approve_erc20(
+        Web3.to_checksum_address(USDC_CONTRACT_ADDRESS_ETH),
+        Web3.to_checksum_address(UNISWAP_NPM_ADDRESS_ETH),
+        int(5000*1e6)
+    )
 
-approve_erc20(
-    Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),
-    Web3.to_checksum_address(UNISWAP_NPM_ADDRESS_ETH),
-    int(0.1*1e18)
-)
+    approve_erc20(
+        Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),
+        Web3.to_checksum_address(UNISWAP_NPM_ADDRESS_ETH),
+        int(0.1*1e18)
+    )
 
+if __name__ == '__main__':
+    main()

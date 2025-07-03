@@ -8,7 +8,7 @@ from evaluate_utils.aave_v3_util import supply_eth, borrow_token,supply_aave_v3_
 from dataset.constants import USDC_CONTRACT_ADDRESS_ETH, AAVE_POOL_ADDRESS_ETH, ACCOUNT_ADDRESS, WETH_CONTRACT_ADDRESS_ETH
 
 
-if __name__ == '__main__':
+def main():
     wrap_eth_to_weth(10)
     swap(
         Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),
@@ -21,3 +21,6 @@ if __name__ == '__main__':
         ACCOUNT_ADDRESS,
         1*10**6
     )
+
+if __name__ == '__main__':
+    main()

@@ -9,7 +9,7 @@ from dataset.constants import (
     SUSDE_CONTRACT_ADDRESS_ETH
 )
 
-if __name__ == '__main__':
+def main():
     wrap_eth_to_weth(2)
     swap(
         Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),
@@ -17,3 +17,6 @@ if __name__ == '__main__':
         int(0.5*1e18),
         0
     )
+
+if __name__=='__main__':
+    main()

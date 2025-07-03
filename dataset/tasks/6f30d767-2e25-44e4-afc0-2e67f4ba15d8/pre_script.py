@@ -6,6 +6,9 @@ from evaluate_utils.aave_v3_util import supply_eth
 from evaluate_utils.common_util import wrap_eth_to_weth
 
 
-if __name__ == '__main__':
+def main():
     wrap_eth_to_weth(10)
     supply_eth(1)
+
+if __name__ == '__main__':
+    main()
