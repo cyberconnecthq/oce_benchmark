@@ -94,7 +94,8 @@
         "level": 2,
         "chain": "ethereum",
         "category": "LP",
-        "criteria": "Before and after the transaction, the pool balance should increase by about 0.01 USDC and the corresponding amount (about 0.0000041, with some tolerance) of WETH. The wallet balance should decrease by about 0.01 USDC and the corresponding amount of WETH. The NFT liquidity position should increase/appear, and this should be an increase to the existing token_id:3459813 position. The add liquidity transaction must interact with the pool address 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640."
+        "criteria": "Before and after the transaction, the pool balance should increase by about 0.01 USDC and the corresponding amount (about 0.0000041, with some tolerance) of WETH. The wallet balance should decrease by about 0.01 USDC and the corresponding amount of WETH. The NFT liquidity position should increase/appear, and this should be an increase to the existing token_id:3459813 position. The add liquidity transaction must interact with the pool address 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640.",
+        "bind_address":"0x2A804F0c969a4d5c35E551B690Db28371f833567"
     },
     {
         "task_id": "e2b53e87-1fc5-40df-ae95-732a5fa2b59d",
@@ -102,7 +103,8 @@
         "level": 2,
         "chain": "ethereum",
         "category": "LP",
-        "criteria": "Before and after the transaction, the pool balance should decrease by about 0.005 USDC and the corresponding amount of WETH. The wallet balance should increase by about 0.005 USDC and the corresponding amount of WETH. The NFT liquidity position should decrease by half, and this should be a decrease to the existing token_id:3459813 position. The remove liquidity transaction must interact with the pool address 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640."
+        "criteria": "Before and after the transaction, the pool balance should decrease by about 0.005 USDC and the corresponding amount of WETH. The wallet balance should increase by about 0.005 USDC and the corresponding amount of WETH. The NFT liquidity position should decrease by half, and this should be a decrease to the existing token_id:3459813 position. The remove liquidity transaction must interact with the pool address 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640.",
+        "bind_address":"0x2A804F0c969a4d5c35E551B690Db28371f833567"
     }
     
 ]
