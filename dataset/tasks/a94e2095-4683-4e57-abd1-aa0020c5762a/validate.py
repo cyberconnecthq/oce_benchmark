@@ -43,8 +43,8 @@ async def get_balances():
     steakhouse_usdc_balance = steakhouse_vault_contract.functions.balanceOf(addr).call()
     return (
         f"Current wallet address ({addr}) USDC balance:\n"
-        f"- {usdc_balance / 1e6} USDC\n\n"
-        f"- {steakhouse_usdc_balance / 1e18} stUSDC\n"
+        f"- {usdc_balance / 1000000} USDC\n\n"
+        f"- {steakhouse_usdc_balance / (10**18)} stUSDC\n"
     )
 
 

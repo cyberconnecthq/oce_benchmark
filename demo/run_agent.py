@@ -209,7 +209,7 @@ if __name__ == "__main__":
     result = asyncio.run(run_tests_parallel_with_reset(
         output_dir="results",
         questions=questions,  # 测试前10个问题
-        model_name="openai/gpt-4.1",
+        model_name="openai/o4-mini-2025-04-16",
         max_concurrent=8,  # 控制并发数量
         save_results=True,
         parameters={"max_turns": 25}

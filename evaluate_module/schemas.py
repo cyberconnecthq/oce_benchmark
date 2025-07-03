@@ -109,6 +109,7 @@ class BenchmarkItem(BaseModel):
     # answer: Answer = Field(description="The agent system output")
     criteria: str = Field(description="The criteria to be evaluated")
     anvil_config: Optional[AnvilConfig] = Field(description="The anvil config", default=None)
+    bind_address:Optional[str] = None
 
     
 

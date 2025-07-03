@@ -156,6 +156,11 @@ def supply(amount_usds: float, referral: int = 0):
 
 if __name__ == "__main__":
     # 示例：供应10 USDS到Sky.money
-    result = supply(10.0)
-    print(f"交易结果: {result}")
-    
+    # result = supply(10.0)
+    # print(f"交易结果: {result}")
+
+
+    tx = {"chainId": 1, "data": "0x095ea7b30000000000000000000000003225737a9bbb6473cb4a45b7244aca2befdb276a000000000000000000000000000000000000000000000000000000000001d4c0", "from": "0x2A804F0c969a4d5c35E551B690Db28371f833567", "gas": 56361, "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", "value": 0, "nonce": 26, "maxFeePerGas": 1640891266, "maxPriorityFeePerGas": 14}
+    from execute import sign_and_send_transaction
+
+    print(sign_and_send_transaction(tx, account, w3, bind_address=None))

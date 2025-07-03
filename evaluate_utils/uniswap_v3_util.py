@@ -9,13 +9,14 @@ from eth_account.signers.local import LocalAccount
 from dataset.constants import (
     RPC_URL, PRIVATE_KEY,
     WETH_CONTRACT_ADDRESS_ETH,
-    USDC_CONTRACT_ADDRESS_ETH
+    USDC_CONTRACT_ADDRESS_ETH,
+    UNISWAP_NPM_ADDRESS_ETH
 )
 
 # Uniswap V3合约地址
 ROUTER = Web3.to_checksum_address("0xE592427A0AEce92De3Edee1F18E0157C05861564")
 QUOTER = Web3.to_checksum_address("0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6")
-
+NPM = Web3.to_checksum_address(UNISWAP_NPM_ADDRESS_ETH)
 # 最小ABI
 ERC20_ABI = json.loads("""[
   {"constant":true,"inputs":[{"name":"owner","type":"address"}],
@@ -165,3 +166,13 @@ def swap_weth_to_usdc(amount_weth: float):
     usdc = w3.eth.contract(address=Web3.to_checksum_address(USDC_CONTRACT_ADDRESS_ETH), abi=ERC20_ABI)
     usdc_balance = usdc.functions.balanceOf(addr).call()
     print(f"\nSwap结果: 获得 {usdc_balance / 10**6:.2f} USDC")
+
+
+def approve_nft():
+    # （可选）如果要走 Router，一次性批量授权
+    tx = pm.functions.setApprovalForAll(ROUTER, True).build_transaction({
+        "from": my_addr,
+        "nonce": w3.eth.get_transaction_count(my_addr),
+    })
+    signed = w3.eth.account.sign_transaction(tx, private_key)
+    w3.eth.send_raw_transaction(signed.rawTransaction)

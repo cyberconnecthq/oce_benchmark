@@ -80,16 +80,36 @@ class ExecuteTxTool(Tool):
                 "additionalProperties": False
             },
             "description": "The list of transactions to validate"
-        }
+        },
+        # "to_replace_pair":{
+        #     "type": "array",
+        #     "items": {
+        #         "type": "object",
+        #         "properties":{
+        #             "need_replace":{
+        #                 "type":"string",
+        #                 "description":"The value need to be replaced,such as address, token_id"
+        #             },
+        #             "replace_to":{
+        #                 "type": "string",
+        #                 "description": "The value to replace the need_replace"
+        #             }
+        #         },
+        #         "required": ["need_replace", "replace_to"],
+        #         "additionalProperties": False
+        #     }
+        # },
+        # "description": "the list of replace pairs"
     }
 
     required_arguments = ['tx_list']
 
 
-    def __init__(self, account:LocalAccount, w3:Web3) -> None:
+    def __init__(self, account:LocalAccount, w3:Web3, bind_address:Optional[str] = None) -> None:
         super().__init__()
         self.account = account
         self.w3 = w3
+        self.bind_address = bind_address
     
     async def call_tool(self, arguments:dict) -> str:
         tx_list = arguments.get('tx_list', [])
@@ -97,7 +117,7 @@ class ExecuteTxTool(Tool):
             return "No transaction provided"
         total_gas_used = 0
         for tx in tx_list:
-            success, gas_used = sign_and_send_transaction(tx, self.account, self.w3)
+            success, gas_used = sign_and_send_transaction(tx, self.account, self.w3, self.bind_address)
             if not success:
                 return f"Transaction execution failed : {tx}"
             total_gas_used += gas_used
@@ -139,7 +159,7 @@ Task: {question}
 
 
 class EvaluateAgent(Agent):
-    def __init__(self, llm:GeneralLLM, tools:dict[str, Tool], max_turns:int = 10, instructions_prompt:str = INSTRUCTIONS_PROMPT, w3:Optional[Web3] = None, pre_script:Optional[ModuleType] = None) -> None:
+    def __init__(self, llm:GeneralLLM, tools:dict[str, Tool], max_turns:int = 10, instructions_prompt:str = INSTRUCTIONS_PROMPT, w3:Optional[Web3] = None, pre_script:Optional[ModuleType] = None,) -> None:
         super().__init__(llm=llm, tools=tools, max_turns=max_turns, instructions_prompt=instructions_prompt)
         self.w3 = w3
         self.pre_script = pre_script

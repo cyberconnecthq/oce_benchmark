@@ -62,3 +62,32 @@ def approve_erc20(token_address: ChecksumAddress, spender: ChecksumAddress, amou
     else:
         print(f"Approve failed: token={token_address}, spender={spender}, amount={amount}, tx_hash={receipt['transactionHash'].hex()}, gas_used={receipt['gasUsed']}")
     return receipt
+
+
+    # INSERT_YOUR_CODE
+def transfer_eth(to_address: str, amount_eth: float):
+    """
+    向指定账户转账ETH
+
+    Args:
+        to_address: 接收方地址（字符串）
+        amount_eth: 转账ETH数量（float）
+    """
+    amount_in_wei = int(amount_eth * 10**18)
+    tx = {
+        "from": addr,
+        "to": Web3.to_checksum_address(to_address),
+        "value": amount_in_wei,
+        "nonce": w3.eth.get_transaction_count(addr),
+        "chainId": w3.eth.chain_id,
+        "gas": 21000,
+        "gasPrice": w3.eth.gas_price
+    }
+    signed = account.sign_transaction(tx)
+    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
+    receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+    if receipt["status"] == 1:
+        print(f"转账成功，tx_hash: {tx_hash.hex()}，gas_used: {receipt['gasUsed']}")
+    else:
+        print(f"转账失败，tx_hash: {tx_hash.hex()}，gas_used: {receipt['gasUsed']}")
+    return receipt

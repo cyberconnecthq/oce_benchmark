@@ -13,3 +13,6 @@ anvil --fork-url 'https://rpc.ankr.com/eth/e1529327d27a49660f1b8b9e747aec94256fc
 
 docker run -it --rm -p 8000:8000 -p 8545:8545 --env-file .env oce-benchmark-app:latest
 docker build -t oce-benchmark-app -f app/Dockerfile .
+
+
+anvil --fork-url 'https://base-mainnet.public.blastapi.io'  --balance 1000 --port 8546

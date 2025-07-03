@@ -250,7 +250,7 @@ def main():
         
         # 示例2：批量授权所有NFT给某个地址
         approve_all_nft(example_spender, True)  # 授权
-        approve_all_nft(example_spender, False) # 取消授权
+        # approve_all_nft(example_spender, False) # 取消授权
         
         print("💡 提示：如果需要授权NFT，请取消注释上面的示例代码并设置正确的授权地址")
     else:
