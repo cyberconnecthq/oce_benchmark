@@ -10,7 +10,7 @@ RPC_URL = "http://127.0.0.1:8545"
 PRIVATE_KEY = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80" #the first default anvil account
 w3 = Web3(HTTPProvider(RPC_URL))
 account: LocalAccount = w3.eth.account.from_key(PRIVATE_KEY)
-addr = "0x2A804F0c969a4d5c35E551B690Db28371f833567"
+addr = "0x670C68F7fE704211cAcaDa9199Db8d52335CE165"
 
 USDC = Web3.to_checksum_address(USDC_CONTRACT_ADDRESS_ETH)
 WETH = Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH)

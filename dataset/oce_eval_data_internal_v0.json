@@ -90,21 +90,45 @@
     },
     {
         "task_id": "1aa73dd0-d119-4c7d-a592-006e6a19f462",
-        "question": "Increase 0.01 usdc and matching weth to my current position on uniswap, token_id(1022831)",
+        "question": "Increase 0.01 usdc and matching weth to my current position on uniswap, token_id(1024366)",
         "level": 2,
         "chain": "ethereum",
         "category": "LP",
         "criteria": "Before and after the transaction, the pool balance should increase by about 0.01 USDC and the corresponding amount (about 0.0000041, with some tolerance) of WETH. The wallet balance should decrease by about 0.01 USDC and the corresponding amount of WETH. The NFT liquidity position should increase/appear, and this should be an increase to the existing token_id:3459813 position. The add liquidity transaction must interact with the pool address 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640.",
-        "bind_address":"0x2A804F0c969a4d5c35E551B690Db28371f833567"
+        "bind_address":"0x670C68F7fE704211cAcaDa9199Db8d52335CE165"
     },
     {
         "task_id": "e2b53e87-1fc5-40df-ae95-732a5fa2b59d",
-        "question": "withdraw 50% of my current usdc/weth position  on uniswap, token_id(1022831)",
+        "question": "withdraw 50% of my current usdc/weth position  on uniswap, token_id(1024366)",
         "level": 2,
         "chain": "ethereum",
         "category": "LP",
         "criteria": "Before and after the transaction, the pool balance should decrease by about 0.005 USDC and the corresponding amount of WETH. The wallet balance should increase by about 0.005 USDC and the corresponding amount of WETH. The NFT liquidity position should decrease by half, and this should be a decrease to the existing token_id:3459813 position. The remove liquidity transaction must interact with the pool address 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640.",
-        "bind_address":"0x2A804F0c969a4d5c35E551B690Db28371f833567"
-    }
+        "bind_address":"0x670C68F7fE704211cAcaDa9199Db8d52335CE165"
+    },
+    {
+        "task_id": "44c7c718-46db-4e75-aea7-c0da8fbd396e",
+        "question": "buy 0.1 usds using usdc from Sky",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "After tx executed, the wallet balance should increase about 0.1 USDC, and should receive about 0.1 USDS"
+    },
+    {
+        "task_id": "518ac65b-e6b4-451f-b4ef-e089c8a08main3df",
+        "question": "deposit 0.1 usds into Sky",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "After tx executed, the wallet balance should increase about 0.1 USDS, and Aave Total Collateral should decrease by 1 USDC"
+    },
+    {
+        "task_id": "fc5ec3c0-f26d-4d98-891c-ee34f94b578e",
+        "question": "withdraw all deposits from Sky",
+        "level": 2,
+        "chain": "ethereum",
+        "category": "lending",
+        "criteria": "After tx executed, the wallet balance should increase about 0.98 USDC, and Aave Total Collateral should decrease by 1 USDC"
+    },
     
 ]

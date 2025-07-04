@@ -43,3 +43,7 @@ async def get_balances():
     )
 
 
+
+if __name__ == "__main__":
+    import asyncio
+    print(asyncio.run(get_balances()))
