@@ -8,6 +8,8 @@ from eth_account.signers.local import LocalAccount
 
 
 def sign_and_send_transaction(tx: TxParams, account:LocalAccount, w3:Web3, bind_address:Optional[str] = None) -> tuple[bool, int]:
+    # 去除所有value为None的字段
+    tx = {k: v for k, v in tx.items() if v is not None}
     if not bind_address:
         original_from_addr = tx.get("from", None)
         if original_from_addr:
