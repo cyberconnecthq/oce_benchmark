@@ -36,7 +36,7 @@ def wrap_eth_to_weth(amount):
         "gasPrice": w3.to_wei("0.1", "gwei")
     })
     signed = w3.eth.account.sign_transaction(tx, private_key=PRIVATE_KEY)
-    tx_hash = w3.eth.send_raw_transaction(signed.rawTransaction)
+    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
     print(f"wrap eth to weth 交易已发送，哈希: {tx_hash.hex()}")
     receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
     print("交易回执:", receipt)

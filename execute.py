@@ -27,6 +27,8 @@ def sign_and_send_transaction(tx: TxParams, account:LocalAccount, w3:Web3, bind_
         account = Account.from_key(os.environ.get("REAL_PRIVATE_KEY", None))
         tx.update({
             "nonce": w3.eth.get_transaction_count(account.address),
+            "chainId": w3.eth.chain_id,
+            "to": w3.to_checksum_address(tx.get("to", "")),
         })
 
     if tx.get('to', "") == "":

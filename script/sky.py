@@ -58,7 +58,7 @@ def deposit_to_sky(w3: Web3,
     # Handy helpers
     def _sign_send(tx):         # sign + relay, returns hash
         signed = w3.eth.account.sign_transaction(tx, priv_key)
-        return w3.eth.send_raw_transaction(signed.rawTransaction)
+        return w3.eth.send_raw_transaction(signed.raw_transaction)
 
     # === case 1: caller already holds USDS =========================
     if token_addr == USDS_TOKEN:

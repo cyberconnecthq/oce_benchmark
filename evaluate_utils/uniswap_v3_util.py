@@ -175,4 +175,4 @@ def approve_nft():
         "nonce": w3.eth.get_transaction_count(my_addr),
     })
     signed = w3.eth.account.sign_transaction(tx, private_key)
-    w3.eth.send_raw_transaction(signed.rawTransaction)
+    w3.eth.send_raw_transaction(signed.raw_transaction)

@@ -58,7 +58,7 @@ def swap(w3, contract_address, account, trade: Trade, tokens: List[str], gas=500
         "gas": gas,
     })
     signed = account.sign_transaction(tx)
-    tx_hash = w3.eth.send_raw_transaction(signed.rawTransaction)
+    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
     return tx_hash.hex()
 
 # addliquidity 功能（Cow Protocol 本身不直接支持LP操作，这里假设通过settle函数实现多笔swap/LP操作，需根据实际情况调整）
@@ -96,7 +96,7 @@ def addliquidity(w3, contract_address, account, tokens: List[str], clearing_pric
         "gas": gas,
     })
     signed = account.sign_transaction(tx)
-    tx_hash = w3.eth.send_raw_transaction(signed.rawTransaction)
+    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
     return tx_hash.hex()
 
 # removeliquidity 功能（同上，通常通过settle或自定义interaction实现）
@@ -134,6 +134,6 @@ def removeliquidity(w3, contract_address, account, tokens: List[str], clearing_p
         "gas": gas,
     })
     signed = account.sign_transaction(tx)
-    tx_hash = w3.eth.send_raw_transaction(signed.rawTransaction)
+    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
     return tx_hash.hex()
 
