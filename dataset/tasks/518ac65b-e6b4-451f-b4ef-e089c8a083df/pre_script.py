@@ -5,7 +5,8 @@ from dataset.constants import (
     USDS_WRAPPER_ADDRESS_ETH,
     USDC_CONTRACT_ADDRESS_ETH,
     WETH_CONTRACT_ADDRESS_ETH,
-    SUSDE_CONTRACT_ADDRESS_ETH
+    SUSDE_CONTRACT_ADDRESS_ETH,
+    USDS_PM_WRAPPER_ABI
 )
 from evaluate_utils.common_util import (
     wrap_eth_to_weth,
@@ -18,9 +19,6 @@ from web3 import HTTPProvider
 import json
 from dataset.constants import RPC_URL, PRIVATE_KEY
 
-# 加载USDS PM Wrapper ABI
-with open("abi/usds_pm_wrapper_abi.json", "r") as f:
-    USDS_PM_WRAPPER_ABI = json.load(f)
 
 w3 = Web3(HTTPProvider(RPC_URL))
 account = w3.eth.account.from_key(PRIVATE_KEY)

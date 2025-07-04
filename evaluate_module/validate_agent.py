@@ -206,9 +206,9 @@ INSTRUCTIONS_PROMPT = """You are a validator for a transaction execution. You wi
 5. check current balanced by usign the `get_balances` tool to check current balance state satisfy the criteria and correct.
 
 ## Note
-1. If no TX provided, you should just answer "FINAL ANSWER: FAIL"
+1. If no TX provided, you should just answer "FINAL ANSWER: FAIL\nReason: not tx provided"
 
-Your final answer should be "FINAL ANSWER: PASS" or "FINAL ANSWER: FAIL"
+Your final answer should be "FINAL ANSWER: PASS or FAIL\nReason: reason why fail or pass"
 
 Task: {question}
 """
