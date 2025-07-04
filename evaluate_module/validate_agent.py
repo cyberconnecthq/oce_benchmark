@@ -75,19 +75,19 @@ class ExecuteTxTool(Tool):
                         "description": "The data of the transaction, hex encoded"
                     },
                     "maxPriorityFeePerGas":{
-                        "type":"int",
+                        "type":"integer",
                         "description":""
                     },
                     "maxFeePerGas":{
-                        "type":"int",
+                        "type":"integer",
                         "description":""
                     },
                     "gas":{
-                        "type":"int",
+                        "type":"integer",
                         "description":""
                     },
                     "gasPrice":{
-                        "type":"int",
+                        "type":"integer",
                         "description":""
                     }
                     
