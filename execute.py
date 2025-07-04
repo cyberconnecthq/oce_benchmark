@@ -34,11 +34,16 @@ def sign_and_send_transaction(tx: TxParams, account:LocalAccount, w3:Web3, bind_
         return False, 0
 
     # Check if gasPrice is in tx
-    if "gasPrice" not in tx:
-        # If not, use maxFeePerGas and maxPriorityFeePerGas if available, otherwise set a default gasPrice
-        if "maxFeePerGas" not in tx and "maxPriorityFeePerGas" not in tx:
-            tx['gasPrice'] = w3.to_wei(30, 'gwei')
-            tx['gas'] = 800_000
+    if "maxFeePerGas" in tx and "maxPriorityFeePerGas" in tx:
+    # INSERT_YOUR_CODE
+    # 删除 gas 和 gasPrice 字段
+        tx.pop('gas', None)
+        tx.pop('gasPrice', None)
+    elif "maxFeePerGas" not in tx and "maxPriorityFeePerGas" not in tx:
+        tx['gasPrice'] = w3.to_wei(30, 'gwei')
+        tx['gas'] = 800_000
+        
+
         
     print(tx)
     sign_tx = account.sign_transaction(transaction_dict=tx)
