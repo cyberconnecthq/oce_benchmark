@@ -76,24 +76,23 @@ class ExecuteTxTool(Tool):
                     },
                     "maxPriorityFeePerGas":{
                         "type":"integer",
-                        "description":""
+                        "description":"Max priority fee per gas in wei"
                     },
                     "maxFeePerGas":{
                         "type":"integer",
-                        "description":""
+                        "description":"Max fee per gas in wei"
                     },
                     "gas":{
                         "type":"integer",
-                        "description":""
+                        "description":"Gas limit for the transaction"
                     },
                     "gasPrice":{
                         "type":"integer",
-                        "description":""
+                        "description":"Gas price in wei"
                     }
                     
                 },
-                "required": ["to","from", "value", "data"],
-                "additionalProperties": False
+                "required": ["to","from", "value", "data"]
             },
             "description": "The list of transactions to validate"
         },
