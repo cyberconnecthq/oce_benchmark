@@ -173,10 +173,10 @@ class EvaluateAgent(Agent):
 
 
 
-async def get_evaluate_agent(model_name:str, parameters:dict, account:LocalAccount, w3:Web3, get_balances:Callable,pre_script:Optional[ModuleType] = None,  *args, **kwargs) -> Agent:
+async def get_evaluate_agent(model_name:str, parameters:dict, account:LocalAccount, w3:Web3, get_balances:Callable,pre_script:Optional[ModuleType] = None, bind_address:Optional[str] = None,  *args, **kwargs) -> Agent:
     max_turns = parameters.get("max_turns", 10)
     selected_tools = {
-        "validate_tx_execution": ExecuteTxTool(account=account, w3=w3),
+        "validate_tx_execution": ExecuteTxTool(account=account, w3=w3, bind_address=bind_address),
         "get_balances": GetBalancesTool(get_balances=get_balances)
     }
     llm = GeneralLLM(

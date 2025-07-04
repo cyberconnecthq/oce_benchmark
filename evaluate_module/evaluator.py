@@ -19,7 +19,7 @@ def load_agent_output_dataset(dataset_path:str = "dataset/example_agent_output.j
         return [AgentOutputItem(**item) for item in agent_output_dataset]
 
 
-async def get_eval_agent_by_task_id(task_id:str, model_name:str = 'gpt-4.1') -> Agent:
+async def get_eval_agent_by_task_id(task_id:str, model_name:str = 'gpt-4.1', bind_address:Optional[str] = None) -> Agent:
     account, w3, get_balances, pre_script = load_task_dependencies(task_id)
     if account is None or w3 is None or get_balances is None:
         raise ValueError(f"Task {task_id} init failed")
@@ -33,7 +33,8 @@ async def get_eval_agent_by_task_id(task_id:str, model_name:str = 'gpt-4.1') -> 
         account=account,
         w3=w3,
         get_balances=get_balances,
-        pre_script=pre_script
+        pre_script=pre_script,
+        bind_address=bind_address
     )
     return eval_agent
 

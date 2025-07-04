@@ -45,11 +45,13 @@ class OCEEvaluator:
                         error=f"no evaluate data found for question : '{agent_output.question}'"
                     )
                 task_id = item[0].task_id
+                bind_address = item[0].bind_address
             
             # 获取评估智能体
             eval_agent = await get_eval_agent_by_task_id(
                 task_id, 
-                model_name
+                model_name,
+                bind_address
             )
             
             # 执行评估

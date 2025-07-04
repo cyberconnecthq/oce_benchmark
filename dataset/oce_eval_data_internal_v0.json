@@ -115,7 +115,7 @@
         "criteria": "After tx executed, the wallet balance should increase about 0.1 USDC, and should receive about 0.1 USDS"
     },
     {
-        "task_id": "518ac65b-e6b4-451f-b4ef-e089c8a08main3df",
+        "task_id": "518ac65b-e6b4-451f-b4ef-e089c8a083df",
         "question": "deposit 0.1 usds into Sky",
         "level": 2,
         "chain": "ethereum",
