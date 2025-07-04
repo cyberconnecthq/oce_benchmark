@@ -75,25 +75,57 @@ class ExecuteTxTool(Tool):
                         "description": "The data of the transaction, hex encoded"
                     },
                     "maxPriorityFeePerGas":{
-                        "type":"integer",
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "default": None,
                         "description":"Max priority fee per gas in wei"
                     },
                     "maxFeePerGas":{
-                        "type":"integer",
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "default": None,
                         "description":"Max fee per gas in wei"
                     },
                     "gas":{
-                        "type":"integer",
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "default": None,
                         "description":"Gas limit for the transaction"
                     },
                     "gasPrice":{
-                        "type":"integer",
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "default": None,
                         "description":"Gas price in wei"
                     }
                     
                 },
                 "required": ["to","from", "value", "data"],
-                "additionalProperties": True
+                "additionalProperties": False
             },
             "description": "The list of transactions to validate"
         },
