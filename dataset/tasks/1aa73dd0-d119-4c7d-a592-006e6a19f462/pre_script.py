@@ -117,6 +117,7 @@ def main():
     # If needed, wrap ETH to WETH and swap for USDC
     from evaluate_utils.common_util import wrap_eth_to_weth
     from evaluate_utils.uniswap_v3_util import swap_weth_to_usdc
+    from dataset.constants import BIND_ADDRESS
     import asyncio
     wrap_eth_to_weth(10)
     swap_weth_to_usdc(2)
@@ -124,50 +125,50 @@ def main():
     approve(weth, AMOUNT_WETH)
     approve(usdc, usdc_needed)
     from evaluate_utils.common_util import transfer_eth
-    transfer_eth("0x670C68F7fE704211cAcaDa9199Db8d52335CE165", 1)
+    transfer_eth(BIND_ADDRESS, 1)
 
-    # Loosen slippage protection, use 80% instead of 95%
-    params = {
-        "token0": USDC,
-        "token1": WETH,
-        "fee": 500,                           # 0.05 %
-        "tickLower": lower_tick,
-        "tickUpper": upper_tick,
-        "amount0Desired": usdc_needed,        # USDC (6 dec)
-        "amount1Desired": AMOUNT_WETH,        # WETH (18 dec)
-        "amount0Min": int(usdc_needed * 0.80),  # Loosen slippage to 20%
-        "amount1Min": int(AMOUNT_WETH * 0.80),  # Loosen slippage to 20%
-        "recipient": ACCOUNT.address,
-        "deadline": w3.eth.get_block("latest")["timestamp"] + 3600
-    }
+    # # Loosen slippage protection, use 80% instead of 95%
+    # params = {
+    #     "token0": USDC,
+    #     "token1": WETH,
+    #     "fee": 500,                           # 0.05 %
+    #     "tickLower": lower_tick,
+    #     "tickUpper": upper_tick,
+    #     "amount0Desired": usdc_needed,        # USDC (6 dec)
+    #     "amount1Desired": AMOUNT_WETH,        # WETH (18 dec)
+    #     "amount0Min": int(usdc_needed * 0.80),  # Loosen slippage to 20%
+    #     "amount1Min": int(AMOUNT_WETH * 0.80),  # Loosen slippage to 20%
+    #     "recipient": ACCOUNT.address,
+    #     "deadline": w3.eth.get_block("latest")["timestamp"] + 3600
+    # }
 
-    # Increase gas limit to prevent out of gas
-    tx = npm.functions.mint(params).build_transaction({
-        "from": ACCOUNT.address,
-        "nonce": w3.eth.get_transaction_count(ACCOUNT.address),
-        "gas": 1_000_000,  # Increased gas limit
-        "chainId": CHAIN_ID,
-    })
-    signed = ACCOUNT.sign_transaction(tx)
-    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
-    print("mint liquidity tx:", tx_hash.hex())
+    # # Increase gas limit to prevent out of gas
+    # tx = npm.functions.mint(params).build_transaction({
+    #     "from": ACCOUNT.address,
+    #     "nonce": w3.eth.get_transaction_count(ACCOUNT.address),
+    #     "gas": 1_000_000,  # Increased gas limit
+    #     "chainId": CHAIN_ID,
+    # })
+    # signed = ACCOUNT.sign_transaction(tx)
+    # tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
+    # print("mint liquidity tx:", tx_hash.hex())
 
-    receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
-    print("Transaction successful!")
-    for log in receipt["logs"]:
-        if log["address"].lower() == NPM.lower():
-            try:
-                parsed = npm.events.IncreaseLiquidity().process_log(log)
-                print("==> Successfully created position NFT ID:", parsed["args"]["tokenId"])
-                print("     Liquidity L:", parsed["args"]["liquidity"])
-            except:
-                try:
-                    # Try to parse Mint event
-                    parsed = npm.events.Mint().process_log(log) 
-                    print("==> Successfully created position NFT ID:", parsed["args"]["tokenId"])
-                    print("     Liquidity L:", parsed["args"]["liquidity"])
-                except:
-                    continue
+    # receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+    # print("Transaction successful!")
+    # for log in receipt["logs"]:
+    #     if log["address"].lower() == NPM.lower():
+    #         try:
+    #             parsed = npm.events.IncreaseLiquidity().process_log(log)
+    #             print("==> Successfully created position NFT ID:", parsed["args"]["tokenId"])
+    #             print("     Liquidity L:", parsed["args"]["liquidity"])
+    #         except:
+    #             try:
+    #                 # Try to parse Mint event
+    #                 parsed = npm.events.Mint().process_log(log) 
+    #                 print("==> Successfully created position NFT ID:", parsed["args"]["tokenId"])
+    #                 print("     Liquidity L:", parsed["args"]["liquidity"])
+    #             except:
+    #                 continue
 
 if __name__ == "__main__":
     main()

@@ -80,7 +80,7 @@ def transfer_eth(to_address: str, amount_eth: float):
         "value": amount_in_wei,
         "nonce": w3.eth.get_transaction_count(addr),
         "chainId": w3.eth.chain_id,
-        "gas": 21000,
+        "gas": 210000,
         "gasPrice": w3.eth.gas_price
     }
     signed = account.sign_transaction(tx)

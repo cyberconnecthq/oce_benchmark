@@ -28,15 +28,15 @@ ERC20_ABI = [
         "stateMutability": "view"
     }
 ]
+w3 = Web3(HTTPProvider(BASE_RPC_URL))
+account = w3.eth.account.from_key(PRIVATE_KEY)
+addr = account.address
+
 
 async def get_balances():
     """
     获取Base链上当前账户的WETH和USDC余额
     """
-    w3 = Web3(HTTPProvider(BASE_RPC_URL))
-    account = w3.eth.account.from_key(PRIVATE_KEY)
-    addr = account.address
-
     # 获取WETH余额
     weth = w3.eth.contract(address=Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_BASE), abi=ERC20_ABI)
     weth_decimals = weth.functions.decimals().call()

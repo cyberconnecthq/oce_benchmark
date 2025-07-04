@@ -23,7 +23,7 @@ with open(abi_dir / "erc20_abi.json") as f:
 w3 = Web3(Web3.HTTPProvider(RPC_URL))
 usdc = w3.eth.contract(address=USDC, abi=ERC20_ABI)
 
-def approve_usdc():
+def main():
     # Approve 10 USDC (6 decimals)
     amount = 10 * 10**6
     

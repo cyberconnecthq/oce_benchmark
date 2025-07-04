@@ -6,7 +6,6 @@ from evaluate_utils.aave_v3_util import supply_eth, borrow_usdt
 
 
 
-if __name__ == '__main__':
-    import asyncio
+def main():
     supply_eth(1)
     (borrow_usdt(2000))

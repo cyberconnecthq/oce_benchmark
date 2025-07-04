@@ -44,5 +44,5 @@ def wrap_eth_to_weth(amount):
 
 
 
-if __name__ == '__main__':
+def main():
     wrap_eth_to_weth(1)

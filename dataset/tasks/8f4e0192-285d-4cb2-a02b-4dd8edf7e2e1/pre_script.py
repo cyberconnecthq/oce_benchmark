@@ -5,14 +5,14 @@ from web3 import Web3
 import asyncio
 
 addr =  Web3.to_checksum_address("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
-
-wrap_eth_to_weth(2)
-approve_weth_to_morpho(int(2*1e18), addr)
-market_params = (
-    Web3.to_checksum_address(USDT_CONTRACT_ADDRESS_ETH),  # loanToken 
-    Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),  # collateralToken
-    "0xe9eE579684716c7Bb837224F4c7BeEfA4f1F3d7f",         # oracle
-    "0x870aC11D48B15DB9a138Cf899d20F13F79Ba00BC",         # irm
-    915000000000000000                                   # lltv
-)
-supply_weth_to_morpho(int(2*1e18), addr, market_params)
+def main():
+    wrap_eth_to_weth(2)
+    approve_weth_to_morpho(int(2*1e18), addr)
+    market_params = (
+        Web3.to_checksum_address(USDT_CONTRACT_ADDRESS_ETH),  # loanToken 
+        Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),  # collateralToken
+        "0xe9eE579684716c7Bb837224F4c7BeEfA4f1F3d7f",         # oracle
+        "0x870aC11D48B15DB9a138Cf899d20F13F79Ba00BC",         # irm
+        915000000000000000                                   # lltv
+    )
+    supply_weth_to_morpho(int(2*1e18), addr, market_params)

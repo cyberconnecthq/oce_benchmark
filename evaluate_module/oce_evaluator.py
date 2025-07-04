@@ -35,6 +35,8 @@ class OCEEvaluator:
 
             if agent_output.task_id:
                 task_id = agent_output.task_id
+                item = [item for item in self.evaluate_dataset if item.task_id==task_id]
+                bind_address = item[0].bind_address
             elif agent_output.question:
                 item = [item for item in self.evaluate_dataset if item.question == agent_output.question]
                 if not item or len(item) <= 0:

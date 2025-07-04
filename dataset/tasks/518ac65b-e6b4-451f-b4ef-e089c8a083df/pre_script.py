@@ -1,5 +1,6 @@
 from web3 import Web3
 from dataset.constants import (
+    SUSDS_PROXY_CONTRACT_ADDRESS_ETH,
     USDS_CONTRACT_ADDRESS_ETH,
     USDS_WRAPPER_ADDRESS_ETH,
     USDC_CONTRACT_ADDRESS_ETH,
@@ -73,6 +74,11 @@ def main():
     )
     swap_usdc_to_usds(
         5
+    )
+    approve_erc20(
+        Web3.to_checksum_address(USDS_CONTRACT_ADDRESS_ETH),
+        Web3.to_checksum_address(SUSDS_PROXY_CONTRACT_ADDRESS_ETH),
+        int(1000* 1e18)
     )
 
 
