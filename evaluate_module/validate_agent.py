@@ -124,7 +124,16 @@ class ExecuteTxTool(Tool):
                     }
                     
                 },
-                "required": ["to","from", "value", "data"],
+                "required": [
+                    "to",
+                    "from",
+                    "value",
+                    "data",
+                    "maxPriorityFeePerGas",
+                    "maxFeePerGas",
+                    "gas",
+                    "gasPrice"
+                ],
                 "additionalProperties": False
             },
             "description": "The list of transactions to validate"
