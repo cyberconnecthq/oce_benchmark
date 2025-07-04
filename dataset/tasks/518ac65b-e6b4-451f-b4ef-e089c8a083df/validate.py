@@ -27,7 +27,7 @@ usdc_contract = w3.eth.contract(address=USDC, abi=ERC20_ABI)
 usds_contract = w3.eth.contract(address=USDS, abi=ERC20_ABI)
 susds_contract = w3.eth.contract(address=SUSDS, abi=ERC20_ABI)
 
-def get_usdc_usds_balances():
+async def get_balances():
     usdc_balance = usdc_contract.functions.balanceOf(addr).call()
     usds_balance = usds_contract.functions.balanceOf(addr).call()
     susds_balance = susds_contract.functions.balanceOf(addr).call()
@@ -37,5 +37,3 @@ def get_usdc_usds_balances():
         f"SUSDS余额: {susds_balance / 10**18:.6f} SUSDS"
     )
 
-if __name__ == "__main__":
-    print(get_usdc_usds_balances())

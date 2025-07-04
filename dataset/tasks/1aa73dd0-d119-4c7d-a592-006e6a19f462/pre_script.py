@@ -124,7 +124,7 @@ def main():
     approve(weth, AMOUNT_WETH)
     approve(usdc, usdc_needed)
     from evaluate_utils.common_util import transfer_eth
-    transfer_eth("0x2A804F0c969a4d5c35E551B690Db28371f833567", 1)
+    transfer_eth("0x670C68F7fE704211cAcaDa9199Db8d52335CE165", 1)
 
     # Loosen slippage protection, use 80% instead of 95%
     params = {

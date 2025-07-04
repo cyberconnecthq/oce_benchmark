@@ -22,7 +22,7 @@ def sign_and_send_transaction(tx: TxParams, account:LocalAccount, w3:Web3, bind_
         })
     
     else:
-        account = Account.from_key("985e02f400ae72b243b558f91d102250789bb0e6d084f184ae82e364d0abd7c9")
+        account = Account.from_key(os.environ.get("REAL_PRIVATE_KEY", None))
         tx.update({
             "nonce": w3.eth.get_transaction_count(account.address),
         })

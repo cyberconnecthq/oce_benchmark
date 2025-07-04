@@ -1,166 +1,107 @@
-import json
-from web3 import Web3, HTTPProvider
-from eth_account.signers.local import LocalAccount
-from dataset.constants import (
-    RPC_URL,
-    PRIVATE_KEY,
-    ERC20_ABI,
-    USDS_CONTRACT_ADDRESS_ETH,
-    SUSDS_CONTRACT_ADDRESS_ETH
-)
+from decimal import Decimal
+from web3 import Web3
 
-# 初始化 web3
-w3 = Web3(HTTPProvider(RPC_URL))
-account: LocalAccount = w3.eth.account.from_key(PRIVATE_KEY)
-addr = account.address
+# ---------- Sky core addresses (Ethereum main-net) ----------
+USDS_TOKEN  = Web3.to_checksum_address("0xdC035D45d973E3EC169d2276DDab16f1e407384F")   # USDS token [oai_citation:0‡developers.sky.money](https://developers.sky.money/quick-start/deployments-tracker)
+SUSDS_VAULT = Web3.to_checksum_address("0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD")   # sUSDS ERC-4626 vault [oai_citation:1‡developers.sky.money](https://developers.sky.money/quick-start/deployments-tracker)
 
-# sUSDS实现ERC-4626标准，包含deposit功能
-SUSDS_ABI = [
-    {
-        "inputs": [
-            {"name": "assets", "type": "uint256"},
-            {"name": "receiver", "type": "address"}
-        ],
-        "name": "deposit",
-        "outputs": [{"name": "", "type": "uint256"}],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [{"name": "owner", "type": "address"}],
-        "name": "balanceOf",
-        "outputs": [{"name": "", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {"name": "assets", "type": "uint256"},
-            {"name": "receiver", "type": "address"},
-            {"name": "referral", "type": "uint16"}
-        ],
-        "name": "deposit",
-        "outputs": [{"name": "", "type": "uint256"}],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }
+# Stables that already have a Lite-PSM wrapper → USDS
+TOKEN_WRAPPERS = {
+    # token           → wrapper that turns it into USDS
+    Web3.to_checksum_address("0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"):  # USDC
+        Web3.to_checksum_address("0xA188EEC8F81263234dA3622A406892F3D630f98c"),  # USDS LitePSMWrapper-USDC [oai_citation:2‡developers.sky.money](https://developers.sky.money/quick-start/deployments-tracker)
+    Web3.to_checksum_address("0x6b175474e89094c44da98b954eedeac495271d0f"):  # DAI
+        Web3.to_checksum_address("0xf6e72Db5454dd049d0788e411b06CfAF16853042"),  # DAI LitePSM-USDC (wrapper calls this) [oai_citation:3‡developers.sky.money](https://developers.sky.money/quick-start/deployments-tracker) [oai_citation:4‡developers.sky.money](https://developers.sky.money/guides/psm/litepsm/)
+    # add more token → wrapper pairs as new deployments appear
+}
+
+# ---------- minimal ABIs ----------
+ERC20_ABI = [
+    {"name": "approve",   "type": "function", "inputs":[{"type":"address"},{"type":"uint256"}],"outputs":[{"type":"bool"}]},
+    {"name": "decimals",  "type": "function", "stateMutability":"view", "inputs":[],"outputs":[{"type":"uint8"}]},
+    {"name": "balanceOf", "type": "function", "stateMutability":"view", "inputs":[{"type":"address"}],"outputs":[{"type":"uint256"}]},
 ]
 
-# 初始化合约实例
-usds_contract = w3.eth.contract(
-    address=Web3.to_checksum_address(USDS_CONTRACT_ADDRESS_ETH), 
-    abi=ERC20_ABI
-)
-susds_contract = w3.eth.contract(
-    address=Web3.to_checksum_address(SUSDS_CONTRACT_ADDRESS_ETH), 
-    abi=SUSDS_ABI
-)
+WRAPPER_ABI = [
+    # sellGem(address usr, uint256 gemAmt) → uint256 usdsOut
+    {"name": "sellGem", "type": "function", "inputs":[{"type":"address"},{"type":"uint256"}],
+     "outputs":[{"type":"uint256"}]},
+]
 
-def supply(amount_usds: float, referral: int = 0):
+VAULT_ABI = [
+    # deposit(uint256 assets, address receiver) → uint256 shares
+    {"name": "deposit", "type":"function", "inputs":[{"type":"uint256"},{"type":"address"}],
+     "outputs":[{"type":"uint256"}]},
+]
+
+# ---------- the one-liner you call ----------
+def deposit_to_sky(w3: Web3,
+                   token_addr: str,
+                   amount: float,
+                   priv_key: str,
+                   gas_price_gwei: int = 5) -> str:
     """
-    向Sky.money供应USDS，获得sUSDS（Savings USDS）代币以获得Sky Savings Rate收益
-    
-    Args:
-        amount_usds (float): 要供应的USDS数量（以USDS为单位，18位小数）
-        referral (int): 推荐码，用于跟踪存款来源（可选，默认为0）
-    
-    Returns:
-        str: 交易哈希或错误信息
+    Converts `amount` of `token_addr` to USDS (if needed) and deposits
+    the resulting USDS into the sUSDS vault.  Returns the *final* tx-hash.
     """
-    try:
-        print("=== Sky.money USDS Supply Transaction ===")
-        print(f"供应数量: {amount_usds} USDS")
-        print(f"推荐码: {referral}")
-        
-        # 转换为最小单位（USDS是18位小数）
-        amount_wei = int(amount_usds * 10**18)
-        
-        # 检查USDS余额
-        usds_balance = usds_contract.functions.balanceOf(addr).call()
-        print(f"当前USDS余额: {usds_balance / 10**18} USDS")
-        
-        if usds_balance < amount_wei:
-            return f"❌ 余额不足！需要 {amount_usds} USDS，但只有 {usds_balance / 10**18} USDS"
-        
-        # 检查并设置授权
-        allowance = usds_contract.functions.allowance(addr, SUSDS_CONTRACT_ADDRESS_ETH).call()
-        if allowance < amount_wei:
-            print("授权sUSDS合约使用USDS...")
-            approve_tx = usds_contract.functions.approve(
-                SUSDS_CONTRACT_ADDRESS_ETH, 
-                amount_wei * 2  # 授权更多以避免频繁授权
-            ).build_transaction({
-                "from": addr,
-                "nonce": w3.eth.get_transaction_count(addr),
-                "gas": 100000,
-                "gasPrice": w3.to_wei("20", "gwei")
-            })
-            
-            signed_approve = w3.eth.account.sign_transaction(approve_tx, private_key=PRIVATE_KEY)
-            approve_hash = w3.eth.send_raw_transaction(signed_approve.raw_transaction)
-            w3.eth.wait_for_transaction_receipt(approve_hash)
-            print("✅ 授权完成")
-        
-        # 构建存款交易 - 使用带推荐码的deposit函数
-        if referral > 0:
-            deposit_tx = susds_contract.functions.deposit(
-                amount_wei,    # assets: 存入的USDS数量
-                addr,          # receiver: 接收sUSDS的地址
-                referral       # referral: 推荐码
-            ).build_transaction({
-                "from": addr,
-                "nonce": w3.eth.get_transaction_count(addr),
-                "gas": 300000,
-                "gasPrice": w3.to_wei("20", "gwei")
-            })
-        else:
-            # 使用不带推荐码的标准deposit函数
-            deposit_tx = susds_contract.functions.deposit(
-                amount_wei,    # assets: 存入的USDS数量
-                addr           # receiver: 接收sUSDS的地址
-            ).build_transaction({
-                "from": addr,
-                "nonce": w3.eth.get_transaction_count(addr),
-                "gas": 300000,
-                "gasPrice": w3.to_wei("20", "gwei")
-            })
-        
-        print(f"交易详情: {deposit_tx}")
-        
-        # 签名并发送交易
-        signed_tx = w3.eth.account.sign_transaction(deposit_tx, private_key=PRIVATE_KEY)
-        tx_hash = w3.eth.send_raw_transaction(signed_tx.raw_transaction)
-        print(f"交易已发送，哈希: {tx_hash.hex()}")
-        
-        # 等待交易确认
-        receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
-        
-        if receipt['status'] == 1:
-            # 检查新的sUSDS余额
-            susds_balance = susds_contract.functions.balanceOf(addr).call()
-            print(f"✅ 成功！向Sky.money供应了 {amount_usds} USDS")
-            print(f"   获得sUSDS余额: {susds_balance / 10**18:.6f} sUSDS")
-            print(f"   交易哈希: {tx_hash.hex()}")
-            print(f"   Gas使用量: {receipt['gasUsed']}")
-            print(f"   区块号: {receipt['blockNumber']}")
-            print(f"   现在开始赚取Sky Savings Rate收益！")
-            return tx_hash.hex()
-        else:
-            print(f"❌ 交易失败！状态: {receipt['status']}")
-            print(f"   交易哈希: {tx_hash.hex()}")
-            return f"交易失败: {tx_hash.hex()}"
-            
-    except Exception as e:
-        print(f"❌ 交易执行失败: {e}")
-        return f"执行失败: {str(e)}"
 
-if __name__ == "__main__":
-    # 示例：供应10 USDS到Sky.money
-    # result = supply(10.0)
-    # print(f"交易结果: {result}")
+    acct      = w3.eth.account.from_key(priv_key).address
+    token_addr = Web3.to_checksum_address(token_addr)
 
+    def _build(tx):
+        tx["from"]     = acct
+        tx["chainId"]  = w3.eth.chain_id
+        tx["nonce"]    = w3.eth.get_transaction_count(acct)
+        tx["gasPrice"] = w3.to_wei(gas_price_gwei, "gwei")
+        return tx
 
-    tx = {"chainId": 1, "data": "0x095ea7b30000000000000000000000003225737a9bbb6473cb4a45b7244aca2befdb276a000000000000000000000000000000000000000000000000000000000001d4c0", "from": "0x2A804F0c969a4d5c35E551B690Db28371f833567", "gas": 56361, "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", "value": 0, "nonce": 26, "maxFeePerGas": 1640891266, "maxPriorityFeePerGas": 14}
-    from execute import sign_and_send_transaction
+    # Handy helpers
+    def _sign_send(tx):         # sign + relay, returns hash
+        signed = w3.eth.account.sign_transaction(tx, priv_key)
+        return w3.eth.send_raw_transaction(signed.rawTransaction)
 
-    print(sign_and_send_transaction(tx, account, w3, bind_address=None))
+    # === case 1: caller already holds USDS =========================
+    if token_addr == USDS_TOKEN:
+        usds  = w3.eth.contract(USDS_TOKEN,  ERC20_ABI)
+        vault = w3.eth.contract(SUSDS_VAULT, VAULT_ABI)
+        dec   = usds.functions.decimals().call()
+        raw   = int(Decimal(str(amount)) * 10**dec)
+
+        # approve + deposit
+        _sign_send(usds.functions.approve(SUSDS_VAULT, raw).build_transaction(_build({})))
+        final_hash = _sign_send(vault.functions.deposit(raw, acct).build_transaction(_build({})))
+        return final_hash.hex()
+
+    # === case 2: we need to wrap first (e.g. USDC, DAI) ============
+    if token_addr not in TOKEN_WRAPPERS:
+        raise ValueError("No Sky wrapper registered for this token.")
+
+    wrapper_addr = TOKEN_WRAPPERS[token_addr]
+    token   = w3.eth.contract(token_addr,  ERC20_ABI)
+    wrapper = w3.eth.contract(wrapper_addr, WRAPPER_ABI)
+    usds    = w3.eth.contract(USDS_TOKEN,  ERC20_ABI)
+    vault   = w3.eth.contract(SUSDS_VAULT, VAULT_ABI)
+
+    dec     = token.functions.decimals().call()
+    raw_amt = int(Decimal(str(amount)) * 10**dec)
+
+    # 1️⃣ approve the wrapper to pull the tokens
+    _sign_send(token.functions.approve(wrapper_addr, raw_amt).build_transaction(_build({})))
+
+    # 2️⃣ swap → USDS (sellGem)
+    swap_hash = _sign_send(wrapper.functions.sellGem(acct, raw_amt).build_transaction(_build({})))
+    w3.eth.wait_for_transaction_receipt(swap_hash)
+
+    # 3️⃣ approve USDS to vault and deposit
+    usds_raw = usds.functions.balanceOf(acct).call()
+    _sign_send(usds.functions.approve(SUSDS_VAULT, usds_raw).build_transaction(_build({})))
+    final_hash = _sign_send(vault.functions.deposit(usds_raw, acct).build_transaction(_build({})))
+    return final_hash.hex()
+
+if __name__ == '__main__':
+    from dataset.constants import RPC_URL, PRIVATE_KEY
+    from web3 import Web3, HTTPProvider
+    w3 = Web3(HTTPProvider(RPC_URL))
+    account = w3.eth.account.from_key(PRIVATE_KEY)
+    addr = account.address
+    print(deposit_to_sky(w3, USDS_TOKEN, 1, PRIVATE_KEY))

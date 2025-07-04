@@ -93,3 +93,6 @@ with open(abi_dir / "usds_pm_wrapper_abi.json", "r") as f:
 
 with open(abi_dir / "susds_abi.json", "r") as f:
     SUSDS_PROXY_ABI= json.load(f)
+
+
+USDC_CONTRACT_ADDRESS_BASE="0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"

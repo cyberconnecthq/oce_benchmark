@@ -134,7 +134,7 @@ def main():
         10
     )
     deposit_usds(
-        5
+        1
     )
 
 
