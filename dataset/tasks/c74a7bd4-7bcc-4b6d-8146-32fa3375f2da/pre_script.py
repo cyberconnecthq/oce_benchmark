@@ -12,10 +12,13 @@ def main():
     approve_erc20(
         Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),
         Web3.to_checksum_address(MORPHO_CONTRACT_ADDRESS_ETH),
-        10*10**6
+        10*10**18
     )
     approve_erc20(
         Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),
         Web3.to_checksum_address(MORPHO_GENERAL_ADAPTER_ADDRESS_ETH),
-        10*10**6
+        10*10**18
     )
+
+if __name__ == '__main__':
+    main()

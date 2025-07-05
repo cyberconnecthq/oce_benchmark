@@ -144,7 +144,7 @@
         "level": 2,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "Supply WETH from Morpho, wallet ETH decreases by 1, Morpho WETH balance increases by 1 WETH, collateral increases by 1 WETH"
+        "criteria": "Supply WETH from Morpho, wallet ETH decreases by 0.0001, Morpho WETH balance increases by 0.0001 WETH, collateral increases by 0.0001 WETH"
     },
     {
         "task_id": "9c5a7810-6e2d-445a-b2e6-9ddac05954e6",
@@ -152,7 +152,7 @@
         "level": 2,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "Withdrawl WETH from Morpho, wallet WETH increases by 1, Morpho WETH balance decreases by 1 WETH"
+        "criteria": "Withdrawl WETH from Morpho, wallet WETH increases by 0.0001, Morpho WETH balance decreases by 0.0001 WETH"
     },
     {
         "task_id": "8f4e0192-285d-4cb2-a02b-4dd8edf7e2e1",
@@ -160,7 +160,7 @@
         "level": 1,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "Borrow 100 USDT from Morpho, wallet USDT increases by 100, Morpho USDT balance decreases by 100 USDT. Account position WETH/USDT pair borrow shares should increase."
+        "criteria": "Borrow 0.1 USDT from Morpho, wallet USDT increases by 0.1, Morpho USDT balance decreases by 0.1 USDT. Account position WETH/USDT pair borrow shares should increase."
     },
     {
         "task_id": "5b59ac11-23ac-452f-935b-daf776b500f1",
@@ -168,6 +168,6 @@
         "level": 1,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "After repaying, the wallet USDT balance decrease by 100 USDT, and the Morpho USDT banalce increase by 100 USDT. Account position WETH/USDT pair borrow shares decrease."
+        "criteria": "After repaying, the wallet USDT balance decrease by 0.1 USDT, and account position WETH/USDT pair borrow shares decrease by 0.1 USDT."
     }
 ]

@@ -228,7 +228,7 @@ def main():
     # print("Transaction successful!")
     
     # 存储创建的NFT token ID，用于后续授权示例
-    nft_token_id = 1025432
+    nft_token_id = 1024366
     
     # for log in receipt["logs"]:
     #     if log["address"].lower() == NPM.lower():
