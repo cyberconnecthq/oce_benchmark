@@ -1,13 +1,23 @@
 from dataset.constants import USDT_CONTRACT_ADDRESS_ETH, WETH_CONTRACT_ADDRESS_ETH
 from evaluate_utils.morpho_util import supply_weth_to_morpho, approve_weth_to_morpho
-from evaluate_utils.common_util import wrap_eth_to_weth
+from evaluate_utils.common_util import wrap_eth_to_weth, approve_erc20
 from web3 import Web3
-import asyncio
+from dataset.constants import (
+    WETH_CONTRACT_ADDRESS_ETH,
+    MORPHO_GENERAL_ADAPTER_ADDRESS_ETH
+
+)
 def main():
     addr =  Web3.to_checksum_address("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
 
     wrap_eth_to_weth(2)
     approve_weth_to_morpho(int(2*1e18), addr)
+    approve_erc20(
+        Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),
+        Web3.to_checksum_address(MORPHO_GENERAL_ADAPTER_ADDRESS_ETH),
+        1*10**18
+    )
+
     market_params = (
         Web3.to_checksum_address(USDT_CONTRACT_ADDRESS_ETH),  # loanToken 
         Web3.to_checksum_address(WETH_CONTRACT_ADDRESS_ETH),  # collateralToken
@@ -16,3 +26,7 @@ def main():
         915000000000000000                                   # lltv
     )
     supply_weth_to_morpho(int(2*1e18), addr, market_params)
+
+
+if __name__ == '__main__':
+    main()

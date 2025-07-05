@@ -108,6 +108,11 @@ def decode_tx_data(hex_data: str, abi_json: str|dict) -> Dict[str, Any]:
                 
                 # 解码参数数据
                 if param_types:
+                    # 检查并修复奇数长度的十六进制字符串
+                    if len(params_data) % 2 != 0:
+                        print(f"警告: 参数数据长度为奇数 ({len(params_data)})，自动添加0补齐")
+                        params_data += '0'
+                    
                     decoded_values = decode(param_types, bytes.fromhex(params_data))
                     
                     # 将解码的值与参数名配对
@@ -194,9 +199,9 @@ def decode_tx_data_simple(hex_data: str, abi_json: str) -> Optional[Dict[str, An
 
 # 使用示例
 if __name__ == "__main__":
-    with open('./abi/uniswap_v3_router_abi.json', 'r') as f:
+    with open('./abi/uniswap_v3_npm_abi.json', 'r') as f:
         uniswap_v3_router_abi = json.load(f)
-        print(uniswap_v3_router_abi)
-        data = "0x414bf389000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec700000000000000000000000000000000000000000000000000000000000001f4000000000000000000000000fe0c760cbcb9da239b9ba805f0aeaed3be84f65a00000000000000000000000000000000000000000000000000000000685ce1400000000000000000000000000000000000000000000000003c014668e92e62050000000000000000000000000000000000000000000000000000000279f466ca0000000000000000000000000000000000000000000000000000000000000000"
+        # print(uniswap_v3_router_abi)
+        data = "0x219f5d1700000000000000000000000000000000000000000000000000000000000fa16e00000000000000000000000000000000000000000000000000000000000027100000000000000000000000000000000000000000000000000000039c5670940000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006877e3ff"
         print(decode_tx_data(data, uniswap_v3_router_abi))
     
