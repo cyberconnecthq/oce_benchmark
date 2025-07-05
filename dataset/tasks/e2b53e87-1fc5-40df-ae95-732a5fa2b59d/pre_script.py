@@ -112,7 +112,7 @@ def approve(token, amount):
         print(f"approve {token.functions.symbol().call()} tx:", tx_hash.hex())
         w3.eth.wait_for_transaction_receipt(tx_hash)
 
-def approve_nft(token_id, spender_address):
+def approve_nft(token_id, spender_address, account):
     """
     授权指定地址使用特定的NFT代币
     
@@ -129,12 +129,12 @@ def approve_nft(token_id, spender_address):
         
         # 执行授权交易
         tx = npm.functions.approve(spender_address, token_id).build_transaction({
-            "from": ACCOUNT.address,
-            "nonce": w3.eth.get_transaction_count(ACCOUNT.address),
+            "from": account.address,
+            "nonce": w3.eth.get_transaction_count(account.address),
             "gas": 100_000,
             "chainId": CHAIN_ID,
         })
-        signed = ACCOUNT.sign_transaction(tx)
+        signed = account.sign_transaction(tx)
         tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
         print(f"approve NFT {token_id} to {spender_address} tx:", tx_hash.hex())
         w3.eth.wait_for_transaction_receipt(tx_hash)
@@ -143,7 +143,7 @@ def approve_nft(token_id, spender_address):
     except Exception as e:
         print(f"❌ 授权NFT失败: {e}")
 
-def approve_all_nft(spender_address, approved=True):
+def approve_all_nft(spender_address, account, approved=True, ):
     """
     授权或取消授权指定地址使用所有NFT代币
     
@@ -153,7 +153,7 @@ def approve_all_nft(spender_address, approved=True):
     """
     try:
         # 检查当前授权状态
-        is_approved = npm.functions.isApprovedForAll(ACCOUNT.address, spender_address).call()
+        is_approved = npm.functions.isApprovedForAll(account.address, spender_address).call()
         if is_approved == approved:
             status = "已授权" if approved else "未授权"
             print(f"地址 {spender_address} {status}使用所有NFT")
@@ -161,12 +161,12 @@ def approve_all_nft(spender_address, approved=True):
         
         # 执行授权/取消授权交易
         tx = npm.functions.setApprovalForAll(spender_address, approved).build_transaction({
-            "from": ACCOUNT.address,
-            "nonce": w3.eth.get_transaction_count(ACCOUNT.address),
+            "from": account.address,
+            "nonce": w3.eth.get_transaction_count(account.address),
             "gas": 100_000,
             "chainId": CHAIN_ID,
         })
-        signed = ACCOUNT.sign_transaction(tx)
+        signed = account.sign_transaction(tx)
         tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
         action = "approve all NFT" if approved else "revoke all NFT approval"
         print(f"{action} to {spender_address} tx:", tx_hash.hex())
@@ -198,54 +198,54 @@ def main():
     ACCOUNT = Account.from_key(os.environ.get("REAL_PRIVATE_KEY"))
 
 
-    # Loosen slippage protection, use 80% instead of 95%
-    params = {
-        "token0": USDC,
-        "token1": WETH,
-        "fee": 500,                           # 0.05 %
-        "tickLower": lower_tick,
-        "tickUpper": upper_tick,
-        "amount0Desired": usdc_needed,        # USDC (6 dec)
-        "amount1Desired": AMOUNT_WETH,        # WETH (18 dec)
-        "amount0Min": int(usdc_needed * 0.80),  # Loosen slippage to 20%
-        "amount1Min": int(AMOUNT_WETH * 0.80),  # Loosen slippage to 20%
-        "recipient": ACCOUNT.address,
-        "deadline": int(time.time()) + 3600
-    }
+    # # Loosen slippage protection, use 80% instead of 95%
+    # params = {
+    #     "token0": USDC,
+    #     "token1": WETH,
+    #     "fee": 500,                           # 0.05 %
+    #     "tickLower": lower_tick,
+    #     "tickUpper": upper_tick,
+    #     "amount0Desired": usdc_needed,        # USDC (6 dec)
+    #     "amount1Desired": AMOUNT_WETH,        # WETH (18 dec)
+    #     "amount0Min": int(usdc_needed * 0.80),  # Loosen slippage to 20%
+    #     "amount1Min": int(AMOUNT_WETH * 0.80),  # Loosen slippage to 20%
+    #     "recipient": ACCOUNT.address,
+    #     "deadline": int(time.time()) + 3600
+    # }
 
-    # Increase gas limit to prevent out of gas
-    tx = npm.functions.mint(params).build_transaction({
-        "from": ACCOUNT.address,
-        "nonce": w3.eth.get_transaction_count(ACCOUNT.address),
-        "gas": 1_000_000,  # Increased gas limit
-        "chainId": CHAIN_ID,
-    })
-    signed = ACCOUNT.sign_transaction(tx)
-    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
-    print("mint liquidity tx:", tx_hash.hex())
+    # # Increase gas limit to prevent out of gas
+    # tx = npm.functions.mint(params).build_transaction({
+    #     "from": ACCOUNT.address,
+    #     "nonce": w3.eth.get_transaction_count(ACCOUNT.address),
+    #     "gas": 1_000_000,  # Increased gas limit
+    #     "chainId": CHAIN_ID,
+    # })
+    # signed = ACCOUNT.sign_transaction(tx)
+    # tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
+    # print("mint liquidity tx:", tx_hash.hex())
 
-    receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
-    print("Transaction successful!")
+    # receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
+    # print("Transaction successful!")
     
     # 存储创建的NFT token ID，用于后续授权示例
-    nft_token_id = 1024366
+    nft_token_id = 1025432
     
-    for log in receipt["logs"]:
-        if log["address"].lower() == NPM.lower():
-            try:
-                parsed = npm.events.IncreaseLiquidity().process_log(log)
-                nft_token_id = parsed["args"]["tokenId"]
-                print("==> Successfully created position NFT ID:", nft_token_id)
-                print("     Liquidity L:", parsed["args"]["liquidity"])
-            except:
-                try:
-                    # Try to parse Mint event
-                    parsed = npm.events.Mint().process_log(log) 
-                    nft_token_id = parsed["args"]["tokenId"]
-                    print("==> Successfully created position NFT ID:", nft_token_id)
-                    print("     Liquidity L:", parsed["args"]["liquidity"])
-                except:
-                    continue
+    # for log in receipt["logs"]:
+    #     if log["address"].lower() == NPM.lower():
+    #         try:
+    #             parsed = npm.events.IncreaseLiquidity().process_log(log)
+    #             nft_token_id = parsed["args"]["tokenId"]
+    #             print("==> Successfully created position NFT ID:", nft_token_id)
+    #             print("     Liquidity L:", parsed["args"]["liquidity"])
+    #         except:
+    #             try:
+    #                 # Try to parse Mint event
+    #                 parsed = npm.events.Mint().process_log(log) 
+    #                 nft_token_id = parsed["args"]["tokenId"]
+    #                 print("==> Successfully created position NFT ID:", nft_token_id)
+    #                 print("     Liquidity L:", parsed["args"]["liquidity"])
+    #             except:
+    #                 continue
     
     # NFT授权示例（可选）
     if nft_token_id is not None:
@@ -253,10 +253,10 @@ def main():
         from dataset.constants import UNISWAP_NPM_ADDRESS_ETH
         # 示例1：授权特定NFT给某个地址（比如另一个合约地址）
         example_spender = UNISWAP_NPM_ADDRESS_ETH # 替换为实际地址
-        approve_nft(nft_token_id, example_spender)
+        approve_nft(nft_token_id, example_spender, ACCOUNT)
         
         # 示例2：批量授权所有NFT给某个地址
-        approve_all_nft(example_spender, True)  # 授权
+        approve_all_nft(example_spender, ACCOUNT,True)  # 授权
         # approve_all_nft(example_spender, False) # 取消授权
         
         print("💡 提示：如果需要授权NFT，请取消注释上面的示例代码并设置正确的授权地址")
