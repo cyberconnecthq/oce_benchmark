@@ -164,10 +164,10 @@
     },
     {
         "task_id": "5b59ac11-23ac-452f-935b-daf776b500f1",
-        "question": "Repay 0.1 USDT to Morpho, USDT/WETH pair pool LLTV=0.915",
+        "question": "Repay 0.01 USDT to Morpho, USDT/WETH pair pool LLTV=0.915",
         "level": 1,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "After repaying, the wallet USDT balance decrease by 0.1 USDT, and account position WETH/USDT pair borrow shares decrease by 0.1 USDT."
+        "criteria": "After repaying, the wallet USDT balance decrease by 0.01 USDT, and account position WETH/USDT pair borrow shares decrease by 0.01 USDT."
     }
 ]
