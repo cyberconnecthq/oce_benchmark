@@ -1,3 +1,4 @@
+import os
 from web3 import Web3
 from eth_account import Account
 import json
@@ -194,6 +195,8 @@ def main():
         "0x670C68F7fE704211cAcaDa9199Db8d52335CE165",
         1
     )
+    ACCOUNT = Account.from_key(os.environ.get("REAL_PRIVATE_KEY"))
+
 
     # Loosen slippage protection, use 80% instead of 95%
     params = {
@@ -225,7 +228,7 @@ def main():
     print("Transaction successful!")
     
     # 存储创建的NFT token ID，用于后续授权示例
-    nft_token_id = None
+    nft_token_id = 1024366
     
     for log in receipt["logs"]:
         if log["address"].lower() == NPM.lower():
