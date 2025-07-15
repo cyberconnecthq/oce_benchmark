@@ -136,7 +136,7 @@
         "level": 2,
         "chain": "ethereum",
         "category": "lending",
-        "criteria": "After tx executed, the wallet balance should increase about 0.98 USDC, and Aave Total Collateral should decrease by 1 USDC"
+        "criteria": "After tx executed, the wallet balance should increase about 0.01 USDC, and Aave Total Collateral should decrease by 0.01 USDC"
     },
     {
         "task_id": "c74a7bd4-7bcc-4b6d-8146-32fa3375f2da",
